@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DAL
 {
-	public class Repository<T, TKey> : IRepository<T, TKey> where T : class
+	public class Repository<T> : IRepository<T> where T : class
 	{
 		private DbContext context;
 		private DbSet<T> entities;
@@ -29,12 +29,12 @@ namespace DAL
 			return entities.Take(entities.Count());
 		}
 
-		public virtual T Get(TKey id)
+		public virtual T Get(int id)
 		{
 			return entities.Find(id);
 		}
 
-		public virtual void Delete(TKey id)
+		public virtual void Delete(int id)
 		{
 			var entityToDelete = entities.Find(id);
 			Delete(entityToDelete);
