@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Entities
 {
@@ -21,10 +22,13 @@ namespace Entities
 	    public string CoverSource { get; set; }
 		public string Text { get; set; }
 		public bool IsAnonymous { get; set; }
+
         public virtual ICollection<Author> Author { get; set; }
 		public virtual ICollection<Genre> Genres { get; set; }
 		public virtual ICollection<Keyword> Keywords { get; set; }
+        [InverseProperty("Work")]
 		public virtual ICollection<Review> Reviews { get; set; }
+        [InverseProperty("Work")]
 		public virtual ICollection<WorkRating> Ratings{ get; set; }
 	}
 }
