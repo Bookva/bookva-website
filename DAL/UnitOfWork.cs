@@ -25,6 +25,7 @@ namespace DAL
 		private IRepository<Work> workRepository;
 		private IRepository<WorkRating> workRatingRepository;
 	    private IRepository<Author> authorRepository;
+
 		public IRepository<CustomCollection> CustomCollectionRepository
 		{
 			get
@@ -167,7 +168,21 @@ namespace DAL
 				return userRepository;
 			}
 		}
-		public UnitOfWork(DbContext context)
+
+	    public IRepository<Author> AuthorRepository
+	    {
+	        get
+	        {
+	            if (authorRepository == null)
+	            {
+                    authorRepository = new Repository<Author>(context);
+	            }
+
+	            return authorRepository;
+	        }
+	    }
+
+	    public UnitOfWork(DbContext context)
 		{
 			this.context = context;
 		}

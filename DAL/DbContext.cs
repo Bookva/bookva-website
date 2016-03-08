@@ -38,8 +38,9 @@ namespace DAL
 		public virtual DbSet<ReadCollection> ReadCollections { get; set; }
 		public virtual DbSet<Review> Reviews { get; set; }
 		public virtual DbSet<Work> Works { get; set; }
+        public virtual DbSet<Author> Authors { get; set; }
 
-		public virtual DbSet<WorkRating> WorkRatings { get; set; }
+        public virtual DbSet<WorkRating> WorkRatings { get; set; }
 
 		protected override void OnModelCreating(DbModelBuilder modelBuilder)
 		{
