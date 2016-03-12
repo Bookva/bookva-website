@@ -22,21 +22,12 @@ namespace Bookva
 
             // Web API routes
             config.MapHttpAttributeRoutes();
-
-            config.Routes.MapHttpRoute(
-                name: "accountApi",
-                routeTemplate: "api/{controller}/{action}",
-                defaults: new { controller = "account" }
-
-            );
-
+            
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
-
-            
         }
     }
 }

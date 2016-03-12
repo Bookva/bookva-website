@@ -13,6 +13,7 @@ using Entities;
 namespace Bookva.Controllers
 {
     [Authorize]
+    [RoutePrefix("api/account")]
     public class AccountController : ApiController
     {
         private ApplicationSignInManager _signInManager;
@@ -55,6 +56,7 @@ namespace Bookva.Controllers
         // POST: /api/Account/Register
         [HttpPost]
         [AllowAnonymous]
+        [Route("register")]
         public async Task<IHttpActionResult> Register(RegisterViewModel model)
         {
             if (ModelState.IsValid)
@@ -73,6 +75,7 @@ namespace Bookva.Controllers
         }
 
         [HttpGet]
+        [Route("authorize")]
         public IHttpActionResult Authorize()
         {
             var claims = new ClaimsPrincipal(User).Claims.ToArray();
@@ -85,6 +88,7 @@ namespace Bookva.Controllers
         // POST: /api/Account/ResetPassword
         [HttpPost]
         [AllowAnonymous]
+        [Route("resetPassword")]
         public async Task<IHttpActionResult> ResetPassword(ResetPasswordViewModel model)
         {
             if (!ModelState.IsValid)
