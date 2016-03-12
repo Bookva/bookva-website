@@ -9,10 +9,21 @@ namespace Entities
     {
         [Key]
         public int Id { get; set; }
+
         [MaxLength(30)]
         public string Name { get; set; }
+
         [MaxLength(30)]
         public string Surname { get; set; }
+
+        [MaxLength(255)]
+        public string PictureSource { get; set; }
+
+        [MaxLength(35)]
+        public string Pseudonym { get; set; }
+
+        public bool UsePseudonym { get; set; }
+
         [Range(5, 150)]
         public DateTime DateOfBirth { get; set; }
         
