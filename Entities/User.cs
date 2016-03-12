@@ -10,11 +10,14 @@ namespace Entities
 {
     public class User : IdentityUser<int, IdentityUserLogin, IdentityUserRole, IdentityUserClaim>
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
+        public User()
+        {
+            RegistrationDate = DateTime.Now;
+        }
         public DateTime RegistrationDate { get; set; }
 
         public string ImageSource { get; set; }
-        public int AuthorId { get; set; }
+        public int? AuthorId { get; set; }
         
         public virtual Author Author { get; set; }
         [InverseProperty("User")]
@@ -30,7 +33,7 @@ namespace Entities
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<User, int> manager)
         {
             var userIdentity = await manager.CreateIdentityAsync(
-                this, DefaultAuthenticationTypes.ApplicationCookie);
+                this, DefaultAuthenticationTypes.ExternalBearer);
             // Add custom user claims here 
             return userIdentity;
         }
