@@ -29,7 +29,7 @@ namespace Business
 
         public IEnumerable<Author> Get(PaginationOptions options)
         {
-            return unitOfWork.AuthorRepository.Get().Skip((options.Page - 1)*options.PageSize).Take(options.PageSize);
+            return unitOfWork.AuthorRepository.Get().OrderBy(a => a.Id).Skip((options.Page - 1)*options.PageSize).Take(options.PageSize);
         }
 
         public void Create(Author author)

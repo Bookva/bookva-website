@@ -26,6 +26,7 @@ namespace Bookva.App_Start
             builder.RegisterType(typeof(WorksService)).As(typeof (IWorksService)).SingleInstance();
             builder.RegisterType(typeof(BookvaDbContext)).As(typeof(DbContext)).InstancePerLifetimeScope();
             builder.RegisterType(typeof (UnitOfWork)).As(typeof (IUnitOfWork)).SingleInstance();
+            builder.RegisterType(typeof(AuthorService)).As(typeof(IAuthorService)).SingleInstance();
             var container = builder.Build();
 
             config.DependencyResolver = new AutofacWebApiDependencyResolver(container);
