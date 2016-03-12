@@ -31,7 +31,11 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -55,6 +59,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
@@ -67,13 +72,13 @@
     <Compile Include="WorksService.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DAL\DAL.csproj">
+    <ProjectReference Include="..\DAL\Bookva.DAL.csproj">
       <Project>{52471301-1e49-4e1c-b704-ecf67b5b5a84}</Project>
-      <Name>DAL</Name>
+      <Name>Bookva.DAL</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Entities\Entities.csproj">
+    <ProjectReference Include="..\Entities\Bookva.Entities.csproj">
       <Project>{3116eca0-8c60-43ff-8d3e-b9fe1636ff8e}</Project>
-      <Name>Entities</Name>
+      <Name>Bookva.Entities</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

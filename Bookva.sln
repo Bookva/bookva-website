@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bookva", "Bookva\Bookva.csproj", "{806CC66D-BBB7-4827-B1B7-E3CF80EEF902}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bookva.Web", "Bookva\Bookva.Web.csproj", "{806CC66D-BBB7-4827-B1B7-E3CF80EEF902}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Entities", "Entities\Entities.csproj", "{3116ECA0-8C60-43FF-8D3E-B9FE1636FF8E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bookva.Entities", "Entities\Bookva.Entities.csproj", "{3116ECA0-8C60-43FF-8D3E-B9FE1636FF8E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL", "DAL\DAL.csproj", "{52471301-1E49-4E1C-B704-ECF67B5B5A84}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bookva.DAL", "DAL\Bookva.DAL.csproj", "{52471301-1E49-4E1C-B704-ECF67B5B5A84}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Business", "Business\Business.csproj", "{BFDFE2AA-DB45-4B42-B494-6A92977051DC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bookva.Business", "Business\Bookva.Business.csproj", "{BFDFE2AA-DB45-4B42-B494-6A92977051DC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
