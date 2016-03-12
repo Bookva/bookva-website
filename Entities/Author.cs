@@ -23,8 +23,8 @@ namespace Entities
         public string Pseudonym { get; set; }
 
         public bool UsePseudonym { get; set; }
-
-        [Range(5, 150)]
+        
+        [Column(TypeName = "datetime2")]
         public DateTime DateOfBirth { get; set; }
         
         public virtual ICollection<Work> Works { get; set; }

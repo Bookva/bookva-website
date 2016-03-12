@@ -63,6 +63,10 @@
     <Compile Include="Migrations\201603121843492_AddAuthorFields.Designer.cs">
       <DependentUpon>201603121843492_AddAuthorFields.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201603122023581_Author-ChangedDateOfBirthType.cs" />
+    <Compile Include="Migrations\201603122023581_Author-ChangedDateOfBirthType.Designer.cs">
+      <DependentUpon>201603122023581_Author-ChangedDateOfBirthType.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository.cs" />
@@ -84,6 +88,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201603121843492_AddAuthorFields.resx">
       <DependentUpon>201603121843492_AddAuthorFields.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201603122023581_Author-ChangedDateOfBirthType.resx">
+      <DependentUpon>201603122023581_Author-ChangedDateOfBirthType.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
