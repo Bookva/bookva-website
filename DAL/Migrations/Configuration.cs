@@ -1,11 +1,8 @@
-namespace DAL.Migrations
-{
-    using System;
-    using System.Data.Entity;
-    using System.Data.Entity.Migrations;
-    using System.Linq;
+using System.Data.Entity.Migrations;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<DAL.BookvaDbContext>
+namespace Bookva.DAL.Migrations
+{
+    internal sealed class Configuration : DbMigrationsConfiguration<BookvaDbContext>
     {
         public Configuration()
         {
@@ -13,7 +10,7 @@ namespace DAL.Migrations
             ContextKey = "DAL.BookvaDbContext";
         }
 
-        protected override void Seed(DAL.BookvaDbContext context)
+        protected override void Seed(BookvaDbContext context)
         {
             
         }

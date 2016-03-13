@@ -13,8 +13,8 @@
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Bookva</RootNamespace>
-    <AssemblyName>Bookva</AssemblyName>
+    <RootNamespace>Bookva.Web</RootNamespace>
+    <AssemblyName>Bookva.Web</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
@@ -235,6 +235,10 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Bookva.BusinessEntities\Bookva.BusinessEntities.csproj">
+      <Project>{f5121f00-da35-4b9e-8fbd-6171c1ad3c72}</Project>
+      <Name>Bookva.BusinessEntities</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Business\Bookva.Business.csproj">
       <Project>{bfdfe2aa-db45-4b42-b494-6a92977051dc}</Project>
       <Name>Bookva.Business</Name>

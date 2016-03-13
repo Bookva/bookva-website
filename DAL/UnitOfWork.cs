@@ -1,13 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data.Entity;
-using System.Linq;
-using System.Net.Cache;
-using System.Text;
-using System.Threading.Tasks;
-using Entities;
+using Bookva.Entities;
 
-namespace DAL
+namespace Bookva.DAL
 {
 	public class UnitOfWork : IUnitOfWork
 	{

@@ -1,13 +1,10 @@
-﻿
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DAL;
-using Entities;
+using Bookva.Business.Mappers;
+using Bookva.BusinessEntities.Work;
+using Bookva.DAL;
 
-namespace Business
+namespace Bookva.Business
 {
     public class WorksService :IWorksService
     {
@@ -17,23 +14,30 @@ namespace Business
             unitOfWork = uow;
         }
 
-        public Work Get(int id)
+        public WorkReadModel Get(int id)
         {
-           return unitOfWork.WorkRepository.Get(id);
+           return unitOfWork.WorkRepository.Get(id).ToReadModel();
         }
 
-        public IEnumerable<Work> GetAll()
+        public IEnumerable<WorkPreviewModel> GetAll()
         {
-            return unitOfWork.WorkRepository.Get();
+            return unitOfWork.WorkRepository.Get().ToList().Select(WorksMapper.ToPreviewModel);
         }
 
-        public IEnumerable<Work> Get(PaginationOptions options)
+        public IEnumerable<WorkPreviewModel> Get(PaginationOptions options)
         {
-            return unitOfWork.WorkRepository.Get().Skip((options.Page - 1)*options.PageSize).Take(options.PageSize);
+            return unitOfWork.WorkRepository.Get().OrderBy(w =>w.Id).Skip((options.Page - 1)*options.PageSize).Take(options.PageSize).ToList().Select(WorksMapper.ToPreviewModel);
         }
 
-        public void Create(Work work)
+        public void Create(WorkWriteModel workDto)
         {
+            var work = workDto.ToDB();
+            foreach (var authorId in workDto.AuthorIds)
+            {
+                var author = unitOfWork.AuthorRepository.Get(authorId);
+                work.Authors.Add(author);
+            }
+            //TODO: add keywords and genres
             unitOfWork.WorkRepository.Insert(work);
             unitOfWork.Save();
         }

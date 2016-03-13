@@ -7,8 +7,8 @@
     <ProjectGuid>{BFDFE2AA-DB45-4B42-B494-6A92977051DC}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Business</RootNamespace>
-    <AssemblyName>Business</AssemblyName>
+    <RootNamespace>Bookva.Business</RootNamespace>
+    <AssemblyName>Bookva.Business</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -65,6 +65,8 @@
   <ItemGroup>
     <Compile Include="Identity\IdentityConfig.cs" />
     <Compile Include="IAuthorService.cs" />
+    <Compile Include="Mappers\AuthorMapper.cs" />
+    <Compile Include="Mappers\WorksMapper.cs" />
     <Compile Include="PaginationOptions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="IWorksService.cs" />
@@ -72,6 +74,10 @@
     <Compile Include="WorksService.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Bookva.BusinessEntities\Bookva.BusinessEntities.csproj">
+      <Project>{f5121f00-da35-4b9e-8fbd-6171c1ad3c72}</Project>
+      <Name>Bookva.BusinessEntities</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DAL\Bookva.DAL.csproj">
       <Project>{52471301-1e49-4e1c-b704-ecf67b5b5a84}</Project>
       <Name>Bookva.DAL</Name>

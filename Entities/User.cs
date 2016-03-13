@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 
-namespace Entities
+namespace Bookva.Entities
 {
     public class User : IdentityUser<int, IdentityUserLogin, IdentityUserRole, IdentityUserClaim>
     {

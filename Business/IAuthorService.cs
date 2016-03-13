@@ -1,20 +1,14 @@
-﻿
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DAL;
-using Entities;
+﻿using System.Collections.Generic;
+using Bookva.BusinessEntities.Author;
 
-namespace Business
+namespace Bookva.Business
 {
     public interface IAuthorService
     {
-        Author Get(int id);
-        IEnumerable<Author> GetAll();
-        IEnumerable<Author> Get(PaginationOptions options);
-        void Create(Author work);
+        AuthorReadModel Get(int id);
+        IEnumerable<AuthorReadModel> GetAll();
+        IEnumerable<AuthorReadModel> Get(PaginationOptions options);
+        void Create(AuthorWriteModel work);
 
     }
 }

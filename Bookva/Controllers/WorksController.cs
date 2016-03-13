@@ -1,14 +1,14 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
-using Bookva.Models;
 using System.Web.Http.Results;
-using Bookva.Mappers;
-using Business;
+using Bookva.Business;
+using Bookva.BusinessEntities.Work;
+using Bookva.Web.Mappers;
+using Bookva.Web.Models;
 
-namespace Bookva.Controllers
+namespace Bookva.Web.Controllers
 {
-    [RoutePrefix("api/works")]
     public class WorksController : ApiController
     {
         private readonly IWorksService worksService;
@@ -18,29 +18,48 @@ namespace Bookva.Controllers
             this.worksService = worksService;
         }
 
-        [Route("all")]
-        public IEnumerable<WorkViewModel> Get()
+        /// <summary>
+        /// GET: /api/works
+        /// </summary>
+        /// <param name="options">Pagination options</param>
+        /// <returns></returns>
+        public IEnumerable<WorkPreviewViewModel> Get([FromUri]PaginationOptions options)
         {
-            var list = worksService.GetAll();
-            return list.Select(WorksMapper.ToViewModel);
-        }
-        [Route("")]
-        public IEnumerable<WorkViewModel> Get([FromUri]PaginationOptions options)
-        {
-            var list = worksService.Get(options);
-            return list.Select(WorksMapper.ToViewModel);
+            IEnumerable<WorkPreviewModel> works;
+            if (options == null)
+            {
+                works = worksService.GetAll();
+            }
+            else
+            {
+                works = worksService.Get(options);
+            }
+            return works.Select(WorksMapper.ToPreviewViewModel);
         }
 
-        [Route("{id}")]
-        public WorkViewModel Get(int id)
+        /// <summary>
+        /// GET: /api/works/{id}
+        /// </summary>
+        /// <param name="id">WorkId</param>
+        /// <returns></returns>
+        public IHttpActionResult Get(int id)
         {
             var work = worksService.Get(id);
-            return WorksMapper.ToViewModel(work);
+            if (work == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(WorksMapper.ToViewModel(work));
         }
 
-        [Route("add")]
+        /// <summary>
+        /// POST: /api/works
+        /// </summary>
+        /// <param name="model">Work</param>
+        /// <returns></returns>
         [HttpPost]
-        public IHttpActionResult Add(WorkViewModel model)
+        public IHttpActionResult Create(WorkEditViewModel model)
         {
             var work = WorksMapper.ToDTO(model);
             worksService.Create(work); 

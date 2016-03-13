@@ -1,19 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Entities;
+﻿using System.Data.Entity;
+using Bookva.Entities;
 using Microsoft.AspNet.Identity.EntityFramework;
-using IdentityRole = Entities.IdentityRole;
-using IdentityUserClaim = Entities.IdentityUserClaim;
-using IdentityUserLogin = Entities.IdentityUserLogin;
-using IdentityUserRole = Entities.IdentityUserRole;
+using IdentityRole = Bookva.Entities.IdentityRole;
+using IdentityUserClaim = Bookva.Entities.IdentityUserClaim;
+using IdentityUserLogin = Bookva.Entities.IdentityUserLogin;
+using IdentityUserRole = Bookva.Entities.IdentityUserRole;
 
-namespace DAL
+namespace Bookva.DAL
 {
-	
 	public class BookvaDbContext :
 		IdentityDbContext
 			<User, IdentityRole, int, IdentityUserLogin, IdentityUserRole,

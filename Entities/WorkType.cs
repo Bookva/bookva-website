@@ -1,4 +1,4 @@
-﻿namespace Entities
+﻿namespace Bookva.Entities
 {
 	public enum WorkType
 	{

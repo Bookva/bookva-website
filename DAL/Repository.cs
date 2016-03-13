@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace DAL
+namespace Bookva.DAL
 {
 	public class Repository<T> : IRepository<T> where T : class
 	{

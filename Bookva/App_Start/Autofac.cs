@@ -1,17 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data.Entity;
-using System.Linq;
+﻿using System.Data.Entity;
 using System.Reflection;
-using System.Web;
 using System.Web.Http;
 using Autofac;
 using Autofac.Integration.WebApi;
-using Business;
-using DAL;
+using Bookva.Business;
+using Bookva.DAL;
 
-namespace Bookva.App_Start
+namespace Bookva.Web
 {
     public static class AutofacInitialzer
     {

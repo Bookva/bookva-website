@@ -1,28 +1,28 @@
 ﻿using System.Linq;
 using Bookva.BusinessEntities.Author;
-using Bookva.Web.Models;
+using Bookva.Entities;
 
-namespace Bookva.Web.Mappers
+namespace Bookva.Business.Mappers
 {
     public static class AuthorMapper
     {
-        public static AuthorWriteModel ToDTO(AuthorViewModel viewModel)
+        public static Author ToDb(this AuthorWriteModel viewModel)
         {
-            return new AuthorWriteModel
+            return new Author
             {
                 Id = viewModel.Id,
                 DateOfBirth = viewModel.DateOfBirth,
-                Name = viewModel.Name.Trim(),
-                Surname = viewModel.Surname.Trim(),
-                PictureSource = viewModel.PictureSource.Trim(),
-                Pseudonym = viewModel.Pseudonym.Trim(),
+                Name = viewModel.Name,
+                Surname = viewModel.Surname,
+                PictureSource = viewModel.PictureSource,
+                Pseudonym = viewModel.Pseudonym,
                 UsePseudonym = viewModel.UsePseudonym
             };
         }
 
-        public static AuthorViewModel ToViewModel(AuthorReadModel author)
+        public static AuthorReadModel ToReadModel(this Author author)
         {
-            return new AuthorViewModel
+            return new AuthorReadModel
             {
                 Id = author.Id,
                 DateOfBirth = author.DateOfBirth,
@@ -31,16 +31,16 @@ namespace Bookva.Web.Mappers
                 PictureSource = author.PictureSource,
                 Pseudonym = author.Pseudonym,
                 UsePseudonym = author.UsePseudonym,
-                Works = author.Works.Select(WorksMapper.ToPreviewViewModel)
+                Works = author.Works.Select(WorksMapper.ToPreviewModel)
             };
         }
-        public static AuthorPreviewViewModel ToPreviewViewModel(AuthorPreviewModel author)
+        public static AuthorPreviewModel ToPreviewViewModel(this Author author)
         {
-            return new AuthorPreviewViewModel
+            return new AuthorPreviewModel
             {
                 Id = author.Id,
                 PictureSource = author.PictureSource,
-                DisplayName = author.DisplayName
+                DisplayName = author.UsePseudonym ? author.Pseudonym : $"{author.Name} {author.Surname}"
             };
         }
     }

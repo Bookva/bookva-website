@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
-using Entities;
 
-namespace Bookva.Models
+namespace Bookva.Web.Models
 {
     public class AuthorViewModel
     {

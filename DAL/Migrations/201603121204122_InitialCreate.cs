@@ -1,8 +1,7 @@
-namespace DAL.Migrations
+using System.Data.Entity.Migrations;
+
+namespace Bookva.DAL.Migrations
 {
-    using System;
-    using System.Data.Entity.Migrations;
-    
     public partial class InitialCreate : DbMigration
     {
         public override void Up()

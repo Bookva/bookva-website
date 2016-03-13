@@ -7,8 +7,8 @@
     <ProjectGuid>{52471301-1E49-4E1C-B704-ECF67B5B5A84}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DAL</RootNamespace>
-    <AssemblyName>DAL</AssemblyName>
+    <RootNamespace>Bookva.DAL</RootNamespace>
+    <AssemblyName>Bookva.DAL</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -67,6 +67,10 @@
     <Compile Include="Migrations\201603122023581_Author-ChangedDateOfBirthType.Designer.cs">
       <DependentUpon>201603122023581_Author-ChangedDateOfBirthType.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201603131028260_Work-ChangedDateType.cs" />
+    <Compile Include="Migrations\201603131028260_Work-ChangedDateType.Designer.cs">
+      <DependentUpon>201603131028260_Work-ChangedDateType.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository.cs" />
@@ -91,6 +95,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201603122023581_Author-ChangedDateOfBirthType.resx">
       <DependentUpon>201603122023581_Author-ChangedDateOfBirthType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201603131028260_Work-ChangedDateType.resx">
+      <DependentUpon>201603131028260_Work-ChangedDateType.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

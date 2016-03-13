@@ -1,19 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using System.Web;
+using Bookva.DAL;
+using Bookva.Entities;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
-using DAL;
-using Entities;
 
-namespace Bookva
+namespace Bookva.Business.Identity
 {
     public class EmailService : IIdentityMessageService
     {

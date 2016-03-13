@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace Entities
+namespace Bookva.Entities
 {
 	public class CustomCollection
 	{

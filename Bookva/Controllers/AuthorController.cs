@@ -1,17 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Results;
-using System.Web.Security;
-using Bookva.Mappers;
-using Bookva.Models;
-using Business;
-using Entities;
+using Bookva.Business;
+using Bookva.BusinessEntities.Author;
+using Bookva.Web.Mappers;
+using Bookva.Web.Models;
 
-namespace Bookva.Controllers
+namespace Bookva.Web.Controllers
 {
     public class AuthorController : ApiController
     {
@@ -29,7 +25,7 @@ namespace Bookva.Controllers
         /// <returns></returns>
         public IEnumerable<AuthorViewModel> Get([FromUri]PaginationOptions options)
         {
-            IEnumerable<Author> authors;
+            IEnumerable<AuthorReadModel> authors;
             if (options == null)
             {
                 authors = authorService.GetAll();
@@ -51,7 +47,10 @@ namespace Bookva.Controllers
         {
             var author = authorService.Get(id);
             if (author == null)
-                return BadRequest("No author with such id");
+            {
+                return NotFound();
+            }
+
             return Ok(AuthorMapper.ToViewModel(author));
         }
         
@@ -63,8 +62,8 @@ namespace Bookva.Controllers
         [HttpPost]
         public IHttpActionResult Create(AuthorViewModel model)
         {
-            var work = AuthorMapper.ToDTO(model);
-            authorService.Create(work);
+            var author = AuthorMapper.ToDTO(model);
+            authorService.Create(author);
             return new OkResult(Request);
         }
     }

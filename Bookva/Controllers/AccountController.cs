@@ -1,16 +1,16 @@
-﻿using System;
-using System.Linq;
-using System.Net;
+﻿using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
 using System.Web.Http.Results;
+using Bookva.Business.Identity;
+using Bookva.Entities;
+using Bookva.Web.Models;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
-using Bookva.Models;
-using Entities;
-namespace Bookva.Controllers
+
+namespace Bookva.Web.Controllers
 {
     [Authorize]
     [RoutePrefix("api/account")]
@@ -18,9 +18,6 @@ namespace Bookva.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
-        public AccountController()
-        {
-        }
 
         public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
         {

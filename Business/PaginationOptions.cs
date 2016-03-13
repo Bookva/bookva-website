@@ -1,14 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Business
+﻿namespace Bookva.Business
 {
     public class PaginationOptions
     {
-        public int Page { get; set; }
-        public int PageSize { get; set; }
+        private int page;
+        private int pageSize;
+
+        public PaginationOptions()
+        {
+            pageSize = 10;
+            page = 1;
+        }
+        public int Page
+        {
+            get { return page; }
+            set { page = value > 0 ? value: 10; }
+        }
+
+        public int PageSize
+        {
+            get { return pageSize; }
+            set { pageSize = value >0 ? value : 1; }
+        }
     }
 }
