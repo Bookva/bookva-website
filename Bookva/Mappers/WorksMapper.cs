@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using Bookva.BusinessEntities.Work;
 using Bookva.Web.Models;
 
@@ -11,7 +12,7 @@ namespace Bookva.Web.Mappers
             return new WorkWriteModel
             {
                 WorkType = viewModel.WorkType,
-                DateAdded = viewModel.DateAdded,
+                DateAdded = DateTime.Now,
                 DateCreated = viewModel.DateCreated,
                 Description = viewModel.Description.Trim(),
                 Title = viewModel.Title.Trim(),

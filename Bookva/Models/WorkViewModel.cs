@@ -34,7 +34,6 @@ namespace Bookva.Web.Models
         public string Extract1 { get; set; }
         public string Extract2 { get; set; }
         public string Extract3 { get; set; }
-        public DateTime DateAdded { get; set; }
         public DateTime DateCreated { get; set; }
         public int WorkType { get; set; }
         public string Text { get; set; }
