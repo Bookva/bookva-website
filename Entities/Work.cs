@@ -16,14 +16,16 @@ namespace Entities
 		public string Extract1 { get; set; }
 		public string Extract2 { get; set; }
 		public string Extract3 { get; set; }
+        [Column(TypeName = "datetime2")]
 		public DateTime DateAdded { get; set; }
-		public DateTime DateCreated { get; set; }
+        [Column(TypeName = "datetime2")]
+        public DateTime DateCreated { get; set; }
 		public virtual WorkType WorkType { get; set; }
 	    public string CoverSource { get; set; }
 		public string Text { get; set; }
 		public bool IsAnonymous { get; set; }
 
-        public virtual ICollection<Author> Author { get; set; }
+        public virtual ICollection<Author> Authors { get; set; }
 		public virtual ICollection<Genre> Genres { get; set; }
 		public virtual ICollection<Keyword> Keywords { get; set; }
         [InverseProperty("Work")]
