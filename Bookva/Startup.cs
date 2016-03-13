@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using Bookva.Web;
 using Microsoft.Owin;
 using Owin;
 
-[assembly: OwinStartup(typeof(Bookva.Startup))]
+[assembly: OwinStartup(typeof(Startup))]
 
-namespace Bookva
+namespace Bookva.Web
 {
 	public partial class Startup
 	{

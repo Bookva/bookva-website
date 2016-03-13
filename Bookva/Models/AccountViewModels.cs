@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
-namespace Bookva.Models
+namespace Bookva.Web.Models
 {
     public class RegisterViewModel
     {

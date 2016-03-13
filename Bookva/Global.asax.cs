@@ -1,12 +1,10 @@
-﻿using System.Data.Entity.Migrations.Infrastructure;
-using System.Web;
+﻿using System.Web;
 using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
-using Bookva.App_Start;
 
-namespace Bookva
+namespace Bookva.Web
 {
 	public class MvcApplication : HttpApplication
 	{

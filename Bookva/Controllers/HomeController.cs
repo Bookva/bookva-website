@@ -1,6 +1,6 @@
 ﻿using System.Web.Mvc;
 
-namespace Bookva.Controllers
+namespace Bookva.Web.Controllers
 {
 	[Authorize]
 	public class HomeController : Controller
