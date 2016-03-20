@@ -1,0 +1,79 @@
+<div class="col-sm-12">
+    <div id="login-box" class="well col-sm-5">
+        <form id="login-form" role="form" name="registrationForm">
+            <div class="form-group"
+                 data-ng-class="{'has-error': registrationForm.login.$touched && registrationForm.login.$invalid}">
+                <label for="login" class="control-label">Login</label>
+
+                <input type="text" id="login"
+                       data-ng-model="model.user.username" class="form-control" name="login"
+                       placeholder="Login"
+                       pattern="[a-zA-Z0-9_]+"
+                       aria-describedby="login_error"
+                       data-ng-maxlength="20" required>
+                <div class="help-block" id="login-error">
+                    <span data-ng-show="registrationForm.login.$touched && registrationForm.login.$error.pattern">
+                        Login can contain letters, digits and _ symbol.
+                    </span>
+                    <span data-ng-show="registrationForm.login.$touched && registrationForm.login.$error.required">
+                        Login is required.
+                    </span>
+                    <span data-ng-show="registrationForm.login.$touched && registrationForm.login.$error.maxlength">
+                        Login can't be greater than 20 characters.
+                    </span>
+                </div>
+
+            </div>
+
+            <div class="form-group"
+                 data-ng-class="{'has-error': registrationForm.login.$touched && registrationForm.login.$invalid}">
+                <label for="email" class="control-label">Email</label>
+
+                <input type="text" id="email"
+                       data-ng-model="model.user.email" class="form-control" name="email"
+                       placeholder="Email"
+                       pattern="[a-zA-Z0-9._]+@[a-zA-Z0-9]+.[a-zA-Z0-9]+"
+                       aria-describedby="email-error"
+                       data-ng-maxlength="60" required>
+                <div class="help-block" id="email-error">
+                    <span data-ng-show="registrationForm.email.$touched && registrationForm.email.$error.pattern">
+                        Login can contain letters, digits and _ symbol.
+                    </span>
+                    <span data-ng-show="registrationForm.email.$touched && registrationForm.email.$error.required">
+                        Login is required.
+                    </span>
+                    <span data-ng-show="registrationForm.email.$touched && registrationForm.email.$error.maxlength">
+                        Login can't be greater than 20 characters.
+                    </span>
+                </div>
+
+            </div>
+
+            <div class="form-group"
+                 data-ng-class="{'has-error': registrationForm.password.$touched && registrationForm.password.$invalid}">
+                <label for="password" class="control-label">Password</label>
+
+                <input type="password" id="password"
+                       data-ng-model="model.user.password" class="form-control" name="password"
+                       placeholder="Password"
+                       aria-describedby="pass-error"
+                       pattern="[a-zA-Z0-9_]+"
+                       data-ng-maxlength="20" required>
+                <div class="help-block" id="pass-error">
+                    <span data-ng-show="registrationForm.password.$touched && registrationForm.password.$error.pattern">
+                        Password can contain letters, digits and _ symbol.
+                    </span>
+                    <span data-ng-show="registrationForm.$touched && registrationForm.password.$error.required">
+                        Password is required.
+                    </span>
+                    <span data-ng-show="registrationForm.password.$touched && registrationForm.password.$error.maxlength">
+                        Password can't be greater than 20 characters.
+                    </span>
+                </div>
+            </div>
+
+            <button data-ng-disabled="registrationForm.$invalid" class="btn btn-success btn-block">Log in
+            </button>
+        </form>
+    </div>
+</div>
