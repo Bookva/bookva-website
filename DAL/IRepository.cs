@@ -12,6 +12,6 @@ namespace Bookva.DAL
 		void Delete(IEnumerable<T> entitiesToDelete);
 		void Insert(T item);
 		void Insert(IEnumerable<T> item);
-
-	}
+        void Update(T item, int id);
+    }
 }

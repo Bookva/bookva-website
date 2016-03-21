@@ -1,71 +1,85 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 
 namespace Bookva.DAL
 {
-	public class Repository<T> : IRepository<T> where T : class
-	{
-		private DbContext context;
-		private DbSet<T> entities;
+    public class Repository<T> : IRepository<T> where T : class
+    {
+        private DbContext context;
+        private DbSet<T> entities;
 
-		public Repository(DbContext context)
-		{
-			this.context = context;
-			entities = context.Set<T>();
-		}
+        public Repository(DbContext context)
+        {
+            this.context = context;
+            entities = context.Set<T>();
+        }
 
-		public Repository(DbContext context, DbSet<T> entities)
-		{
-			this.context = context;
-			this.entities = entities;
-		}
+        public Repository(DbContext context, DbSet<T> entities)
+        {
+            this.context = context;
+            this.entities = entities;
+        }
 
-		public virtual IQueryable<T> Get()
-		{
-			return entities.Take(entities.Count());
-		}
+        public virtual IQueryable<T> Get()
+        {
+            return entities.Take(entities.Count());
+        }
 
-		public virtual T Get(int id)
-		{
-			return entities.Find(id);
-		}
+        public virtual T Get(int id)
+        {
+            return entities.Find(id);
+        }
 
-		public virtual void Delete(int id)
-		{
-			var entityToDelete = entities.Find(id);
-			Delete(entityToDelete);
-		}
+        public virtual void Delete(int id)
+        {
+            var entityToDelete = entities.Find(id);
+            Delete(entityToDelete);
+        }
 
-		public virtual void Delete(T entityToDelete)
-		{
-			if (context.Entry(entityToDelete).State == EntityState.Detached)
-			{
-				entities.Attach(entityToDelete);
-			}
+        public virtual void Delete(T entityToDelete)
+        {
+            if (context.Entry(entityToDelete).State == EntityState.Detached)
+            {
+                entities.Attach(entityToDelete);
+            }
 
-			entities.Remove(entityToDelete);
-		}
+            entities.Remove(entityToDelete);
+        }
 
-		public virtual void Delete(IEnumerable<T> entitiesToDelete)
-		{
-			entitiesToDelete = entitiesToDelete.ToList();
-			foreach (var entity in entitiesToDelete.Where(entity => context.Entry(entity).State == EntityState.Detached))
-			{
-				entities.Attach(entity);
-			}
+        public virtual void Delete(IEnumerable<T> entitiesToDelete)
+        {
+            entitiesToDelete = entitiesToDelete.ToList();
+            foreach (var entity in entitiesToDelete.Where(entity => context.Entry(entity).State == EntityState.Detached))
+            {
+                entities.Attach(entity);
+            }
 
-			entities.RemoveRange(entitiesToDelete);
-		}
+            entities.RemoveRange(entitiesToDelete);
+        }
 
-		public virtual void Insert(T item)
-		{
-			entities.Add(item);
-		}
+        public virtual void Insert(T item)
+        {
+            entities.Add(item);
+        }
 
-		public virtual void Insert(IEnumerable<T> item)
-		{
-			entities.AddRange(item);
-		}
-	}
+        public virtual void Insert(IEnumerable<T> item)
+        {
+            entities.AddRange(item);
+        }
+
+        public virtual void Update(T item, int id)
+        {
+            if (item == null) { return; }
+
+            T existing = context.Set<T>().Find(id);
+            if (existing == null)
+            {
+                throw new ArgumentException("Item is not found");
+            }
+           
+            context.Entry(existing).CurrentValues.SetValues(item);
+        }
+    }
 }

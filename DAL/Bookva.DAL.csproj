@@ -71,6 +71,10 @@
     <Compile Include="Migrations\201603131028260_Work-ChangedDateType.Designer.cs">
       <DependentUpon>201603131028260_Work-ChangedDateType.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201603201851237_AddedPicturePreviews.cs" />
+    <Compile Include="Migrations\201603201851237_AddedPicturePreviews.Designer.cs">
+      <DependentUpon>201603201851237_AddedPicturePreviews.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository.cs" />
@@ -98,6 +102,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201603131028260_Work-ChangedDateType.resx">
       <DependentUpon>201603131028260_Work-ChangedDateType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201603201851237_AddedPicturePreviews.resx">
+      <DependentUpon>201603201851237_AddedPicturePreviews.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
