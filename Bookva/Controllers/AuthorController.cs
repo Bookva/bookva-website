@@ -1,5 +1,8 @@
 ﻿using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
+using System.Threading.Tasks;
+using System.Web;
 using System.Web.Http;
 using System.Web.Http.Results;
 using Bookva.Business;
@@ -64,6 +67,34 @@ namespace Bookva.Web.Controllers
         {
             var author = AuthorMapper.ToDTO(model);
             authorService.Create(author);
+            return new OkResult(Request);
+        }
+
+        /// <summary>
+        /// PUT: /api/author/
+        /// </summary>
+        /// <param name="model">Author</param>
+        /// <returns></returns>
+        [HttpPut]
+        public IHttpActionResult Edit(AuthorViewModel model)
+        {
+            var author = AuthorMapper.ToDTO(model);
+            authorService.Edit(author);
+            return new OkResult(Request);
+        }
+
+        [HttpPost]
+        [Route("api/author/changePicture/{id}")]
+        public async Task<IHttpActionResult> ChangePicture(int id)
+        {
+            var file = HttpContext.Current.Request.Files["image"];
+            if (file == null)
+            {
+                return BadRequest("No image is attached");
+            }
+            var image = Image.FromStream(file.InputStream);
+
+            await authorService.ChangePictureAsync(image, id);
             return new OkResult(Request);
         }
     }
