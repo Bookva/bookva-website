@@ -19,6 +19,9 @@ namespace Bookva.Entities
         [MaxLength(255)]
         public string PictureSource { get; set; }
 
+        [MaxLength(255)]
+        public string PreviewPictureSource { get; set; }
+
         [MaxLength(35)]
         public string Pseudonym { get; set; }
 

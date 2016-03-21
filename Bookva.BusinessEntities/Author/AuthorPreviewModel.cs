@@ -11,5 +11,6 @@ namespace Bookva.BusinessEntities.Author
         public int Id { get; set; }
         public string DisplayName { get; set; }
         public string PictureSource { get; set; }
+        public string PreviewPictureSource { get; set; }
     }
 }

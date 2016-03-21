@@ -21,8 +21,11 @@ namespace Bookva.Entities
         [Column(TypeName = "datetime2")]
         public DateTime DateCreated { get; set; }
 		public virtual WorkType WorkType { get; set; }
-	    public string CoverSource { get; set; }
-		public string Text { get; set; }
+        [MaxLength(255)]
+        public string CoverSource { get; set; }
+        [MaxLength(255)]
+        public string PreviewCoverSource { get; set; }
+        public string Text { get; set; }
 		public bool IsAnonymous { get; set; }
 
         public virtual ICollection<Author> Authors { get; set; }

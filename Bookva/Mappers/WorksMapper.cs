@@ -23,6 +23,7 @@ namespace Bookva.Web.Mappers
                 Text = viewModel.Text.Trim(),
                 IsAnonymous = viewModel.IsAnonymous,
                 CoverSource = viewModel.CoverSource,
+                PreviewCoverSource = viewModel.PreviewCoverSource,
                 AuthorIds = viewModel.AuthorIds
                 //TODO: add keywords and genres
             };
@@ -44,6 +45,7 @@ namespace Bookva.Web.Mappers
                 Text = work.Text,
                 IsAnonymous = work.IsAnonymous,
                 CoverSource = work.CoverSource,
+                PreviewCoverSource = work.PreviewCoverSource,
                 Authors = work.Authors.Select(AuthorMapper.ToPreviewViewModel),
                 //Genres = work.Genres.Select(g => g.Name),
                 //Keywords = work.Keywords.Select(k => k.Name)
@@ -66,6 +68,7 @@ namespace Bookva.Web.Mappers
                 Text = work.Text,
                 IsAnonymous = work.IsAnonymous,
                 CoverSource = work.CoverSource,
+                PreviewCoverSource = work.PreviewCoverSource,
                 Authors = work.Authors.Select(AuthorMapper.ToPreviewViewModel),
                 //Genres = work.Genres.Select(g => g.Name),
                 //Keywords = work.Keywords.Select(k => k.Name)
@@ -82,6 +85,7 @@ namespace Bookva.Web.Mappers
                 Id = work.Id,
                 IsAnonymous = work.IsAnonymous,
                 CoverSource = work.CoverSource,
+                PreviewCoverSource = work.PreviewCoverSource,
                 Authors = work.Authors.Select(AuthorMapper.ToPreviewViewModel)
             };
         }

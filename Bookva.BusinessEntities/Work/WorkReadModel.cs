@@ -21,6 +21,7 @@ namespace Bookva.BusinessEntities.Work
         public string Text { get; set; }
         public bool IsAnonymous { get; set; }
         public string CoverSource { get; set; }
+        public string PreviewCoverSource { get; set; }
 
         public IEnumerable<AuthorPreviewModel> Authors { get; set; }
         public IEnumerable<string> Genres { get; set; }

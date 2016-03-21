@@ -16,6 +16,8 @@ namespace Bookva.Web.Models
 
         [MaxLength(255)]
         public string PictureSource { get; set; }
+        [MaxLength(255)]
+        public string PreviewPictureSource { get; set; }
 
         [MaxLength(35)]
         public string Pseudonym { get; set; }
@@ -32,5 +34,6 @@ namespace Bookva.Web.Models
         public int Id { get; set; }
         public string DisplayName { get; set; }
         public string PictureSource { get; set; }
+        public string PreviewPictureSource { get; set; }
     }
 }

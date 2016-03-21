@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Web;
 
 namespace Bookva.Web.Models
 {
@@ -17,6 +18,7 @@ namespace Bookva.Web.Models
         public string Text { get; set; }
         public bool IsAnonymous { get; set; }
         public string CoverSource { get; set; }
+        public string PreviewCoverSource { get; set; }
 
         public IEnumerable<AuthorPreviewViewModel> Authors { get; set; }
         public IEnumerable<string> Genres { get; set; }
@@ -39,6 +41,7 @@ namespace Bookva.Web.Models
         public string Text { get; set; }
         public bool IsAnonymous { get; set; }
         public string CoverSource { get; set; }
+        public string PreviewCoverSource { get; set; }
 
         public IEnumerable<int> AuthorIds { get; set; }
         public IEnumerable<string> Genres { get; set; }
@@ -53,6 +56,8 @@ namespace Bookva.Web.Models
         public int WorkType { get; set; }
         public bool IsAnonymous { get; set; }
         public string CoverSource { get; set; }
+        public string PreviewCoverSource { get; set; }
+
         public IEnumerable<AuthorPreviewViewModel> Authors { get; set; }
     }
 }

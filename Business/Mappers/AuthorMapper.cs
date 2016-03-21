@@ -15,6 +15,7 @@ namespace Bookva.Business.Mappers
                 Name = viewModel.Name,
                 Surname = viewModel.Surname,
                 PictureSource = viewModel.PictureSource,
+                PreviewPictureSource = viewModel.PreviewPictureSource,
                 Pseudonym = viewModel.Pseudonym,
                 UsePseudonym = viewModel.UsePseudonym
             };
@@ -29,6 +30,7 @@ namespace Bookva.Business.Mappers
                 Name = author.Name,
                 Surname = author.Surname,
                 PictureSource = author.PictureSource,
+                PreviewPictureSource = author.PreviewPictureSource,
                 Pseudonym = author.Pseudonym,
                 UsePseudonym = author.UsePseudonym,
                 Works = author.Works.Select(WorksMapper.ToPreviewModel)
@@ -40,6 +42,7 @@ namespace Bookva.Business.Mappers
             {
                 Id = author.Id,
                 PictureSource = author.PictureSource,
+                PreviewPictureSource = author.PreviewPictureSource,
                 DisplayName = author.UsePseudonym ? author.Pseudonym : $"{author.Name} {author.Surname}"
             };
         }

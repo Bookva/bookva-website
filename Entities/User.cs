@@ -5,6 +5,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using System.ComponentModel.DataAnnotations;
 
 namespace Bookva.Entities
 {
@@ -16,7 +17,12 @@ namespace Bookva.Entities
         }
         public DateTime RegistrationDate { get; set; }
 
-        public string ImageSource { get; set; }
+        [MaxLength(255)]
+        public string PictureSource { get; set; }
+
+        [MaxLength(255)]
+        public string PreviewPictureSource { get; set; }
+
         public int? AuthorId { get; set; }
         
         public virtual Author Author { get; set; }
@@ -34,7 +40,7 @@ namespace Bookva.Entities
         {
             var userIdentity = await manager.CreateIdentityAsync(
                 this, DefaultAuthenticationTypes.ExternalBearer);
-            // Add custom user claims here 
+            
             return userIdentity;
         }
     }

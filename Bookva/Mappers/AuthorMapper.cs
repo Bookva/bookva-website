@@ -15,6 +15,7 @@ namespace Bookva.Web.Mappers
                 Name = viewModel.Name.Trim(),
                 Surname = viewModel.Surname.Trim(),
                 PictureSource = viewModel.PictureSource.Trim(),
+                PreviewPictureSource = viewModel.PreviewPictureSource.Trim(),
                 Pseudonym = viewModel.Pseudonym.Trim(),
                 UsePseudonym = viewModel.UsePseudonym
             };
@@ -29,6 +30,7 @@ namespace Bookva.Web.Mappers
                 Name = author.Name,
                 Surname = author.Surname,
                 PictureSource = author.PictureSource,
+                PreviewPictureSource = author.PreviewPictureSource,
                 Pseudonym = author.Pseudonym,
                 UsePseudonym = author.UsePseudonym,
                 Works = author.Works.Select(WorksMapper.ToPreviewViewModel)
@@ -40,6 +42,7 @@ namespace Bookva.Web.Mappers
             {
                 Id = author.Id,
                 PictureSource = author.PictureSource,
+                PreviewPictureSource = author.PreviewPictureSource,
                 DisplayName = author.DisplayName
             };
         }

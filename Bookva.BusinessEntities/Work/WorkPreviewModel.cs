@@ -15,6 +15,7 @@ namespace Bookva.BusinessEntities.Work
         public int WorkType { get; set; }
         public bool IsAnonymous { get; set; }
         public string CoverSource { get; set; }
+        public string PreviewCoverSource { get; set; }
         public IEnumerable<AuthorPreviewModel> Authors { get; set; }
     }
 }
