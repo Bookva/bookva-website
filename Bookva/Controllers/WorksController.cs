@@ -6,6 +6,9 @@ using Bookva.Business;
 using Bookva.BusinessEntities.Work;
 using Bookva.Web.Mappers;
 using Bookva.Web.Models;
+using System.Web;
+using System.Drawing;
+using System.Threading.Tasks;
 
 namespace Bookva.Web.Controllers
 {
@@ -61,8 +64,41 @@ namespace Bookva.Web.Controllers
         [HttpPost]
         public IHttpActionResult Create(WorkEditViewModel model)
         {
+            var file = HttpContext.Current.Request.Files["image"];
+            if (file == null)
+            {
+                return BadRequest("No image is attached");
+            }
             var work = WorksMapper.ToDTO(model);
             worksService.Create(work); 
+            return new OkResult(Request);
+        }
+
+        /// <summary>
+        /// PUT: /api/works
+        /// </summary>
+        /// <param name="model">Work</param>
+        /// <returns></returns>
+        [HttpPut]
+        public IHttpActionResult Edit(WorkEditViewModel model)
+        {
+            var work = WorksMapper.ToDTO(model);
+            worksService.Edit(work);
+            return new OkResult(Request);
+        }
+
+        [HttpPost]
+        [Route("api/works/changePicture/{id}")]
+        public async Task<IHttpActionResult> ChangePicture(int id)
+        {
+            var file = HttpContext.Current.Request.Files["image"];
+            if (file == null)
+            {
+                return BadRequest("No image is attached");
+            }
+            var image = Image.FromStream(file.InputStream);
+
+            await worksService.ChangePictureAsync(image, id);
             return new OkResult(Request);
         }
     }
