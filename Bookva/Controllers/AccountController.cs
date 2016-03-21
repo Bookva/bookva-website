@@ -9,6 +9,11 @@ using Bookva.Entities;
 using Bookva.Web.Models;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
+using System.Drawing;
+using Bookva.Business;
+using Bookva.Business.ImageService;
+using System.Net.Http;
+using Microsoft.AspNet.Identity;
 
 namespace Bookva.Web.Controllers
 {
@@ -18,11 +23,9 @@ namespace Bookva.Web.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
-
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
+        
+        public AccountController(IImageService imageService)
         {
-            UserManager = userManager;
-            SignInManager = signInManager;
         }
 
         public ApplicationSignInManager SignInManager
@@ -75,7 +78,7 @@ namespace Bookva.Web.Controllers
         [Route("authorize")]
         public IHttpActionResult Authorize()
         {
-            var claims = new ClaimsPrincipal(User).Claims.ToArray();
+            var claims = new ClaimsPrincipal(User).Claims.ToList();
             var identity = new ClaimsIdentity(claims, "Bearer");
             AuthenticationManager.SignIn(identity);
             return  Ok();
@@ -92,7 +95,7 @@ namespace Bookva.Web.Controllers
             {
                 return BadRequest("Model is not valid");
             }
-            var user = await UserManager.FindByNameAsync(model.Email);
+            var user = await UserManager.FindByEmailAsync(model.Email);
             if (user == null)
             {
                 return BadRequest("Can't find this user");
@@ -105,7 +108,24 @@ namespace Bookva.Web.Controllers
             }
             return BadRequest("Error changing password");
         }
-        
+
+        //
+        // POST: /api/Account/changePicture
+        [HttpPost]
+        [Route("changePicture")]
+        public async Task<IHttpActionResult> ChangePicture()
+        {
+            var file = HttpContext.Current.Request.Files["image"];
+            if (file == null)
+            {
+               return BadRequest("No image is attached");
+            }
+            var image = Image.FromStream(file.InputStream);           
+            await UserManager.ChangePictureAsync(image, User.Identity.GetUserId<int>());
+
+            return Ok();
+        }
+
         private IAuthenticationManager AuthenticationManager
         {
             get

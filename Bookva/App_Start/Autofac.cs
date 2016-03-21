@@ -5,6 +5,8 @@ using Autofac;
 using Autofac.Integration.WebApi;
 using Bookva.Business;
 using Bookva.DAL;
+using Bookva.Business.ImageService;
+using Bookva.Business.Identity;
 
 namespace Bookva.Web
 {
@@ -22,6 +24,8 @@ namespace Bookva.Web
             builder.RegisterType(typeof(BookvaDbContext)).As(typeof(DbContext)).InstancePerLifetimeScope();
             builder.RegisterType(typeof (UnitOfWork)).As(typeof (IUnitOfWork)).SingleInstance();
             builder.RegisterType(typeof(AuthorService)).As(typeof(IAuthorService)).SingleInstance();
+            builder.RegisterType(typeof(ImageService)).As(typeof(IImageService)).SingleInstance();
+
             var container = builder.Build();
 
             config.DependencyResolver = new AutofacWebApiDependencyResolver(container);

@@ -8,6 +8,8 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
+using Bookva.Business.ImageService;
+using System.Drawing;
 
 namespace Bookva.Business.Identity
 {
@@ -32,13 +34,27 @@ namespace Bookva.Business.Identity
     // Configure the application user manager which is used in this application.
     public class ApplicationUserManager : UserManager<User, int>
     {
+        private IImageService _imageService;
+
         public ApplicationUserManager(IUserStore<User, int> store)
             : base(store)
         {
+            _imageService = new ImageService.ImageService();
         }
-        
-        public static ApplicationUserManager Create(IdentityFactoryOptions<ApplicationUserManager> options,
-            IOwinContext context)
+
+        public async Task ChangePictureAsync(Image image, int userId)
+        {
+            var user = await Store.FindByIdAsync(userId);
+            var pictureTask = _imageService.UploadAsync(image, ImageType.UserPic, $"userId-{userId}");
+            var previewPictureTask = _imageService.UploadAsync(image, ImageType.Miniature, $"userId-{userId}-mini");
+
+            user.PictureSource = await pictureTask;
+            user.PreviewPictureSource = await previewPictureTask;
+
+            await Store.UpdateAsync(user);            
+        }
+
+        public static ApplicationUserManager Create(IdentityFactoryOptions<ApplicationUserManager> options, IOwinContext context)
         {
             var manager = new ApplicationUserManager(new UserStore<User, Entities.IdentityRole, int, Entities.IdentityUserLogin, Entities.IdentityUserRole, Entities.IdentityUserClaim>(context.Get<BookvaDbContext>()));
             // Configure validation logic for usernames
