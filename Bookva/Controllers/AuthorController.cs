@@ -63,7 +63,7 @@ namespace Bookva.Web.Controllers
         /// <param name="model">Author</param>
         /// <returns></returns>
         [HttpPost]
-        public IHttpActionResult Create(AuthorViewModel model)
+        public IHttpActionResult Create([FromBody]AuthorViewModel model)
         {
             var author = AuthorMapper.ToDTO(model);
             authorService.Create(author);
@@ -76,7 +76,7 @@ namespace Bookva.Web.Controllers
         /// <param name="model">Author</param>
         /// <returns></returns>
         [HttpPut]
-        public IHttpActionResult Edit(AuthorViewModel model)
+        public IHttpActionResult Edit([FromBody]AuthorViewModel model)
         {
             var author = AuthorMapper.ToDTO(model);
             authorService.Edit(author);
@@ -85,7 +85,7 @@ namespace Bookva.Web.Controllers
 
         [HttpPost]
         [Route("api/author/changePicture/{id}")]
-        public async Task<IHttpActionResult> ChangePicture(int id)
+        public async Task<IHttpActionResult> ChangePicture([FromBody]int id)
         {
             var file = HttpContext.Current.Request.Files["image"];
             if (file == null)

@@ -62,7 +62,7 @@ namespace Bookva.Web.Controllers
         /// <param name="model">Work</param>
         /// <returns></returns>
         [HttpPost]
-        public IHttpActionResult Create(WorkEditViewModel model)
+        public IHttpActionResult Create([FromBody]WorkEditViewModel model)
         {
             var file = HttpContext.Current.Request.Files["image"];
             if (file == null)
@@ -80,7 +80,7 @@ namespace Bookva.Web.Controllers
         /// <param name="model">Work</param>
         /// <returns></returns>
         [HttpPut]
-        public IHttpActionResult Edit(WorkEditViewModel model)
+        public IHttpActionResult Edit([FromBody]WorkEditViewModel model)
         {
             var work = WorksMapper.ToDTO(model);
             worksService.Edit(work);
@@ -89,7 +89,7 @@ namespace Bookva.Web.Controllers
 
         [HttpPost]
         [Route("api/works/changePicture/{id}")]
-        public async Task<IHttpActionResult> ChangePicture(int id)
+        public async Task<IHttpActionResult> ChangePicture([FromBody]int id)
         {
             var file = HttpContext.Current.Request.Files["image"];
             if (file == null)

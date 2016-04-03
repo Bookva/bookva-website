@@ -57,7 +57,7 @@ namespace Bookva.Web.Controllers
         [HttpPost]
         [AllowAnonymous]
         [Route("register")]
-        public async Task<IHttpActionResult> Register(RegisterViewModel model)
+        public async Task<IHttpActionResult> Register([FromBody]RegisterViewModel model)
         {
             if (ModelState.IsValid)
             {
@@ -89,7 +89,7 @@ namespace Bookva.Web.Controllers
         [HttpPost]
         [AllowAnonymous]
         [Route("resetPassword")]
-        public async Task<IHttpActionResult> ResetPassword(ResetPasswordViewModel model)
+        public async Task<IHttpActionResult> ResetPassword([FromBody]ResetPasswordViewModel model)
         {
             if (!ModelState.IsValid)
             {
