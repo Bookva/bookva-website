@@ -13,6 +13,7 @@ namespace Bookva.Entities
         public string Title { get; set; }
         public string Text { get; set; }
 
+        [Column(TypeName = "datetime2")]
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         public DateTime DateAdded { get; set; }
 

@@ -68,6 +68,10 @@
     <Reference Include="System.Drawing" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Mappers\ReviewMapper.cs" />
+    <Compile Include="Mappers\UserMapper.cs" />
+    <Compile Include="ReviewService.cs" />
+    <Compile Include="IReviewService.cs" />
     <Compile Include="Identity\IdentityConfig.cs" />
     <Compile Include="IAuthorService.cs" />
     <Compile Include="ImageService\IImageService.cs" />

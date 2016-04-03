@@ -23,7 +23,7 @@ namespace Bookva.Web.Models
         public IEnumerable<AuthorPreviewViewModel> Authors { get; set; }
         public IEnumerable<string> Genres { get; set; }
         public IEnumerable<string> Keywords { get; set; }
-        //public IEnumerable<Review> Reviews { get; set; }
+        public IEnumerable<ReviewViewModel> Reviews { get; set; }
         //public IEnumerable<WorkRating> Ratings { get; set; }
         //TODO:add ratings and reviews
     }

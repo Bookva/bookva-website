@@ -25,6 +25,7 @@ namespace Bookva.Web
             builder.RegisterType(typeof (UnitOfWork)).As(typeof (IUnitOfWork)).SingleInstance();
             builder.RegisterType(typeof(AuthorService)).As(typeof(IAuthorService)).SingleInstance();
             builder.RegisterType(typeof(ImageService)).As(typeof(IImageService)).SingleInstance();
+            builder.RegisterType(typeof(ReviewService)).As(typeof(IReviewService)).SingleInstance();
 
             var container = builder.Build();
 

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Bookva.BusinessEntities.Author;
+using Bookva.BusinessEntities.Review;
 
 namespace Bookva.BusinessEntities.Work
 {
@@ -26,5 +27,6 @@ namespace Bookva.BusinessEntities.Work
         public IEnumerable<AuthorPreviewModel> Authors { get; set; }
         public IEnumerable<string> Genres { get; set; }
         public IEnumerable<string> Keywords { get; set; }
+        public IEnumerable<ReviewReadModel> Reviews { get; set; }
     }
 }

@@ -47,9 +47,11 @@ namespace Bookva.Business.Mappers
                 PreviewCoverSource = work.PreviewCoverSource,
                 Authors = work.Authors.Select(AuthorMapper.ToPreviewViewModel),
                 Genres = work.Genres.Select(g => g.Name),
-                Keywords = work.Keywords.Select(k => k.Name)
+                Keywords = work.Keywords.Select(k => k.Name),
+                Reviews = work.Reviews.Select(ReviewMapper.ToReadModel)
             };
         }
+
         public static WorkPreviewModel ToPreviewModel(this Work work)
         {
             return new WorkPreviewModel

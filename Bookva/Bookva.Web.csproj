@@ -154,6 +154,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ReviewsController.cs" />
     <Compile Include="Controllers\AuthorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\WorksController.cs" />
@@ -161,10 +162,14 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Mappers\AuthorMapper.cs" />
+    <Compile Include="Mappers\ReviewMapper.cs" />
+    <Compile Include="Mappers\UserMapper.cs" />
     <Compile Include="Mappers\WorksMapper.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AuthorViewModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\ReviewViewModels.cs" />
+    <Compile Include="Models\UserPreviewViewModel.cs" />
     <Compile Include="Models\WorkViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\ApplicationOAuthProvider.cs" />

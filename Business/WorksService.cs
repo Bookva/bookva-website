@@ -23,7 +23,8 @@ namespace Bookva.Business
 
         public WorkReadModel Get(int id)
         {
-            return _unitOfWork.WorkRepository.Get(id).ToReadModel();
+            var x = _unitOfWork.WorkRepository.Get(id);
+            return x.ToReadModel();
         }
 
         public IEnumerable<WorkPreviewModel> GetAll()
