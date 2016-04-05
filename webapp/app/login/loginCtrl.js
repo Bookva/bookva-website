@@ -6,12 +6,8 @@ bookva.controller('loginCtrl', ['$scope', '$route', '$http', '$location', '$cook
         'use strict';
 
         $scope.model = {
-            rememberMe: false,
-            user: {
-                password: '',
-                username: ''
-            }
-        }
+            rememberMe: false
+        };
 
         $scope.login = function(){
             $cookies.put('bookvaUserToken', 'newToken');
