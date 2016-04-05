@@ -72,23 +72,6 @@
                 </div>
             </div>
 
-            <div class="form-group"
-                 data-ng-class="{'has-error': registrationForm.password.$touched && registrationForm.password.$invalid}">
-                <label for="password" class="control-label">Confirm password:</label>
-
-                <input type="password" id="confirmPassword"
-                       data-ng-model="model.user.password" class="form-control" name="password"
-                       placeholder="Password"
-                       aria-describedby="pass-error"
-                       pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}$"
-                       data-ng-maxlength="20" required>
-                <div class="help-block" id="conf-pass-error">
-                    <span data-ng-show="registrationForm.password.$touched && registrationForm.password!=registrationForm.confirmPassword">
-                        Passwords doesn't match
-                    </span>
-                </div>
-            </div>
-
             <button data-ng-disabled="registrationForm.$invalid" class="btn btn-success btn-block"
                     data-ng-click="register()">Sign up
             </button>

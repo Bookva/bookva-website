@@ -4,14 +4,8 @@ bookva.controller('registrationCtrl', ['$scope', '$route', '$http', '$location',
     function ($scope, $route, $http, $location, $httpParamSerializer) {
 
         'use strict';
-
         $scope.model = {
-            rememberMe: false,
-            user: {
-                login: 'accbookva',
-                password: '123456',
-                email: 'kuchumova.mary@gmail.com'
-            }
+            
         };
 
         $scope.register = function(){
@@ -22,7 +16,7 @@ bookva.controller('registrationCtrl', ['$scope', '$route', '$http', '$location',
             };
 
             $http(req).success(function() {
-                    $location.path('/login');
+                    $location.path('/email');
                 });
         }
 

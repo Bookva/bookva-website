@@ -9,6 +9,11 @@ var bookva = angular.module('BookvaApp', ['ngRoute', 'ngCookies'])
         }).when('/register', {
             templateUrl: 'app/registration/registration.html',
             controller: 'registrationCtrl'
+        }).when('/main', {
+            templateUrl: 'app/bookList/bookList.html',
+            controller: 'booklistCtrl'
+        }).when('/email', {
+            templateUrl: 'app/confirm/emailConfirm.html'
         });
     });
 
