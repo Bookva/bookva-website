@@ -1,4 +1,4 @@
-var bookva = angular.module('BookvaApp', ['ngRoute'])
+var bookva = angular.module('BookvaApp', ['ngRoute', 'ngCookies'])
     .config(function ($routeProvider) {
         $routeProvider.when(
             '/', {templateUrl: 'app/main/mainPage.html',
@@ -13,7 +13,7 @@ var bookva = angular.module('BookvaApp', ['ngRoute'])
     });
 
 
-bookva.controller('mainController', function ($scope, $templateCache) {
+bookva.controller('mainController', function ($scope, $templateCache, $cookies) {
     $scope.$on('$routeChangeStart', function (event, next, current) {
         if (typeof(current) !== 'undefined') {
             if (typeof(next) !== 'undefined') {
@@ -21,4 +21,9 @@ bookva.controller('mainController', function ($scope, $templateCache) {
             }
         }
     });
+    
+    $scope.getToken = function(){
+        var token = $cookies.get('bookvaUserToken');
+        return token;
+    }
 });

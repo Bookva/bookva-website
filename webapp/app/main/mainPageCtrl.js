@@ -5,7 +5,4 @@ bookva.controller('mainPageCtrl', ['$scope', '$route', '$http', '$location',
 
         'use strict';
 
-        $scope.hello = 'hello';
-
-
     }]);
