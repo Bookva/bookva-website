@@ -1,3 +1,4 @@
+﻿@using System.Web.Optimization
 <!DOCTYPE html>
 <html lang="en" data-ng-app="BookvaApp">
 <head>
@@ -19,20 +20,20 @@
     <script src="app/registration/registrationCtrl.js"></script>
 </head>
 <body id="body" data-ng-controller="mainController">
-<nav class="navbar navbar-default">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <a class="navbar-brand" href="#">Bookva</a>
-        </div>
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#/">Bookva</a>
+            </div>
 
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav">
-                <li data-ng-show="!getToken()"><a href="#/login">Login <span class="sr-only"></span></a></li>
-                <li data-ng-show="!getToken()"><a href="#/register">Sign up</a></li>
-            </ul>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li data-ng-show="!getToken()"><a href="#/login">Login <span class="sr-only"></span></a></li>
+                    <li data-ng-show="!getToken()"><a href="#/register">Sign up</a></li>
+                </ul>
+            </div>
         </div>
-    </div>
-</nav>
+    </nav>
 
     <ng-view data-ng-cloak></ng-view>
 </body>

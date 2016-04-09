@@ -1,19 +1,19 @@
 var bookva = angular.module('BookvaApp', ['ngRoute', 'ngCookies'])
     .config(function ($routeProvider) {
         $routeProvider.when(
-            '/', {templateUrl: 'app/main/mainPage.html',
+            '/', {templateUrl: 'www/app/main/mainPage.html',
             controller: 'mainPageCtrl'
         }).when('/login', {
-            templateUrl: 'app/login/login.html',
+            templateUrl: 'www/app/login/login.html',
             controller: 'loginCtrl'
         }).when('/register', {
-            templateUrl: 'app/registration/registration.html',
+            templateUrl: 'www/app/registration/registration.html',
             controller: 'registrationCtrl'
         }).when('/main', {
-            templateUrl: 'app/bookList/bookList.html',
+            templateUrl: 'www/app/bookList/bookList.html',
             controller: 'booklistCtrl'
         }).when('/email', {
-            templateUrl: 'app/confirm/emailConfirm.html'
+            templateUrl: 'www/app/confirm/emailConfirm.html'
         });
     });
 

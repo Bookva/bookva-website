@@ -145,6 +145,10 @@
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
     </Reference>
+    <Reference Include="WebGrease, Version=1.6.5135.21930, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\Autofac.cs" />
@@ -152,11 +156,12 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="App_Start\TemplateBundle.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ReviewsController.cs" />
     <Compile Include="Controllers\AuthorController.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\StartController.cs" />
     <Compile Include="Controllers\WorksController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -177,48 +182,35 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\Site.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="ConnectionStrings.config" />
+    <Content Include="www\app\confirm\emailConfirm.html" />
+    <Content Include="www\app\login\login.html" />
+    <Content Include="www\app\login\loginCtrl.js" />
+    <Content Include="www\app\mainController.js" />
+    <Content Include="www\app\main\mainPage.html" />
+    <Content Include="www\app\main\mainPageCtrl.js" />
+    <Content Include="www\app\registration\registration.html" />
+    <Content Include="www\app\registration\registrationCtrl.js" />
+    <Content Include="www\css\bootstrap.css" />
+    <Content Include="www\css\bootstrap.min.css" />
+    <Content Include="www\css\login.css" />
+    <Content Include="www\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Views\Start\Index.cshtml" />
+    <Content Include="www\index.html" />
+    <Content Include="www\js\angular-cookies.min.js" />
+    <Content Include="www\js\angular-route.min.js" />
+    <Content Include="www\js\angular-sanitize.min.js" />
+    <Content Include="www\js\angular.min.js" />
+    <Content Include="www\js\bootstrap.min.js" />
+    <Content Include="www\js\jquery-2.1.3.min.js" />
+    <Content Include="www\npm.js" />
+    <Content Include="www\js\ui-bootstrap-tpls.min.js" />
     <None Include="Properties\PublishProfiles\Bookva - Web Deploy.pubxml" />
-    <Content Include="Scripts\_references.js" />
-    <Content Include="Scripts\app\_run.js" />
-    <Content Include="Scripts\app\app.datamodel.js" />
-    <Content Include="Scripts\app\app.viewmodel.js" />
-    <Content Include="Scripts\app\common.js" />
-    <Content Include="Scripts\app\home.viewmodel.js" />
-    <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Account\ConfirmEmail.cshtml" />
-    <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
-    <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
-    <Content Include="Views\Account\ForgotPassword.cshtml" />
-    <Content Include="Views\Account\ForgotPasswordConfirmation.cshtml" />
-    <Content Include="Views\Account\Login.cshtml" />
-    <Content Include="Views\Account\Register.cshtml" />
-    <Content Include="Views\Account\ResetPassword.cshtml" />
-    <Content Include="Views\Account\ResetPasswordConfirmation.cshtml" />
-    <Content Include="Views\Account\SendCode.cshtml" />
-    <Content Include="Views\Account\VerifyCode.cshtml" />
-    <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
-    <Content Include="Views\Home\_Home.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Manage\AddPhoneNumber.cshtml" />
-    <Content Include="Views\Manage\ChangePassword.cshtml" />
-    <Content Include="Views\Manage\Index.cshtml" />
-    <Content Include="Views\Manage\ManageLogins.cshtml" />
-    <Content Include="Views\Manage\SetPassword.cshtml" />
-    <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Shared\Lockout.cshtml" />
-    <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Shared\Error.cshtml" />
-    <Content Include="Views\Web.config">
-      <SubType>Designer</SubType>
-    </Content>
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -230,6 +222,10 @@
     </Content>
     <Content Include="Service References\Application Insights\ConnectedService.json" />
     <None Include="Properties\PublishProfiles\test-bookva - Web Deploy.pubxml" />
+    <Content Include="www\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="www\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="www\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="www\fonts\glyphicons-halflings-regular.woff2" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
