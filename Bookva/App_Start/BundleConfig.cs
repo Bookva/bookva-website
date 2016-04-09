@@ -1,5 +1,4 @@
 ﻿using System.Web.Optimization;
-using Bookva.Web.App_Start;
 
 namespace Bookva.Web
 {
@@ -19,8 +18,7 @@ namespace Bookva.Web
                 //.Include("~/www/app/mainController.js")
                 .IncludeDirectory("~/www/app", "*.js", true));
                 //.IncludeDirectory("~/www/js", "*.js", true));
-
-            bundles.Add(new TemplateBundle("~/bundles/templates").IncludeDirectory("~/www/app", "*.html", true)); ;
+                
             bundles.Add(new StyleBundle("~/bundles/css")
                 .IncludeDirectory("~/www/css", "*.css", true));
 
