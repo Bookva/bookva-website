@@ -23,8 +23,12 @@ namespace Bookva.Business
 
         public WorkReadModel Get(int id)
         {
-            var x = _unitOfWork.WorkRepository.Get(id);
-            return x.ToReadModel();
+            var work = _unitOfWork.WorkRepository.Get(id);
+            if (work == null)
+            {
+                throw new KeyNotFoundException($"Work with id {id} is not found!");
+            }
+            return work.ToReadModel();
         }
 
         public IEnumerable<WorkPreviewModel> GetAll()

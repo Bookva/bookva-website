@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
 using System.Web.Http.Results;
@@ -9,6 +10,7 @@ using Bookva.Web.Models;
 using System.Web;
 using System.Drawing;
 using System.Threading.Tasks;
+using Elmah;
 
 namespace Bookva.Web.Controllers
 {
@@ -47,13 +49,16 @@ namespace Bookva.Web.Controllers
         /// <returns></returns>
         public IHttpActionResult Get(int id)
         {
-            var work = worksService.Get(id);
-            if (work == null)
+            try
             {
-                return NotFound();
+                var work = worksService.Get(id);
+                return Ok(WorksMapper.ToViewModel(work));
             }
-
-            return Ok(WorksMapper.ToViewModel(work));
+            catch (KeyNotFoundException e)
+            {
+                ErrorLog.GetDefault(HttpContext.Current).Log(new Error(e));
+                return BadRequest(e.Message);
+            }
         }
 
         /// <summary>

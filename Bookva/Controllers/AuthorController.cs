@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Threading.Tasks;
@@ -9,6 +10,8 @@ using Bookva.Business;
 using Bookva.BusinessEntities.Author;
 using Bookva.Web.Mappers;
 using Bookva.Web.Models;
+using Elmah;
+using Elmah.Contrib.WebApi;
 
 namespace Bookva.Web.Controllers
 {
@@ -48,13 +51,16 @@ namespace Bookva.Web.Controllers
         /// <returns></returns>
         public IHttpActionResult Get(int id)
         {
-            var author = authorService.Get(id);
-            if (author == null)
+            try
             {
-                return NotFound();
+                var author = authorService.Get(id);
+                return Ok(AuthorMapper.ToViewModel(author));
             }
-
-            return Ok(AuthorMapper.ToViewModel(author));
+            catch (KeyNotFoundException e)
+            {
+                ErrorLog.GetDefault(HttpContext.Current).Log(new Error(e));
+                return BadRequest(e.Message);
+            }
         }
         
         /// <summary>
