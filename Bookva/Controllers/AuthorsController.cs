@@ -15,17 +15,17 @@ using Elmah.Contrib.WebApi;
 
 namespace Bookva.Web.Controllers
 {
-    public class AuthorController : ApiController
+    public class AuthorsController : ApiController
     {
         private readonly IAuthorService authorService;
         
-        public AuthorController(IAuthorService authorService)
+        public AuthorsController(IAuthorService authorService)
         {
             this.authorService = authorService;
         }
 
         /// <summary>
-        ///  GET: /api/author/
+        ///  GET: /api/authors/
         /// </summary>
         /// <param name="options">Pagination options</param>
         /// <returns></returns>
@@ -45,7 +45,7 @@ namespace Bookva.Web.Controllers
         }
 
         /// <summary>
-        ///  GET: /api/author/{id}
+        ///  GET: /api/authors/{id}
         /// </summary>
         /// <param name="id">Author id</param>
         /// <returns></returns>
@@ -64,7 +64,7 @@ namespace Bookva.Web.Controllers
         }
         
         /// <summary>
-        /// POST: /api/author/
+        /// POST: /api/authors/
         /// </summary>
         /// <param name="model">Author</param>
         /// <returns></returns>
@@ -77,7 +77,7 @@ namespace Bookva.Web.Controllers
         }
 
         /// <summary>
-        /// PUT: /api/author/
+        /// PUT: /api/authors/
         /// </summary>
         /// <param name="model">Author</param>
         /// <returns></returns>
