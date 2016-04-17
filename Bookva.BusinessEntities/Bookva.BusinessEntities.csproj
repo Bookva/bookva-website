@@ -43,6 +43,8 @@
     <Compile Include="Author\AuthorPreviewModel.cs" />
     <Compile Include="Author\AuthorReadModel.cs" />
     <Compile Include="Author\AuthorWriteModel.cs" />
+    <Compile Include="Genre\GenreModel.cs" />
+    <Compile Include="Keyword\KeywordModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Review\ReviewWriteModel.cs" />
     <Compile Include="Review\ReviewReadModel.cs" />

@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using Bookva.Business;
+using Bookva.BusinessEntities.Keyword;
 
 namespace Bookva.BusinessEntities.Work
 {
@@ -20,7 +22,7 @@ namespace Bookva.BusinessEntities.Work
         public string PreviewCoverSource { get; set; }
 
         public IEnumerable<int> AuthorIds { get; set; }
-        public IEnumerable<string> Genres { get; set; }
-        public IEnumerable<string> Keywords { get; set; }
+        public IEnumerable<GenreModel> Genres { get; set; }
+        public IEnumerable<KeywordModel> Keywords { get; set; }
     }
 }

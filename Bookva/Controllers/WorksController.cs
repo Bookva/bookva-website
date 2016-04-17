@@ -69,11 +69,6 @@ namespace Bookva.Web.Controllers
         [HttpPost]
         public IHttpActionResult Create([FromBody]WorkEditViewModel model)
         {
-            var file = HttpContext.Current.Request.Files["image"];
-            if (file == null)
-            {
-                return BadRequest("No image is attached");
-            }
             var work = WorksMapper.ToDTO(model);
             worksService.Create(work); 
             return new OkResult(Request);

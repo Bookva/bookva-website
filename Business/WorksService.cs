@@ -7,6 +7,9 @@ using Bookva.BusinessEntities.Work;
 using Bookva.DAL;
 using System.Threading.Tasks;
 using Bookva.Business.ImageService;
+using Bookva.BusinessEntities.Keyword;
+using Bookva.Entities;
+using CloudinaryDotNet.Actions;
 
 namespace Bookva.Business
 {
@@ -49,7 +52,19 @@ namespace Bookva.Business
                 var author = _unitOfWork.AuthorRepository.Get(authorId);
                 work.Authors.Add(author);
             }
-            //TODO: add keywords and genres
+
+            foreach (var genre in workDto.Genres)
+            {
+                Genre dbGenre = genre.Id.HasValue ? _unitOfWork.GenreRepository.Get(genre.Id.Value) : genre.ToDB();
+                work.Genres.Add(dbGenre);
+            }
+
+            foreach (var keyword in workDto.Keywords)
+            {
+                Keyword dbKeyword = keyword.Id.HasValue ? _unitOfWork.KeywordRepository.Get(keyword.Id.Value) : keyword.ToDB();
+                work.Keywords.Add(dbKeyword);
+            }
+            
             _unitOfWork.WorkRepository.Insert(work);
             _unitOfWork.Save();
         }
@@ -62,7 +77,19 @@ namespace Bookva.Business
                 var author = _unitOfWork.AuthorRepository.Get(authorId);
                 work.Authors.Add(author);
             }
-            //TODO: add keywords and genres
+
+            foreach (var genre in workDto.Genres)
+            {
+                Genre dbGenre = genre.Id.HasValue ? _unitOfWork.GenreRepository.Get(genre.Id.Value) : genre.ToDB();
+                work.Genres.Add(dbGenre);
+            }
+
+            foreach (var keyword in workDto.Keywords)
+            {
+                Keyword dbKeyword = keyword.Id.HasValue ? _unitOfWork.KeywordRepository.Get(keyword.Id.Value) : keyword.ToDB();
+                work.Keywords.Add(dbKeyword);
+            }
+
             _unitOfWork.WorkRepository.Update(work, work.Id);
             _unitOfWork.Save();
         }

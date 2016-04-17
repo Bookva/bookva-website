@@ -21,11 +21,11 @@ namespace Bookva.Web.Models
         public string PreviewCoverSource { get; set; }
 
         public IEnumerable<AuthorPreviewViewModel> Authors { get; set; }
-        public IEnumerable<string> Genres { get; set; }
-        public IEnumerable<string> Keywords { get; set; }
+        public IEnumerable<GenreViewModel> Genres { get; set; }
+        public IEnumerable<KeywordViewModel> Keywords { get; set; }
         public IEnumerable<ReviewViewModel> Reviews { get; set; }
         //public IEnumerable<WorkRating> Ratings { get; set; }
-        //TODO:add ratings and reviews
+        //TODO:add ratings 
     }
 
     public class WorkEditViewModel
@@ -44,8 +44,9 @@ namespace Bookva.Web.Models
         public string PreviewCoverSource { get; set; }
 
         public IEnumerable<int> AuthorIds { get; set; }
-        public IEnumerable<string> Genres { get; set; }
-        public IEnumerable<string> Keywords { get; set; }
+
+        public IEnumerable<GenreViewModel> Genres { get; set; }
+        public IEnumerable<KeywordViewModel> Keywords { get; set; }
     }
 
     public class WorkPreviewViewModel

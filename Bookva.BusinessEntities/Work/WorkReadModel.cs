@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Bookva.Business;
 using Bookva.BusinessEntities.Author;
+using Bookva.BusinessEntities.Keyword;
 using Bookva.BusinessEntities.Review;
 
 namespace Bookva.BusinessEntities.Work
@@ -25,8 +27,8 @@ namespace Bookva.BusinessEntities.Work
         public string PreviewCoverSource { get; set; }
 
         public IEnumerable<AuthorPreviewModel> Authors { get; set; }
-        public IEnumerable<string> Genres { get; set; }
-        public IEnumerable<string> Keywords { get; set; }
+        public IEnumerable<GenreModel> Genres { get; set; }
+        public IEnumerable<KeywordModel> Keywords { get; set; }
         public IEnumerable<ReviewReadModel> Reviews { get; set; }
     }
 }

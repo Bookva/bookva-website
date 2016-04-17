@@ -68,6 +68,12 @@
     <Reference Include="System.Drawing" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IGenreService.cs" />
+    <Compile Include="GenreService.cs" />
+    <Compile Include="KeywordService .cs" />
+    <Compile Include="IKeywordService.cs" />
+    <Compile Include="Mappers\GenreMapper.cs" />
+    <Compile Include="Mappers\KeywordMapper.cs" />
     <Compile Include="Mappers\ReviewMapper.cs" />
     <Compile Include="Mappers\UserMapper.cs" />
     <Compile Include="ReviewService.cs" />

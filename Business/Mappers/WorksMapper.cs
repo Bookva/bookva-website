@@ -24,6 +24,8 @@ namespace Bookva.Business.Mappers
                 IsAnonymous = viewModel.IsAnonymous,
                 CoverSource = viewModel.CoverSource,
                 PreviewCoverSource = viewModel.PreviewCoverSource,
+                Genres = new List<Genre>(),
+                Keywords = new List<Keyword>(),
                 Authors = new List<Author>()
             };
         }
@@ -45,10 +47,10 @@ namespace Bookva.Business.Mappers
                 IsAnonymous = work.IsAnonymous,
                 CoverSource = work.CoverSource,
                 PreviewCoverSource = work.PreviewCoverSource,
-                Authors = work.Authors.Select(AuthorMapper.ToPreviewViewModel),
-                Genres = work.Genres.Select(g => g.Name),
-                Keywords = work.Keywords.Select(k => k.Name),
-                Reviews = work.Reviews.Select(ReviewMapper.ToReadModel)
+                Authors = work.Authors?.Select(AuthorMapper.ToPreviewViewModel),
+                Genres = work.Genres?.Select(GenreMapper.ToModel),
+                Keywords = work.Keywords?.Select(KeywordMapper.ToModel),
+                Reviews = work.Reviews?.Select(ReviewMapper.ToReadModel)
             };
         }
 
@@ -63,7 +65,7 @@ namespace Bookva.Business.Mappers
                 IsAnonymous = work.IsAnonymous,
                 CoverSource = work.CoverSource,
                 PreviewCoverSource = work.PreviewCoverSource,
-                Authors = work.Authors.Select(AuthorMapper.ToPreviewViewModel),
+                Authors = work.Authors?.Select(AuthorMapper.ToPreviewViewModel),
             };
         }
     }
