@@ -18,8 +18,7 @@ namespace Bookva.Entities
 		public string Extract3 { get; set; }
         [Column(TypeName = "datetime2")]
 		public DateTime DateAdded { get; set; }
-        [Column(TypeName = "datetime2")]
-        public DateTime DateCreated { get; set; }
+        public short? YearCreated { get; set; }
 		public virtual WorkType WorkType { get; set; }
         [MaxLength(255)]
         public string CoverSource { get; set; }

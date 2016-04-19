@@ -79,6 +79,10 @@
     <Compile Include="Migrations\201604032126161_AddDatabase-Generated.Designer.cs">
       <DependentUpon>201604032126161_AddDatabase-Generated.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201604191938241_Change_DateAdded_YearAdded.cs" />
+    <Compile Include="Migrations\201604191938241_Change_DateAdded_YearAdded.Designer.cs">
+      <DependentUpon>201604191938241_Change_DateAdded_YearAdded.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository.cs" />
@@ -112,6 +116,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201604032126161_AddDatabase-Generated.resx">
       <DependentUpon>201604032126161_AddDatabase-Generated.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201604191938241_Change_DateAdded_YearAdded.resx">
+      <DependentUpon>201604191938241_Change_DateAdded_YearAdded.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

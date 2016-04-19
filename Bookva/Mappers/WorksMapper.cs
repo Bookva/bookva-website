@@ -14,7 +14,7 @@ namespace Bookva.Web.Mappers
             {
                 WorkType = viewModel.WorkType,
                 DateAdded = DateTime.Now,
-                DateCreated = viewModel.DateCreated,
+                YearCreated = viewModel.YearCreated,
                 Description = viewModel.Description.Trim(),
                 Title = viewModel.Title.Trim(),
                 Extract1 = viewModel.Extract1?.Trim(),
@@ -37,7 +37,7 @@ namespace Bookva.Web.Mappers
             {
                 WorkType = (int)work.WorkType,
                 DateAdded = work.DateAdded,
-                DateCreated = work.DateCreated,
+                YearCreated = work.YearCreated,
                 Description = work.Description,
                 Title = work.Title,
                 Extract1 = work.Extract1,
@@ -61,7 +61,7 @@ namespace Bookva.Web.Mappers
             {
                 WorkType = work.WorkType,
                 DateAdded = work.DateAdded,
-                DateCreated = work.DateCreated,
+                YearCreated = work.YearCreated,
                 Description = work.Description,
                 Title = work.Title,
                 Extract1 = work.Extract1,
