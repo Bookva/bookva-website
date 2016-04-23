@@ -11,6 +11,7 @@ using System.Web;
 using System.Drawing;
 using System.Threading.Tasks;
 using Elmah;
+using Microsoft.AspNet.Identity;
 
 namespace Bookva.Web.Controllers
 {
@@ -51,7 +52,8 @@ namespace Bookva.Web.Controllers
         {
             try
             {
-                var work = worksService.Get(id);
+                int? userId = User.Identity.IsAuthenticated? (int?)User.Identity.GetUserId<int>(): null;
+                var work = worksService.Get(id, userId);
                 return Ok(WorksMapper.ToViewModel(work));
             }
             catch (KeyNotFoundException e)
@@ -89,7 +91,7 @@ namespace Bookva.Web.Controllers
 
         [HttpPost]
         [Route("api/works/changePicture/{id}")]
-        public async Task<IHttpActionResult> ChangePicture([FromBody]int id)
+        public async Task<IHttpActionResult> ChangePicture([FromUri]int id)
         {
             var file = HttpContext.Current.Request.Files["image"];
             if (file == null)
@@ -99,6 +101,18 @@ namespace Bookva.Web.Controllers
             var image = Image.FromStream(file.InputStream);
 
             await worksService.ChangePictureAsync(image, id);
+            return new OkResult(Request);
+        }
+
+        [Authorize]
+        [HttpPost]
+        [Route("api/works/{id}/rate/{mark}")]
+        public IHttpActionResult Rate([FromUri]int id, [FromUri]byte mark)
+        {
+            if (mark > 5) return BadRequest("Mark should be on range [0;5]");
+
+            var userId = User.Identity.GetUserId<int>();
+            worksService.Rate(id, userId, mark);
             return new OkResult(Request);
         }
     }

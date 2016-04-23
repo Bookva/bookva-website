@@ -25,7 +25,9 @@ namespace Bookva.BusinessEntities.Work
         public bool IsAnonymous { get; set; }
         public string CoverSource { get; set; }
         public string PreviewCoverSource { get; set; }
-
+        public int TotalVotes { get; set; }
+        public float AverageRating { get; set; }
+        public byte? CurrentUserVote { get; set; }
         public IEnumerable<AuthorPreviewModel> Authors { get; set; }
         public IEnumerable<GenreModel> Genres { get; set; }
         public IEnumerable<KeywordModel> Keywords { get; set; }

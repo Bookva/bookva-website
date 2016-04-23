@@ -50,7 +50,9 @@ namespace Bookva.Business.Mappers
                 Authors = work.Authors?.Select(AuthorMapper.ToPreviewViewModel),
                 Genres = work.Genres?.Select(GenreMapper.ToModel),
                 Keywords = work.Keywords?.Select(KeywordMapper.ToModel),
-                Reviews = work.Reviews?.Select(ReviewMapper.ToReadModel)
+                Reviews = work.Reviews?.Select(ReviewMapper.ToReadModel),
+                AverageRating = work.AverageRating,
+                TotalVotes = work.TotalVotes
             };
         }
 
@@ -66,6 +68,7 @@ namespace Bookva.Business.Mappers
                 CoverSource = work.CoverSource,
                 PreviewCoverSource = work.PreviewCoverSource,
                 Authors = work.Authors?.Select(AuthorMapper.ToPreviewViewModel),
+                AverageRating = work.AverageRating
             };
         }
     }

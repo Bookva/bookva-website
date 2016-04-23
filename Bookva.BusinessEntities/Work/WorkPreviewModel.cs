@@ -16,6 +16,7 @@ namespace Bookva.BusinessEntities.Work
         public bool IsAnonymous { get; set; }
         public string CoverSource { get; set; }
         public string PreviewCoverSource { get; set; }
+        public float AverageRating { get; set; }
         public IEnumerable<AuthorPreviewModel> Authors { get; set; }
     }
 }

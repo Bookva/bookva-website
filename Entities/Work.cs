@@ -26,6 +26,8 @@ namespace Bookva.Entities
         public string PreviewCoverSource { get; set; }
         public string Text { get; set; }
 		public bool IsAnonymous { get; set; }
+        public int TotalVotes { get; set; }
+        public float AverageRating { get; set;}
 
         public virtual ICollection<Author> Authors { get; set; }
 		public virtual ICollection<Genre> Genres { get; set; }

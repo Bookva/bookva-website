@@ -6,10 +6,12 @@ namespace Bookva.Entities
 	{
 		[Key]
 		public int Id { get; set; }
+        public int UserId { get; set; }
+        public int WorkId { get; set; }
 
-		public virtual User User { get; set; }
+        public virtual User User { get; set; }
 		public virtual Work Work { get; set; }
-		[Range(0,10)]
+		[Range(0,5)]
 		public byte Mark { get; set; }
 	}
 }

@@ -24,8 +24,9 @@ namespace Bookva.Web.Models
         public IEnumerable<GenreViewModel> Genres { get; set; }
         public IEnumerable<KeywordViewModel> Keywords { get; set; }
         public IEnumerable<ReviewViewModel> Reviews { get; set; }
-        //public IEnumerable<WorkRating> Ratings { get; set; }
-        //TODO:add ratings 
+        public int TotalVotes { get; set; }
+        public float AverageRating { get; set; }
+        public byte? CurrentUserVote { get; set; }
     }
 
     public class WorkEditViewModel
@@ -44,7 +45,6 @@ namespace Bookva.Web.Models
         public string PreviewCoverSource { get; set; }
 
         public IEnumerable<int> AuthorIds { get; set; }
-
         public IEnumerable<GenreViewModel> Genres { get; set; }
         public IEnumerable<KeywordViewModel> Keywords { get; set; }
     }
@@ -58,6 +58,7 @@ namespace Bookva.Web.Models
         public bool IsAnonymous { get; set; }
         public string CoverSource { get; set; }
         public string PreviewCoverSource { get; set; }
+        public float AverageRating { get; set; }
 
         public IEnumerable<AuthorPreviewViewModel> Authors { get; set; }
     }

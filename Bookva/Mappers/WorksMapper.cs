@@ -51,7 +51,10 @@ namespace Bookva.Web.Mappers
                 Authors = work.Authors?.Select(AuthorMapper.ToPreviewViewModel),
                 Reviews = work.Reviews?.Select(ReviewMapper.ToViewModel),
                 Genres = work.Genres?.Select(GenreMapper.ToViewModel),
-                Keywords = work.Keywords?.Select(KeywordMapper.ToViewModel)
+                Keywords = work.Keywords?.Select(KeywordMapper.ToViewModel),
+                AverageRating = work.AverageRating,
+                TotalVotes = work.TotalVotes,
+                CurrentUserVote = work.CurrentUserVote
             };
         }
 
@@ -89,7 +92,8 @@ namespace Bookva.Web.Mappers
                 IsAnonymous = work.IsAnonymous,
                 CoverSource = work.CoverSource,
                 PreviewCoverSource = work.PreviewCoverSource,
-                Authors = work.Authors?.Select(AuthorMapper.ToPreviewViewModel)
+                Authors = work.Authors?.Select(AuthorMapper.ToPreviewViewModel),
+                AverageRating = work.AverageRating
             };
         }
     }

@@ -24,14 +24,19 @@ namespace Bookva.Business
             _imageService = imageService;
         }
 
-        public WorkReadModel Get(int id)
+        public WorkReadModel Get(int id, int? userId = null)
         {
             var work = _unitOfWork.WorkRepository.Get(id);
             if (work == null)
             {
                 throw new KeyNotFoundException($"Work with id {id} is not found!");
             }
-            return work.ToReadModel();
+            var workModel = work.ToReadModel();
+            if (userId.HasValue)
+            {
+                workModel.CurrentUserVote = work.Ratings.FirstOrDefault(r => r.UserId == userId.Value)?.Mark;
+            }
+            return workModel;
         }
 
         public IEnumerable<WorkPreviewModel> GetAll()
@@ -104,6 +109,30 @@ namespace Bookva.Business
             work.PreviewCoverSource = await previewPictureTask;
             _unitOfWork.WorkRepository.Update(work, id);
             _unitOfWork.Save();
+        }
+
+        public void Rate(int workId, int userId, byte mark)
+        {
+            var work = _unitOfWork.WorkRepository.Get(workId);
+
+            var existingRating = work.Ratings.Where(r => r.UserId == userId).ToList();
+            if (existingRating.Any())
+            {
+                work.TotalVotes = work.TotalVotes - existingRating.Count;
+                _unitOfWork.WorkRatingRepository.Delete(existingRating);
+                _unitOfWork.Save();
+            }
+            _unitOfWork.WorkRatingRepository.Insert(new WorkRating {Mark = mark, UserId = userId, WorkId = workId});
+
+            work.AverageRating = work.AverageRating*work.TotalVotes/(work.TotalVotes + 1) + (float) mark/(work.TotalVotes + 1);
+            work.TotalVotes = work.TotalVotes + 1;
+            _unitOfWork.WorkRepository.Update(work, work.Id);
+            _unitOfWork.Save();
+        }
+
+        public bool IsRated(int workId, int userId)
+        {
+            return _unitOfWork.WorkRatingRepository.Get().Any(r => r.UserId == userId && r.WorkId == workId);
         }
     }
 }
