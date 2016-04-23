@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bookva.Business", "Business
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bookva.BusinessEntities", "Bookva.BusinessEntities\Bookva.BusinessEntities.csproj", "{F5121F00-DA35-4B9E-8FBD-6171C1AD3C72}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bookva.Common", "Bookva.Common\Bookva.Common.csproj", "{1F3DD4FE-4918-4704-A3BD-75611896A2B8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{F5121F00-DA35-4B9E-8FBD-6171C1AD3C72}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F5121F00-DA35-4B9E-8FBD-6171C1AD3C72}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F5121F00-DA35-4B9E-8FBD-6171C1AD3C72}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1F3DD4FE-4918-4704-A3BD-75611896A2B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1F3DD4FE-4918-4704-A3BD-75611896A2B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1F3DD4FE-4918-4704-A3BD-75611896A2B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1F3DD4FE-4918-4704-A3BD-75611896A2B8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

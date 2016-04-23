@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Bookva.Business;
 using Bookva.BusinessEntities.Keyword;
+using Bookva.Common;
 
 namespace Bookva.BusinessEntities.Work
 {
@@ -15,7 +16,7 @@ namespace Bookva.BusinessEntities.Work
         public string Extract3 { get; set; }
         public DateTime DateAdded { get; set; }
         public short? YearCreated { get; set; }
-        public int WorkType { get; set; }
+        public WorkStatus Status { get; set; }
         public string Text { get; set; }
         public bool IsAnonymous { get; set; }
         public string CoverSource { get; set; }

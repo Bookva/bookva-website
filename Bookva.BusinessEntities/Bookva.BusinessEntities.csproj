@@ -53,7 +53,12 @@
     <Compile Include="Work\WorkReadModel.cs" />
     <Compile Include="Work\WorkWriteModel.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Bookva.Common\Bookva.Common.csproj">
+      <Project>{1F3DD4FE-4918-4704-A3BD-75611896A2B8}</Project>
+      <Name>Bookva.Common</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -258,6 +258,10 @@
       <Project>{f5121f00-da35-4b9e-8fbd-6171c1ad3c72}</Project>
       <Name>Bookva.BusinessEntities</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Bookva.Common\Bookva.Common.csproj">
+      <Project>{1f3dd4fe-4918-4704-a3bd-75611896a2b8}</Project>
+      <Name>Bookva.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Business\Bookva.Business.csproj">
       <Project>{bfdfe2aa-db45-4b42-b494-6a92977051dc}</Project>
       <Name>Bookva.Business</Name>

@@ -8,6 +8,7 @@ using Bookva.DAL;
 using System.Threading.Tasks;
 using Bookva.Business.ImageService;
 using Bookva.BusinessEntities.Keyword;
+using Bookva.Common;
 using Bookva.Entities;
 using CloudinaryDotNet.Actions;
 
@@ -133,6 +134,26 @@ namespace Bookva.Business
         public bool IsRated(int workId, int userId)
         {
             return _unitOfWork.WorkRatingRepository.Get().Any(r => r.UserId == userId && r.WorkId == workId);
+        }
+
+        public void ChangeStatus(int id, int userId, WorkStatus status)
+        {
+            var userAuthor = _unitOfWork.UserRepository.Get(userId).AuthorId;
+            if ( userAuthor.HasValue)
+            {
+                var work = _unitOfWork.WorkRepository.Get(id);
+                var isUserAllowed = work.Authors.Any(a => a.Id == userAuthor.Value);
+                if (isUserAllowed)
+                {
+                    work.Status = status;
+                }
+                _unitOfWork.WorkRepository.Update(work, id);
+                _unitOfWork.Save();
+            }
+            else
+            {
+                throw new ApplicationException("Current user is not allowed to make changes.");
+            }
         }
     }
 }

@@ -11,7 +11,7 @@ namespace Bookva.Business.Mappers
         {
             return new Work
             {
-                WorkType = (WorkType)viewModel.WorkType,
+                Status = viewModel.Status,
                 DateAdded = viewModel.DateAdded,
                 YearCreated = viewModel.YearCreated,
                 Description = viewModel.Description,
@@ -34,7 +34,7 @@ namespace Bookva.Business.Mappers
         {
             return new WorkReadModel
             {
-                WorkType = (int)work.WorkType,
+                Status = work.Status,
                 DateAdded = work.DateAdded,
                 YearCreated = work.YearCreated,
                 Description = work.Description,
@@ -60,7 +60,7 @@ namespace Bookva.Business.Mappers
         {
             return new WorkPreviewModel
             {
-                WorkType = (int)work.WorkType,
+                Status = work.Status,
                 Description = work.Description,
                 Title = work.Title,
                 Id = work.Id,

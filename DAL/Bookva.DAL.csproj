@@ -87,6 +87,10 @@
     <Compile Include="Migrations\201604231551379_AddAggregateRatingFields.Designer.cs">
       <DependentUpon>201604231551379_AddAggregateRatingFields.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201604232008319_Change_WorkType_Status.cs" />
+    <Compile Include="Migrations\201604232008319_Change_WorkType_Status.Designer.cs">
+      <DependentUpon>201604232008319_Change_WorkType_Status.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository.cs" />
@@ -126,6 +130,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201604231551379_AddAggregateRatingFields.resx">
       <DependentUpon>201604231551379_AddAggregateRatingFields.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201604232008319_Change_WorkType_Status.resx">
+      <DependentUpon>201604232008319_Change_WorkType_Status.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

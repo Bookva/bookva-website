@@ -10,6 +10,7 @@ using Bookva.Web.Models;
 using System.Web;
 using System.Drawing;
 using System.Threading.Tasks;
+using Bookva.Common;
 using Elmah;
 using Microsoft.AspNet.Identity;
 
@@ -72,6 +73,7 @@ namespace Bookva.Web.Controllers
         public IHttpActionResult Create([FromBody]WorkEditViewModel model)
         {
             var work = WorksMapper.ToDTO(model);
+            work.Status = WorkStatus.Posted;
             worksService.Create(work); 
             return new OkResult(Request);
         }
@@ -114,6 +116,24 @@ namespace Bookva.Web.Controllers
             var userId = User.Identity.GetUserId<int>();
             worksService.Rate(id, userId, mark);
             return new OkResult(Request);
+        }
+
+        [Authorize]
+        [HttpPost]
+        [Route("api/works/{id}/changeStatus/{status}")]
+        public IHttpActionResult ChangeStatus([FromUri]int id, [FromUri]WorkStatus status)
+        {
+            var userId = User.Identity.GetUserId<int>();
+            try
+            {
+                worksService.ChangeStatus(id, userId, status);
+                return new OkResult(Request);
+            }
+            catch (System.ApplicationException e)
+            {
+                ErrorLog.GetDefault(HttpContext.Current).Log(new Error(e));
+                return BadRequest(e.Message);
+            }
         }
     }
 }

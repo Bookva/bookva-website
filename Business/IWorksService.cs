@@ -2,6 +2,7 @@
 using System.Drawing;
 using Bookva.BusinessEntities.Work;
 using System.Threading.Tasks;
+using Bookva.Common;
 
 namespace Bookva.Business
 {
@@ -15,6 +16,6 @@ namespace Bookva.Business
         Task ChangePictureAsync(Image image, int id);
         void Rate(int workId, int userId, byte mark);
         bool IsRated(int workId, int userId);
-
+        void ChangeStatus(int id, int userId, WorkStatus status);
     }
 }

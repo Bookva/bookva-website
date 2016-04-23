@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Bookva.Common;
 
 namespace Bookva.Entities
 {
@@ -19,7 +20,7 @@ namespace Bookva.Entities
         [Column(TypeName = "datetime2")]
 		public DateTime DateAdded { get; set; }
         public short? YearCreated { get; set; }
-		public virtual WorkType WorkType { get; set; }
+		public WorkStatus Status { get; set; }
         [MaxLength(255)]
         public string CoverSource { get; set; }
         [MaxLength(255)]

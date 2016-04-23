@@ -102,6 +102,10 @@
       <Project>{f5121f00-da35-4b9e-8fbd-6171c1ad3c72}</Project>
       <Name>Bookva.BusinessEntities</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Bookva.Common\Bookva.Common.csproj">
+      <Project>{1F3DD4FE-4918-4704-A3BD-75611896A2B8}</Project>
+      <Name>Bookva.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DAL\Bookva.DAL.csproj">
       <Project>{52471301-1e49-4e1c-b704-ecf67b5b5a84}</Project>
       <Name>Bookva.DAL</Name>

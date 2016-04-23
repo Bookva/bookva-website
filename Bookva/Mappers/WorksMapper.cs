@@ -12,7 +12,7 @@ namespace Bookva.Web.Mappers
         {
             return new WorkWriteModel
             {
-                WorkType = viewModel.WorkType,
+                Status = viewModel.Status,
                 DateAdded = DateTime.Now,
                 YearCreated = viewModel.YearCreated,
                 Description = viewModel.Description.Trim(),
@@ -35,7 +35,7 @@ namespace Bookva.Web.Mappers
         {
             return new WorkViewModel
             {
-                WorkType = (int)work.WorkType,
+                Status = work.Status,
                 DateAdded = work.DateAdded,
                 YearCreated = work.YearCreated,
                 Description = work.Description,
@@ -62,7 +62,7 @@ namespace Bookva.Web.Mappers
         {
             return new WorkViewModel
             {
-                WorkType = work.WorkType,
+                Status = work.Status,
                 DateAdded = work.DateAdded,
                 YearCreated = work.YearCreated,
                 Description = work.Description,
@@ -85,7 +85,7 @@ namespace Bookva.Web.Mappers
         {
             return new WorkPreviewViewModel
             {
-                WorkType = (int)work.WorkType,
+                Status = work.Status,
                 Description = work.Description,
                 Title = work.Title,
                 Id = work.Id,
