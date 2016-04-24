@@ -1,0 +1,43 @@
+<!--@user settings-->
+
+<!--name-->
+<!--change password-->
+<!--stats-->
+<!--latest read books-->
+<!--latest rated books-->
+
+<div class="centered well col-md-10 center-block">
+    <div class="row">
+        <h3 class="col-md-9">Настройки пользователя  {{model.user.name}}</h3>
+        <a class="text-right col-md-3" href="#/settings/author"><h3>Стать автором</h3></a>
+    </div>
+
+    <div class="row">
+        <div class="col-md-3">
+            <img class="img-responsive img-circle centered" src="{{model.user.imgUrl}}">
+        </div>
+        <div class="col-md-9">
+            <div class="form-group">
+                <label for="name"><h5>имя:</h5></label>
+                <input type="text" class="form-control" rows="5" id="name" data-ng-model="model.user.name"/>
+            </div>
+            <button class="btn"><h5>Изменить пароль</h5></button>
+        </div>
+    </div>
+    <hr>
+    <div>
+        <div class="row">
+            <h4 class="col-md-11">Пользовательске коллекции:</h4>
+            <button class="btn pull-right"> + </button>
+        </div>
+        <div data-ng-if="!model.book.collections">
+            <h5>Пока что коллекций нет...</h5>
+            <h5>Создайте первую коллекцию книг! :)</h5>
+        </div>
+        <div data-ng-if="model.user.collections">
+            <div data-ng-repeat="collection in model.user.collection">
+                <h5>{{collection.title}}</h5>
+            </div>
+        </div>
+    </div>
+</div>

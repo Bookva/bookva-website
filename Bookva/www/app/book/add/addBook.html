@@ -1,0 +1,71 @@
+<!--@add book-->
+<!--keywords-->
+<!--upload files-->
+<!--genres-->
+
+<div class="centered well col-md-10 center-block">
+    <div class="row">
+        <h3 class="col-md-9">Книга '{{model.book.title}}'</h3>
+    </div>
+
+    <div class="row">
+        <div class="col-md-2">
+            <img class="img-responsive centered" src="{{model.book.imgUrl}}">
+        </div>
+        <div class="col-md-10">
+            <div class="form-group">
+                <label for="name"><h5>Название:</h5></label>
+                <input type="text" class="form-control" id="name" data-ng-model="model.book.title"/>
+            </div>
+            <label class="text-uppercase">
+                <input type="checkbox" id="status" data-ng-model="model.book.status"
+                       value="isAnonymous"> Скрыть книгу
+            </label>
+        </div>
+    </div>
+    <div>
+        <h4>Жанры: {{model.book.genres.length}}/10</h4>
+        <div data-ng-if="!model.book.genres.length">
+            <h5>Добавляйте жанры, чтобы пользователям было проще искать ваши книги.</h5>
+        </div>
+        <div data-ng-if="model.book.genres.length">
+            <div class="row">
+                <span class="text-capitalize keyword" data-ng-repeat="genre in model.book.genres">{{genre}}</span>
+            </div>
+        </div>
+    </div>
+    <div>
+        <h4>Ключевые слова: {{model.book.keywords.length}}/10</h4>
+        <div data-ng-if="!model.book.keywords.length">
+            <h5>Добавляйте ключевые слова, чтобы пользователям было проще искать ваши книги.</h5>
+        </div>
+        <div data-ng-if="model.book.keywords.length">
+            <div class="row">
+                <span class="text-capitalize keyword" data-ng-repeat="keyword in model.book.keywords">{{keyword}}</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <h3 class="col-md-12">Отрывки книг: {{model.book.extracts.length}}/3</h3>
+
+        <div class="col-md-4" data-ng-repeat="extract in model.book.extracts">
+            {{extract.text | limitTo: 200}}{{extract.text.length > 200 ? '...' : ''}}
+            <a><h6>Изменить</h6></a>
+        </div>
+    </div>
+
+    <div>
+        <h4>Дополнительные файлы: </h4>
+        <button class="btn text-uppercase">Загрузить</button>
+    </div>
+
+    <div>
+        <div class="form-group">
+            <label for="content"><h4>Текст книги: скоро тут будет модный текстовый редактор :)</h4></label>
+            <textarea class="form-control" rows="10" id="content"></textarea>
+        </div>
+    </div>
+
+    <button class="btn text-uppercase">Опубликовать</button>
+</div>

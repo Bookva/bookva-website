@@ -24,6 +24,7 @@ bookva.controller('loginCtrl', ['$scope', '$route', '$http', '$location', '$cook
             };
 
             $http(req).success(function() {
+                
                 $location.path('/');
                 //todo: implement login validation and redirecting to main page
             });

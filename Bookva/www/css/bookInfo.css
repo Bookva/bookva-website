@@ -1,0 +1,14 @@
+.keyword {
+    background-color: #18bc9c;
+    color: white;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 5px;
+    line-height: 1.8;
+    word-wrap: normal;
+    display: inline-block;
+    font-size: 1.3em;
+    text-transform: capitalize;
+}

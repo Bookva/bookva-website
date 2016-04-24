@@ -1,0 +1,44 @@
+<!--@author settings-->
+
+<!--name-->
+<!--photo -->
+<!--list of books with statuses-->
+<!--stats-->
+
+<div class="centered well col-md-10 center-block">
+    <div class="row">
+        <h3 class="col-md-9">Настройки автора {{model.author.name}}</h3>
+    </div>
+
+    <div class="row">
+        <div class="col-md-3">
+            <img class="img-responsive img-circle centered" src="{{model.author.imgUrl}}">
+        </div>
+        <div class="col-md-9">
+            <div class="form-group">
+                <label for="name"><h5>имя:</h5></label>
+                <input type="text" class="form-control" id="name" data-ng-model="model.author.name"/>
+            </div>
+            <label class="text-uppercase">
+                <input type="checkbox" id="isAnonymous" data-ng-model="model.author.isAnonymous"
+                       value="isAnonymous"> Публиковать работы анонимно
+            </label>
+        </div>
+    </div>
+    <hr>
+    <div>
+        <div class="row">
+            <h4 class="col-md-11">Книги автора:</h4>
+            <button class="btn pull-right"> + </button>
+        </div>
+        <div data-ng-if="!model.book.collections">
+            <h5>Пока что книг нет...</h5>
+            <h5>Добавляйте свои шедевры! :)</h5>
+        </div>
+        <div data-ng-if="model.user.collections">
+            <div data-ng-repeat="book in model.author.books">
+                <h5>{{book.title}}</h5>
+            </div>
+        </div>
+    </div>
+</div>

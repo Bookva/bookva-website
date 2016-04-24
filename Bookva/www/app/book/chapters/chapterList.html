@@ -1,0 +1,14 @@
+<div class="centered well col-md-8 center-block">
+    <!--TODO: do we need 'back to book info' button?-->
+    <h2 class="text-center">{{model.book.title}}</h2>
+    <h4 class="text-center">{{model.book.author}}</h4>
+
+    <hr>
+    <h2 class="text-center">Содержание</h2>
+
+    <div class="centered col-md-10">
+        <div data-ng-repeat="chapter in model.book.chapters">
+            <h4><a data-ng-click="readChapter(chapter.number)">{{chapter.title}}</a></h4>
+        </div>
+    </div>
+</div>

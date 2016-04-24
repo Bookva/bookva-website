@@ -1,19 +1,41 @@
-var bookva = angular.module('BookvaApp', ['ngRoute', 'ngCookies'])
+var bookva = angular.module('BookvaApp', ['ngRoute', 'ngCookies', 'ngSanitize'])
     .config(function ($routeProvider) {
         $routeProvider.when(
-            '/', {templateUrl: 'www/app/main/mainPage.html',
+            //add www/ before each path for .net
+            '/', {templateUrl: 'app/main/mainPage.html',
             controller: 'mainPageCtrl'
         }).when('/login', {
-            templateUrl: 'www/app/login/login.html',
+            templateUrl: 'app/login/login.html',
             controller: 'loginCtrl'
         }).when('/register', {
-            templateUrl: 'www/app/registration/registration.html',
+            templateUrl: 'app/registration/registration.html',
             controller: 'registrationCtrl'
         }).when('/main', {
-            templateUrl: 'www/app/bookList/bookList.html',
+            templateUrl: 'app/bookList/bookList.html',
             controller: 'booklistCtrl'
         }).when('/email', {
-            templateUrl: 'www/app/confirm/emailConfirm.html'
+            templateUrl: 'app/confirm/emailConfirm.html'
+        }).when ('/settings/user', {
+            templateUrl: 'app/settings/user/userSettings.html',
+            controller: 'userSettingsCtrl'
+        }).when ('/settings/author', {
+            templateUrl: 'app/settings/author/authorSettings.html',
+            controller: 'authorSettingsCtrl'
+        }).when ('/new', {
+            templateUrl: 'app/book/add/addBook.html',
+            controller: 'addBookCtrl'
+        }).when ('/read', {
+            templateUrl: 'app/book/read/readBook.html',
+            controller: 'readBookCtrl'
+        }).when ('/chapters', {
+            templateUrl: 'app/book/chapters/chapterList.html',
+            controller: 'chapterListCtrl'
+        }).when ('/book', {
+            templateUrl: 'app/book/info/bookInfo.html',
+            controller: 'bookInfoCtrl'
+        }).when ('/search', {
+            templateUrl: 'app/search/search.html',
+            controller: 'searchCtrl'
         });
     });
 

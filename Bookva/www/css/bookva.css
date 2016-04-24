@@ -1,0 +1,10 @@
+.centered {
+    margin-left:auto;
+    margin-right: auto;
+    float: none;
+}
+
+.wrap {
+    display: block;
+    padding-top: 100px;
+}

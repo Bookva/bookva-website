@@ -1,0 +1,15 @@
+<div class="centered well col-md-10 center-block">
+    <div class="row">
+        <a class="col-md-2 pull-left" data-ng-show="model.book.chapter.previous">
+            <h4>{{model.book.chapter.previous}}</h4></a>
+        <a class="text-center col-md-8" href="#/chapters"><h4>Перейти к содержанию</h4></a>
+        <a class="col-md-2 pull-right text-right" data-ng-show="model.book.chapter.next">
+            <h4>{{model.book.chapter.next}}</h4></a>
+    </div>
+    <h2 class="text-center">{{model.book.title}}</h2>
+    <h4 class="text-center">{{model.book.author}}</h4>
+    <h2 class="text-center">{{model.book.chapter.current}}</h2>
+    <div class="centered well col-md-10 center-block">
+        <div ng-bind-html="model.book.content"></div>
+    </div>
+</div>
