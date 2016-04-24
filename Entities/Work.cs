@@ -18,13 +18,13 @@ namespace Bookva.Entities
 		[MaxLength(1000)]
 		public string Description { get; set; }
 
-        [MaxLength(4000)]
+        [MaxLength(5000)]
         public string Extract1 { get; set; }
 
-        [MaxLength(4000)]
+        [MaxLength(5000)]
         public string Extract2 { get; set; }
 
-        [MaxLength(4000)]
+        [MaxLength(5000)]
         public string Extract3 { get; set; }
 
         [Index]

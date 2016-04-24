@@ -43,13 +43,13 @@ namespace Bookva.Web.Models
         public string Description { get; set; }
 
         [Required]
-        [MaxLength(4000, ErrorMessage = "The {0} must not exceed {1} characters.")]
+        [MaxLength(5000, ErrorMessage = "The {0} must not exceed {1} characters.")]
         public string Extract1 { get; set; }
-        
-        [MaxLength(4000, ErrorMessage = "The {0} must not exceed {1} characters.")]
+
+        [MaxLength(5000, ErrorMessage = "The {0} must not exceed {1} characters.")]
         public string Extract2 { get; set; }
-        
-        [MaxLength(4000, ErrorMessage = "The {0} must not exceed {1} characters.")]
+
+        [MaxLength(5000, ErrorMessage = "The {0} must not exceed {1} characters.")]
         public string Extract3 { get; set; }
         [Range(-3000, 2016)]
         public short? YearCreated { get; set; }
