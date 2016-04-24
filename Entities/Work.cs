@@ -14,9 +14,12 @@ namespace Bookva.Entities
 		public string Title { get; set; }
 		[MaxLength(1000)]
 		public string Description { get; set; }
-		public string Extract1 { get; set; }
-		public string Extract2 { get; set; }
-		public string Extract3 { get; set; }
+        [MaxLength(4000)]
+        public string Extract1 { get; set; }
+        [MaxLength(4000)]
+        public string Extract2 { get; set; }
+        [MaxLength(4000)]
+        public string Extract3 { get; set; }
         [Column(TypeName = "datetime2")]
 		public DateTime DateAdded { get; set; }
         public short? YearCreated { get; set; }

@@ -18,7 +18,7 @@ namespace Bookva.Web.Controllers
     public class AuthorsController : ApiController
     {
         private readonly IAuthorService authorService;
-        
+
         public AuthorsController(IAuthorService authorService)
         {
             this.authorService = authorService;
@@ -40,7 +40,7 @@ namespace Bookva.Web.Controllers
             {
                 authors = authorService.Get(options);
             }
-            
+
             return authors.Select(AuthorMapper.ToViewModel);
         }
 
@@ -62,7 +62,7 @@ namespace Bookva.Web.Controllers
                 return BadRequest(e.Message);
             }
         }
-        
+
         /// <summary>
         /// POST: /api/authors/
         /// </summary>
@@ -71,9 +71,14 @@ namespace Bookva.Web.Controllers
         [HttpPost]
         public IHttpActionResult Create([FromBody]AuthorViewModel model)
         {
-            var author = AuthorMapper.ToDTO(model);
-            authorService.Create(author);
-            return new OkResult(Request);
+            if (ModelState.IsValid)
+            {
+                var author = AuthorMapper.ToDTO(model);
+                authorService.Create(author);
+                return new OkResult(Request);
+            }
+
+            return new BadRequestResult(Request);
         }
 
         /// <summary>
@@ -84,9 +89,14 @@ namespace Bookva.Web.Controllers
         [HttpPut]
         public IHttpActionResult Edit([FromBody]AuthorViewModel model)
         {
-            var author = AuthorMapper.ToDTO(model);
-            authorService.Edit(author);
-            return new OkResult(Request);
+            if (ModelState.IsValid)
+            {
+                var author = AuthorMapper.ToDTO(model);
+                authorService.Edit(author);
+                return new OkResult(Request);
+            }
+
+            return new BadRequestResult(Request);
         }
 
         [HttpPost]

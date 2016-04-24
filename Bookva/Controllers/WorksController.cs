@@ -53,7 +53,7 @@ namespace Bookva.Web.Controllers
         {
             try
             {
-                int? userId = User.Identity.IsAuthenticated? (int?)User.Identity.GetUserId<int>(): null;
+                int? userId = User.Identity.IsAuthenticated ? (int?)User.Identity.GetUserId<int>() : null;
                 var work = worksService.Get(id, userId);
                 return Ok(WorksMapper.ToViewModel(work));
             }
@@ -72,10 +72,15 @@ namespace Bookva.Web.Controllers
         [HttpPost]
         public IHttpActionResult Create([FromBody]WorkEditViewModel model)
         {
-            var work = WorksMapper.ToDTO(model);
-            work.Status = WorkStatus.Posted;
-            worksService.Create(work); 
-            return new OkResult(Request);
+            if (ModelState.IsValid)
+            {
+                var work = WorksMapper.ToDTO(model);
+                work.Status = WorkStatus.Posted;
+                worksService.Create(work);
+                return new OkResult(Request);
+            }
+
+            return new BadRequestResult(Request);
         }
 
         /// <summary>
@@ -86,9 +91,14 @@ namespace Bookva.Web.Controllers
         [HttpPut]
         public IHttpActionResult Edit([FromBody]WorkEditViewModel model)
         {
-            var work = WorksMapper.ToDTO(model);
-            worksService.Edit(work);
-            return new OkResult(Request);
+            if (ModelState.IsValid)
+            {
+                var work = WorksMapper.ToDTO(model);
+                worksService.Edit(work);
+                return new OkResult(Request);
+            }
+
+            return new BadRequestResult(Request);
         }
 
         [HttpPost]

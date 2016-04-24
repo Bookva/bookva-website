@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Results;
 using Bookva.Business;
 using Bookva.Business.Mappers;
 using Bookva.BusinessEntities.Keyword;
@@ -31,9 +32,15 @@ namespace Bookva.Web.Controllers
         /// POST api/keywords/
         /// </summary>
         /// <param name="keyword"></param>
-        public void Post([FromBody]string keyword)
+        public IHttpActionResult Post([FromBody]string keyword)
         {
-            _keywordService.Create(new KeywordModel {Value = keyword});
+            if (ModelState.IsValid)
+            {
+                _keywordService.Create(new KeywordModel {Value = keyword});
+                return Ok();
+            }
+
+            return new BadRequestResult(Request);
         }
     }
 }

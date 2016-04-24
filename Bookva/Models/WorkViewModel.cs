@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using Bookva.Common;
 
 namespace Bookva.Web.Models
@@ -32,16 +33,43 @@ namespace Bookva.Web.Models
     public class WorkEditViewModel
     {
         public int Id { get; set; }
+
+        [Required]
+        [MaxLength(50, ErrorMessage = "The {0} must not exceed {1} characters.")]
         public string Title { get; set; }
+
+        [Required]
+        [MaxLength(50, ErrorMessage = "The {0} must not exceed {1} characters.")]
         public string Description { get; set; }
+
+        [Required]
+        [MaxLength(4000, ErrorMessage = "The {0} must not exceed {1} characters.")]
         public string Extract1 { get; set; }
+        
+        [MaxLength(4000, ErrorMessage = "The {0} must not exceed {1} characters.")]
         public string Extract2 { get; set; }
+        
+        [MaxLength(4000, ErrorMessage = "The {0} must not exceed {1} characters.")]
         public string Extract3 { get; set; }
+        [Range(-3000, 2016)]
         public short? YearCreated { get; set; }
+
+        [Required]
         public WorkStatus Status { get; set; }
+
+        [Required]
+        [MaxLength(50, ErrorMessage = "The {0} must not exceed {1} characters.")]
         public string Text { get; set; }
+
+        [Required]
         public bool IsAnonymous { get; set; }
+
+        [Required]
+        [MaxLength(255, ErrorMessage = "The {0} must not exceed {1} characters.")]
         public string CoverSource { get; set; }
+
+        [Required]
+        [MaxLength(255, ErrorMessage = "The {0} must not exceed {1} characters.")]
         public string PreviewCoverSource { get; set; }
 
         public IEnumerable<int> AuthorIds { get; set; }

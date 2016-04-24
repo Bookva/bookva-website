@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Results;
 using Bookva.Business;
 using Bookva.Business.Mappers;
 using Bookva.BusinessEntities.Keyword;
@@ -31,9 +32,15 @@ namespace Bookva.Web.Controllers
         /// POST api/keywords/
         /// </summary>
         /// <param name="genre"></param>
-        public void Post([FromBody]string genre)
+        public IHttpActionResult Post([FromBody]string genre)
         {
-            _genreService.Create(new GenreModel { Value = genre });
+            if (ModelState.IsValid)
+            {
+                _genreService.Create(new GenreModel { Value = genre });
+                return Ok();
+            }
+
+            return new BadRequestResult(Request);
         }
     }
 }
