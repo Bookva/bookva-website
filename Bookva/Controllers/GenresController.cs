@@ -9,6 +9,7 @@ using Bookva.Business;
 using Bookva.Business.Mappers;
 using Bookva.BusinessEntities.Keyword;
 using Bookva.Web.Models;
+using Microsoft.Ajax.Utilities;
 
 namespace Bookva.Web.Controllers
 {
@@ -34,13 +35,13 @@ namespace Bookva.Web.Controllers
         /// <param name="genre"></param>
         public IHttpActionResult Post([FromBody]string genre)
         {
-            if (ModelState.IsValid)
+            if (!genre.IsNullOrWhiteSpace() && genre.Length < 30)
             {
                 _genreService.Create(new GenreModel { Value = genre });
                 return Ok();
             }
 
-            return new BadRequestResult(Request);
+            return BadRequest("Invalid genre");
         }
     }
 }

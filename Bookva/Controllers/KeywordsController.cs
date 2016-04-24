@@ -9,6 +9,7 @@ using Bookva.Business;
 using Bookva.Business.Mappers;
 using Bookva.BusinessEntities.Keyword;
 using Bookva.Web.Models;
+using Microsoft.Ajax.Utilities;
 
 namespace Bookva.Web.Controllers
 {
@@ -34,13 +35,13 @@ namespace Bookva.Web.Controllers
         /// <param name="keyword"></param>
         public IHttpActionResult Post([FromBody]string keyword)
         {
-            if (ModelState.IsValid)
+            if (!keyword.IsNullOrWhiteSpace() && keyword.Length < 20)
             {
                 _keywordService.Create(new KeywordModel {Value = keyword});
                 return Ok();
             }
 
-            return new BadRequestResult(Request);
+            return BadRequest("Invalid keyword");
         }
     }
 }

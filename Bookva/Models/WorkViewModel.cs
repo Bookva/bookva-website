@@ -39,7 +39,7 @@ namespace Bookva.Web.Models
         public string Title { get; set; }
 
         [Required]
-        [MaxLength(50, ErrorMessage = "The {0} must not exceed {1} characters.")]
+        [MaxLength(1000, ErrorMessage = "The {0} must not exceed {1} characters.")]
         public string Description { get; set; }
 
         [Required]
@@ -58,7 +58,6 @@ namespace Bookva.Web.Models
         public WorkStatus Status { get; set; }
 
         [Required]
-        [MaxLength(50, ErrorMessage = "The {0} must not exceed {1} characters.")]
         public string Text { get; set; }
 
         [Required]
