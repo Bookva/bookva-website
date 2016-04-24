@@ -11,6 +11,7 @@ namespace Bookva.Entities
 
         public virtual User User { get; set; }
 		public virtual Work Work { get; set; }
+
 		[Range(0,5)]
 		public byte Mark { get; set; }
 	}

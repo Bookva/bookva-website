@@ -15,6 +15,8 @@ namespace Bookva.Entities
         {
             RegistrationDate = DateTime.Now;
         }
+
+        [Index]
         public DateTime RegistrationDate { get; set; }
 
         [MaxLength(255)]

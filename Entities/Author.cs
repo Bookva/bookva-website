@@ -10,9 +10,11 @@ namespace Bookva.Entities
         [Key]
         public int Id { get; set; }
 
+        [Index]
         [MaxLength(30)]
         public string Name { get; set; }
 
+        [Index]
         [MaxLength(30)]
         public string Surname { get; set; }
 
@@ -22,6 +24,7 @@ namespace Bookva.Entities
         [MaxLength(255)]
         public string PreviewPictureSource { get; set; }
 
+        [Index]
         [MaxLength(35)]
         public string Pseudonym { get; set; }
 
