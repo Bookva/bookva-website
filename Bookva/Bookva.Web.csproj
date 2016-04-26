@@ -53,6 +53,18 @@
       <HintPath>..\packages\Autofac.WebApi2.3.4.0\lib\net45\Autofac.Integration.WebApi.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Elmah, Version=1.2.14706.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\elmah.corelibrary.1.2.2\lib\Elmah.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Elmah.Contrib.WebApi, Version=1.0.10.25, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Elmah.Contrib.WebApi.1.0.10.25\lib\net45\Elmah.Contrib.WebApi.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Elmah.Mvc, Version=2.1.2.1389, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Elmah.Mvc.2.1.2\lib\net40\Elmah.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
       <Private>True</Private>
@@ -158,19 +170,25 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\GenresController.cs" />
+    <Compile Include="Controllers\KeywordsController.cs" />
     <Compile Include="Controllers\ReviewsController.cs" />
-    <Compile Include="Controllers\AuthorController.cs" />
+    <Compile Include="Controllers\AuthorsController.cs" />
     <Compile Include="Controllers\StartController.cs" />
     <Compile Include="Controllers\WorksController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Mappers\AuthorMapper.cs" />
+    <Compile Include="Mappers\GenreMapper.cs" />
+    <Compile Include="Mappers\KeywordMapper.cs" />
     <Compile Include="Mappers\ReviewMapper.cs" />
     <Compile Include="Mappers\UserMapper.cs" />
     <Compile Include="Mappers\WorksMapper.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AuthorViewModel.cs" />
+    <Compile Include="Models\GenreViewModel.cs" />
+    <Compile Include="Models\KeywordViewModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\ReviewViewModels.cs" />
     <Compile Include="Models\UserPreviewViewModel.cs" />
@@ -239,6 +257,10 @@
     <ProjectReference Include="..\Bookva.BusinessEntities\Bookva.BusinessEntities.csproj">
       <Project>{f5121f00-da35-4b9e-8fbd-6171c1ad3c72}</Project>
       <Name>Bookva.BusinessEntities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Bookva.Common\Bookva.Common.csproj">
+      <Project>{1f3dd4fe-4918-4704-a3bd-75611896a2b8}</Project>
+      <Name>Bookva.Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\Business\Bookva.Business.csproj">
       <Project>{bfdfe2aa-db45-4b42-b494-6a92977051dc}</Project>

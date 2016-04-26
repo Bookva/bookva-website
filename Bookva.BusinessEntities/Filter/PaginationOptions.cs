@@ -1,4 +1,4 @@
-﻿namespace Bookva.Business
+﻿namespace Bookva.BusinessEntities.Filter
 {
     public class PaginationOptions
     {
@@ -21,5 +21,8 @@
             get { return pageSize; }
             set { pageSize = value >0 ? value : 1; }
         }
+
+        public string FieldName { get; set; }
+        public SortOrder Order { get; set; }
     }
 }

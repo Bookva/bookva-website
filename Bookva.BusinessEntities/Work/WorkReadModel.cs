@@ -3,8 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Bookva.Business;
 using Bookva.BusinessEntities.Author;
+using Bookva.BusinessEntities.Keyword;
 using Bookva.BusinessEntities.Review;
+using Bookva.Common;
 
 namespace Bookva.BusinessEntities.Work
 {
@@ -17,16 +20,18 @@ namespace Bookva.BusinessEntities.Work
         public string Extract2 { get; set; }
         public string Extract3 { get; set; }
         public DateTime DateAdded { get; set; }
-        public DateTime DateCreated { get; set; }
-        public int WorkType { get; set; }
+        public short? YearCreated { get; set; }
         public string Text { get; set; }
         public bool IsAnonymous { get; set; }
         public string CoverSource { get; set; }
         public string PreviewCoverSource { get; set; }
-
+        public int TotalVotes { get; set; }
+        public float AverageRating { get; set; }
+        public byte? CurrentUserVote { get; set; }
+        public WorkStatus Status { get; set; }
         public IEnumerable<AuthorPreviewModel> Authors { get; set; }
-        public IEnumerable<string> Genres { get; set; }
-        public IEnumerable<string> Keywords { get; set; }
+        public IEnumerable<GenreModel> Genres { get; set; }
+        public IEnumerable<KeywordModel> Keywords { get; set; }
         public IEnumerable<ReviewReadModel> Reviews { get; set; }
     }
 }

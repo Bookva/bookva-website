@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
 using System.Web.Http.Results;
@@ -9,6 +10,10 @@ using Bookva.Web.Models;
 using System.Web;
 using System.Drawing;
 using System.Threading.Tasks;
+using Bookva.BusinessEntities.Filter;
+using Bookva.Common;
+using Elmah;
+using Microsoft.AspNet.Identity;
 
 namespace Bookva.Web.Controllers
 {
@@ -47,13 +52,17 @@ namespace Bookva.Web.Controllers
         /// <returns></returns>
         public IHttpActionResult Get(int id)
         {
-            var work = worksService.Get(id);
-            if (work == null)
+            try
             {
-                return NotFound();
+                int? userId = User.Identity.IsAuthenticated ? (int?)User.Identity.GetUserId<int>() : null;
+                var work = worksService.Get(id, userId);
+                return Ok(WorksMapper.ToViewModel(work));
             }
-
-            return Ok(WorksMapper.ToViewModel(work));
+            catch (KeyNotFoundException e)
+            {
+                ErrorLog.GetDefault(HttpContext.Current).Log(new Error(e));
+                return BadRequest(e.Message);
+            }
         }
 
         /// <summary>
@@ -64,14 +73,15 @@ namespace Bookva.Web.Controllers
         [HttpPost]
         public IHttpActionResult Create([FromBody]WorkEditViewModel model)
         {
-            var file = HttpContext.Current.Request.Files["image"];
-            if (file == null)
+            if (ModelState.IsValid)
             {
-                return BadRequest("No image is attached");
+                var work = WorksMapper.ToDTO(model);
+                work.Status = WorkStatus.Posted;
+                worksService.Create(work);
+                return new OkResult(Request);
             }
-            var work = WorksMapper.ToDTO(model);
-            worksService.Create(work); 
-            return new OkResult(Request);
+
+            return new BadRequestResult(Request);
         }
 
         /// <summary>
@@ -82,14 +92,32 @@ namespace Bookva.Web.Controllers
         [HttpPut]
         public IHttpActionResult Edit([FromBody]WorkEditViewModel model)
         {
-            var work = WorksMapper.ToDTO(model);
-            worksService.Edit(work);
-            return new OkResult(Request);
+            if (ModelState.IsValid)
+            {
+                var work = WorksMapper.ToDTO(model);
+                worksService.Edit(work);
+                return new OkResult(Request);
+            }
+
+            return new BadRequestResult(Request);
+        }
+
+        /// <summary>
+        /// POST: /api/works/filter
+        /// </summary>
+        /// <param name="options">Filter options</param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("api/works/filter/")]
+        public IEnumerable<WorkPreviewViewModel> Filter([FromBody]WorkFilterOptions options)
+        {
+            var works = worksService.Filter(options);
+            return works.Select(WorksMapper.ToPreviewViewModel);
         }
 
         [HttpPost]
         [Route("api/works/changePicture/{id}")]
-        public async Task<IHttpActionResult> ChangePicture([FromBody]int id)
+        public async Task<IHttpActionResult> ChangePicture([FromUri]int id)
         {
             var file = HttpContext.Current.Request.Files["image"];
             if (file == null)
@@ -100,6 +128,36 @@ namespace Bookva.Web.Controllers
 
             await worksService.ChangePictureAsync(image, id);
             return new OkResult(Request);
+        }
+
+        [Authorize]
+        [HttpPost]
+        [Route("api/works/{id}/rate/{mark}")]
+        public IHttpActionResult Rate([FromUri]int id, [FromUri]byte mark)
+        {
+            if (mark > 5) return BadRequest("Mark should be on range [0;5]");
+
+            var userId = User.Identity.GetUserId<int>();
+            worksService.Rate(id, userId, mark);
+            return new OkResult(Request);
+        }
+
+        [Authorize]
+        [HttpPost]
+        [Route("api/works/{id}/changeStatus/{status}")]
+        public IHttpActionResult ChangeStatus([FromUri]int id, [FromUri]WorkStatus status)
+        {
+            var userId = User.Identity.GetUserId<int>();
+            try
+            {
+                worksService.ChangeStatus(id, userId, status);
+                return new OkResult(Request);
+            }
+            catch (System.ApplicationException e)
+            {
+                ErrorLog.GetDefault(HttpContext.Current).Log(new Error(e));
+                return BadRequest(e.Message);
+            }
         }
     }
 }

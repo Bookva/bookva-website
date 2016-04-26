@@ -43,6 +43,11 @@
     <Compile Include="Author\AuthorPreviewModel.cs" />
     <Compile Include="Author\AuthorReadModel.cs" />
     <Compile Include="Author\AuthorWriteModel.cs" />
+    <Compile Include="Filter\PaginationOptions.cs" />
+    <Compile Include="Filter\SortOrder.cs" />
+    <Compile Include="Filter\WorkFilterOptions.cs" />
+    <Compile Include="Genre\GenreModel.cs" />
+    <Compile Include="Keyword\KeywordModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Review\ReviewWriteModel.cs" />
     <Compile Include="Review\ReviewReadModel.cs" />
@@ -51,7 +56,12 @@
     <Compile Include="Work\WorkReadModel.cs" />
     <Compile Include="Work\WorkWriteModel.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Bookva.Common\Bookva.Common.csproj">
+      <Project>{1F3DD4FE-4918-4704-A3BD-75611896A2B8}</Project>
+      <Name>Bookva.Common</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

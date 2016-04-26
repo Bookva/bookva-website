@@ -2,6 +2,7 @@
 using System.Drawing;
 using System.Threading.Tasks;
 using Bookva.BusinessEntities.Author;
+using Bookva.BusinessEntities.Filter;
 
 namespace Bookva.Business
 {

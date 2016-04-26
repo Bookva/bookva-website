@@ -2,9 +2,11 @@
 using System.Drawing;
 using System.Linq;
 using System.Threading.Tasks;
+using Bookva.Business.Filters;
 using Bookva.Business.ImageService;
 using Bookva.Business.Mappers;
 using Bookva.BusinessEntities.Author;
+using Bookva.BusinessEntities.Filter;
 using Bookva.DAL;
 
 namespace Bookva.Business
@@ -22,7 +24,13 @@ namespace Bookva.Business
 
         public AuthorReadModel Get(int id)
         {
-           return _unitOfWork.AuthorRepository.Get(id).ToReadModel();
+            var author = _unitOfWork.AuthorRepository.Get(id);
+            if (author == null)
+            {
+                throw new KeyNotFoundException($"Author with id = {id} is not found!");
+            }
+
+            return author.ToReadModel();
         }
 
         public IEnumerable<AuthorReadModel> GetAll()
@@ -32,7 +40,7 @@ namespace Bookva.Business
 
         public IEnumerable<AuthorReadModel> Get(PaginationOptions options)
         {
-            return _unitOfWork.AuthorRepository.Get().OrderBy(a => a.Id).Skip((options.Page - 1)*options.PageSize).Take(options.PageSize).ToList().Select(AuthorMapper.ToReadModel);
+            return _unitOfWork.AuthorRepository.Get().OrderBy(a => a.Name).Paginate(options).ToList().Select(AuthorMapper.ToReadModel);
         }
 
         public void Create(AuthorWriteModel author)

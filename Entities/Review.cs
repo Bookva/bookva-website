@@ -8,11 +8,12 @@ namespace Bookva.Entities
     {
         [Key]
         public int Id { get; set; }
-
+        
         [MaxLength(250)]
         public string Title { get; set; }
         public string Text { get; set; }
 
+        [Index]
         [Column(TypeName = "datetime2")]
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         public DateTime DateAdded { get; set; }

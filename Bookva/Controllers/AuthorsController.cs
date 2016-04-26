@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Threading.Tasks;
@@ -7,22 +8,25 @@ using System.Web.Http;
 using System.Web.Http.Results;
 using Bookva.Business;
 using Bookva.BusinessEntities.Author;
+using Bookva.BusinessEntities.Filter;
 using Bookva.Web.Mappers;
 using Bookva.Web.Models;
+using Elmah;
+using Elmah.Contrib.WebApi;
 
 namespace Bookva.Web.Controllers
 {
-    public class AuthorController : ApiController
+    public class AuthorsController : ApiController
     {
         private readonly IAuthorService authorService;
-        
-        public AuthorController(IAuthorService authorService)
+
+        public AuthorsController(IAuthorService authorService)
         {
             this.authorService = authorService;
         }
 
         /// <summary>
-        ///  GET: /api/author/
+        ///  GET: /api/authors/
         /// </summary>
         /// <param name="options">Pagination options</param>
         /// <returns></returns>
@@ -37,50 +41,63 @@ namespace Bookva.Web.Controllers
             {
                 authors = authorService.Get(options);
             }
-            
+
             return authors.Select(AuthorMapper.ToViewModel);
         }
 
         /// <summary>
-        ///  GET: /api/author/{id}
+        ///  GET: /api/authors/{id}
         /// </summary>
         /// <param name="id">Author id</param>
         /// <returns></returns>
         public IHttpActionResult Get(int id)
         {
-            var author = authorService.Get(id);
-            if (author == null)
+            try
             {
-                return NotFound();
+                var author = authorService.Get(id);
+                return Ok(AuthorMapper.ToViewModel(author));
             }
-
-            return Ok(AuthorMapper.ToViewModel(author));
+            catch (KeyNotFoundException e)
+            {
+                ErrorLog.GetDefault(HttpContext.Current).Log(new Error(e));
+                return BadRequest(e.Message);
+            }
         }
-        
+
         /// <summary>
-        /// POST: /api/author/
+        /// POST: /api/authors/
         /// </summary>
         /// <param name="model">Author</param>
         /// <returns></returns>
         [HttpPost]
         public IHttpActionResult Create([FromBody]AuthorViewModel model)
         {
-            var author = AuthorMapper.ToDTO(model);
-            authorService.Create(author);
-            return new OkResult(Request);
+            if (ModelState.IsValid)
+            {
+                var author = AuthorMapper.ToDTO(model);
+                authorService.Create(author);
+                return new OkResult(Request);
+            }
+
+            return new BadRequestResult(Request);
         }
 
         /// <summary>
-        /// PUT: /api/author/
+        /// PUT: /api/authors/
         /// </summary>
         /// <param name="model">Author</param>
         /// <returns></returns>
         [HttpPut]
         public IHttpActionResult Edit([FromBody]AuthorViewModel model)
         {
-            var author = AuthorMapper.ToDTO(model);
-            authorService.Edit(author);
-            return new OkResult(Request);
+            if (ModelState.IsValid)
+            {
+                var author = AuthorMapper.ToDTO(model);
+                authorService.Edit(author);
+                return new OkResult(Request);
+            }
+
+            return new BadRequestResult(Request);
         }
 
         [HttpPost]

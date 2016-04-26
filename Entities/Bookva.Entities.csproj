@@ -60,11 +60,16 @@
     <Compile Include="User.cs" />
     <Compile Include="Work.cs" />
     <Compile Include="WorkRating.cs" />
-    <Compile Include="WorkType.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Bookva.Common\Bookva.Common.csproj">
+      <Project>{1F3DD4FE-4918-4704-A3BD-75611896A2B8}</Project>
+      <Name>Bookva.Common</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -6,7 +6,11 @@ using Bookva.Business.Mappers;
 using Bookva.BusinessEntities.Work;
 using Bookva.DAL;
 using System.Threading.Tasks;
+using Bookva.Business.Filters;
 using Bookva.Business.ImageService;
+using Bookva.BusinessEntities.Filter;
+using Bookva.Common;
+using Bookva.Entities;
 
 namespace Bookva.Business
 {
@@ -21,10 +25,19 @@ namespace Bookva.Business
             _imageService = imageService;
         }
 
-        public WorkReadModel Get(int id)
+        public WorkReadModel Get(int id, int? userId = null)
         {
-            var x = _unitOfWork.WorkRepository.Get(id);
-            return x.ToReadModel();
+            var work = _unitOfWork.WorkRepository.Get(id);
+            if (work == null)
+            {
+                throw new KeyNotFoundException($"Work with id {id} is not found!");
+            }
+            var workModel = work.ToReadModel();
+            if (userId.HasValue)
+            {
+                workModel.CurrentUserVote = work.Ratings.FirstOrDefault(r => r.UserId == userId.Value)?.Mark;
+            }
+            return workModel;
         }
 
         public IEnumerable<WorkPreviewModel> GetAll()
@@ -34,7 +47,18 @@ namespace Bookva.Business
 
         public IEnumerable<WorkPreviewModel> Get(PaginationOptions options)
         {
-            return _unitOfWork.WorkRepository.Get().OrderBy(w => w.Id).Skip((options.Page - 1) * options.PageSize).Take(options.PageSize).ToList().Select(WorksMapper.ToPreviewModel);
+            var data = _unitOfWork.WorkRepository.Get().Where(w => w.Status == WorkStatus.Posted);
+            var filter = new WorkFilter();
+            data = filter.Sort(data, options.FieldName, options.Order);
+            return data.Paginate(options).ToList().Select(WorksMapper.ToPreviewModel);
+        }
+
+        public IEnumerable<WorkPreviewModel> Filter(WorkFilterOptions options)
+        {
+            var data = _unitOfWork.WorkRepository.Get().Where(w => w.Status == WorkStatus.Posted);
+            var filter = new WorkFilter();
+            data = filter.Filter(data, options);
+            return data.Sort(options.FieldName, options.Order).Paginate(options).ToList().Select(WorksMapper.ToPreviewModel);
         }
 
         public void Create(WorkWriteModel workDto)
@@ -45,7 +69,19 @@ namespace Bookva.Business
                 var author = _unitOfWork.AuthorRepository.Get(authorId);
                 work.Authors.Add(author);
             }
-            //TODO: add keywords and genres
+
+            foreach (var genre in workDto.Genres)
+            {
+                Genre dbGenre = genre.Id.HasValue ? _unitOfWork.GenreRepository.Get(genre.Id.Value) : genre.ToDB();
+                work.Genres.Add(dbGenre);
+            }
+
+            foreach (var keyword in workDto.Keywords)
+            {
+                Keyword dbKeyword = keyword.Id.HasValue ? _unitOfWork.KeywordRepository.Get(keyword.Id.Value) : keyword.ToDB();
+                work.Keywords.Add(dbKeyword);
+            }
+            
             _unitOfWork.WorkRepository.Insert(work);
             _unitOfWork.Save();
         }
@@ -58,7 +94,19 @@ namespace Bookva.Business
                 var author = _unitOfWork.AuthorRepository.Get(authorId);
                 work.Authors.Add(author);
             }
-            //TODO: add keywords and genres
+
+            foreach (var genre in workDto.Genres)
+            {
+                Genre dbGenre = genre.Id.HasValue ? _unitOfWork.GenreRepository.Get(genre.Id.Value) : genre.ToDB();
+                work.Genres.Add(dbGenre);
+            }
+
+            foreach (var keyword in workDto.Keywords)
+            {
+                Keyword dbKeyword = keyword.Id.HasValue ? _unitOfWork.KeywordRepository.Get(keyword.Id.Value) : keyword.ToDB();
+                work.Keywords.Add(dbKeyword);
+            }
+
             _unitOfWork.WorkRepository.Update(work, work.Id);
             _unitOfWork.Save();
         }
@@ -73,6 +121,50 @@ namespace Bookva.Business
             work.PreviewCoverSource = await previewPictureTask;
             _unitOfWork.WorkRepository.Update(work, id);
             _unitOfWork.Save();
+        }
+
+        public void Rate(int workId, int userId, byte mark)
+        {
+            var work = _unitOfWork.WorkRepository.Get(workId);
+
+            var existingRating = work.Ratings.Where(r => r.UserId == userId).ToList();
+            if (existingRating.Any())
+            {
+                work.TotalVotes = work.TotalVotes - existingRating.Count;
+                _unitOfWork.WorkRatingRepository.Delete(existingRating);
+                _unitOfWork.Save();
+            }
+            _unitOfWork.WorkRatingRepository.Insert(new WorkRating {Mark = mark, UserId = userId, WorkId = workId});
+
+            work.AverageRating = work.AverageRating*work.TotalVotes/(work.TotalVotes + 1) + (float) mark/(work.TotalVotes + 1);
+            work.TotalVotes = work.TotalVotes + 1;
+            _unitOfWork.WorkRepository.Update(work, work.Id);
+            _unitOfWork.Save();
+        }
+
+        public bool IsRated(int workId, int userId)
+        {
+            return _unitOfWork.WorkRatingRepository.Get().Any(r => r.UserId == userId && r.WorkId == workId);
+        }
+
+        public void ChangeStatus(int id, int userId, WorkStatus status)
+        {
+            var userAuthor = _unitOfWork.UserRepository.Get(userId).AuthorId;
+            if ( userAuthor.HasValue)
+            {
+                var work = _unitOfWork.WorkRepository.Get(id);
+                var isUserAllowed = work.Authors.Any(a => a.Id == userAuthor.Value);
+                if (isUserAllowed)
+                {
+                    work.Status = status;
+                }
+                _unitOfWork.WorkRepository.Update(work, id);
+                _unitOfWork.Save();
+            }
+            else
+            {
+                throw new ApplicationException("Current user is not allowed to make changes.");
+            }
         }
     }
 }

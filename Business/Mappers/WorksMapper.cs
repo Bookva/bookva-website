@@ -11,9 +11,9 @@ namespace Bookva.Business.Mappers
         {
             return new Work
             {
-                WorkType = (WorkType)viewModel.WorkType,
+                Status = viewModel.Status,
                 DateAdded = viewModel.DateAdded,
-                DateCreated = viewModel.DateCreated,
+                YearCreated = viewModel.YearCreated,
                 Description = viewModel.Description,
                 Title = viewModel.Title,
                 Extract1 = viewModel.Extract1,
@@ -24,6 +24,8 @@ namespace Bookva.Business.Mappers
                 IsAnonymous = viewModel.IsAnonymous,
                 CoverSource = viewModel.CoverSource,
                 PreviewCoverSource = viewModel.PreviewCoverSource,
+                Genres = new List<Genre>(),
+                Keywords = new List<Keyword>(),
                 Authors = new List<Author>()
             };
         }
@@ -32,9 +34,9 @@ namespace Bookva.Business.Mappers
         {
             return new WorkReadModel
             {
-                WorkType = (int)work.WorkType,
+                Status = work.Status,
                 DateAdded = work.DateAdded,
-                DateCreated = work.DateCreated,
+                YearCreated = work.YearCreated,
                 Description = work.Description,
                 Title = work.Title,
                 Extract1 = work.Extract1,
@@ -45,10 +47,12 @@ namespace Bookva.Business.Mappers
                 IsAnonymous = work.IsAnonymous,
                 CoverSource = work.CoverSource,
                 PreviewCoverSource = work.PreviewCoverSource,
-                Authors = work.Authors.Select(AuthorMapper.ToPreviewViewModel),
-                Genres = work.Genres.Select(g => g.Name),
-                Keywords = work.Keywords.Select(k => k.Name),
-                Reviews = work.Reviews.Select(ReviewMapper.ToReadModel)
+                Authors = work.Authors?.Select(AuthorMapper.ToPreviewViewModel),
+                Genres = work.Genres?.Select(GenreMapper.ToModel),
+                Keywords = work.Keywords?.Select(KeywordMapper.ToModel),
+                Reviews = work.Reviews?.Select(ReviewMapper.ToReadModel),
+                AverageRating = work.AverageRating,
+                TotalVotes = work.TotalVotes
             };
         }
 
@@ -56,14 +60,16 @@ namespace Bookva.Business.Mappers
         {
             return new WorkPreviewModel
             {
-                WorkType = (int)work.WorkType,
+                Status = work.Status,
                 Description = work.Description,
                 Title = work.Title,
                 Id = work.Id,
                 IsAnonymous = work.IsAnonymous,
                 CoverSource = work.CoverSource,
                 PreviewCoverSource = work.PreviewCoverSource,
-                Authors = work.Authors.Select(AuthorMapper.ToPreviewViewModel),
+                Authors = work.Authors?.Select(AuthorMapper.ToPreviewViewModel),
+                AverageRating = work.AverageRating,
+                ReviewsCount = work.Reviews.Count
             };
         }
     }

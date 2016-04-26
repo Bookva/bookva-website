@@ -15,7 +15,7 @@ namespace Bookva.Web.Controllers
     public class ReviewsController : ApiController
     {
         private readonly IReviewService _reviewService;
-        
+
         public ReviewsController(IReviewService reviewService)
         {
             this._reviewService = reviewService;
@@ -29,9 +29,14 @@ namespace Bookva.Web.Controllers
         [HttpPost]
         public IHttpActionResult Create([FromBody]ReviewEditViewModel model)
         {
-            var review = ReviewMapper.ToDTO(model);
-            _reviewService.Create(review);
-            return new OkResult(Request);
+            if (ModelState.IsValid)
+            {
+                var review = ReviewMapper.ToDTO(model);
+                _reviewService.Create(review);
+                return new OkResult(Request);
+            }
+
+            return new BadRequestResult(Request);
         }
 
         /// <summary>
@@ -42,9 +47,14 @@ namespace Bookva.Web.Controllers
         [HttpPut]
         public IHttpActionResult Edit([FromBody]ReviewEditViewModel model)
         {
-            var review = ReviewMapper.ToDTO(model);
-            _reviewService.Edit(review);
-            return new OkResult(Request);
+            if (ModelState.IsValid)
+            {
+                var review = ReviewMapper.ToDTO(model);
+                _reviewService.Edit(review);
+                return new OkResult(Request);
+            }
+
+            return new BadRequestResult(Request);
         }
 
         /// <summary>
