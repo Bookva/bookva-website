@@ -10,7 +10,7 @@
             {{author.displayName}}
         </h3>
         <div class="centered">
-            <div class="row">
+            <div class="row col-md-12">
                 <span class="text-capitalize keyword" data-ng-repeat="keyword in model.book.keywords">{{keyword.value}}</span>
             </div>
         </div>
@@ -18,8 +18,9 @@
         <div>
             <h3>Рейтинг: {{model.book.averageRating}}</h3>
             <h5>Всего голосов: {{model.book.totalVotes}}</h5>
-            тут будут модные звездочки
-            <!--TODO rate a book-->
+            <span class="keyword" data-ng-click="rateBook($index + 1)"
+                    data-ng-repeat="point in [] | range:5">{{$index + 1}}</span>
+            <!--TODO rewrite, add user's current rate-->
         </div>
 
         <hr>

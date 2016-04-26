@@ -19,5 +19,19 @@ bookva.controller('bookInfoCtrl', ['$scope', '$route', '$http', '$location', '$c
             });
         };
 
+        $scope.rateBook = function(rate) {
+            var rateRequest = {
+                method: 'POST',
+                url: 'api/works/' + $scope.model.book.id + '/rate/' + rate,
+                headers: {
+                    'Authorization': 'Bearer ' + $cookies.get('bookvaUserToken')
+                }
+            };
+
+            $http(rateRequest).then(function(response) {
+                $scope.pageChanged();
+            });
+        };
+
         $scope.pageChanged();
     }]);
