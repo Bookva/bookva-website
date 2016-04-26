@@ -3,18 +3,21 @@
 
 <div class="col-md-12">
     <div class="centered well col-md-10 center-block">
-        <img class="img-responsive col-md-6 centered" src="{{model.book.cover}}">
+        <img class="img-responsive col-md-6 centered" src="{{model.book.coverSource}}">
 
         <h2 class="text-center">{{model.book.title}}</h2>
-        <h3 class="text-center">{{model.book.author}}</h3>
+        <h3 data-ng-repeat="author in model.book.authors" class="text-center">
+            {{author.displayName}}
+        </h3>
         <div class="centered">
             <div class="row">
-                <span class="text-capitalize keyword" data-ng-repeat="keyword in model.book.keywords">{{keyword}}</span>
+                <span class="text-capitalize keyword" data-ng-repeat="keyword in model.book.keywords">{{keyword.value}}</span>
             </div>
         </div>
 
         <div>
-            <h3>Рейтинг: {{model.book.rating}}</h3>
+            <h3>Рейтинг: {{model.book.averageRating}}</h3>
+            <h5>Всего голосов: {{model.book.totalVotes}}</h5>
             тут будут модные звездочки
             <!--TODO rate a book-->
         </div>
@@ -26,8 +29,18 @@
 
         <div class="row">
             <h3 class="text-center">Отрывки книг:</h3>
-            <div class="col-md-4" data-ng-repeat="extract in model.book.extracts">
-                {{extract.text | limitTo: 200}}{{extract.text.length > 200 ? '...' : ''}}
+            <div class="col-md-4" data-ng-show="model.book.extract1" >
+                {{model.book.extract1 | limitTo: 400}}{{model.book.extract1.length > 400 ? '...' : ''}}
+                <br>
+                <a href="#/read"><h6>Читать</h6></a>
+            </div>
+            <div class="col-md-4" data-ng-show="model.book.extract2" >
+                {{model.book.extract2 | limitTo: 400}}{{model.book.extract2.length > 400 ? '...' : ''}}
+                <br>
+                <a href="#/read"><h6>Читать</h6></a>
+            </div>
+            <div class="col-md-4" data-ng-show="model.book.extract3" >
+                {{model.book.extract3 | limitTo: 400}}{{model.book.extract3.length > 400 ? '...' : ''}}
                 <br>
                 <a href="#/read"><h6>Читать</h6></a>
             </div>

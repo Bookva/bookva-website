@@ -1,52 +1,23 @@
 var bookva = angular.module('BookvaApp');
 
-bookva.controller('bookInfoCtrl', ['$scope', '$route', '$http', '$location', '$cookies',
-    function ($scope, $route, $http, $location, $cookies) {
+bookva.controller('bookInfoCtrl', ['$scope', '$route', '$http', '$location', '$cookies', '$routeParams',
+    function ($scope, $route, $http, $location, $cookies, $routeParams) {
 
         'use strict';
 
         $scope.model = {
-            book: {
-                title: "Кладбище домашних животных",
-                author: "С. Кинг",
-                keywords: [
-                    "Триллер", "Мистика", "Ужасы", "Котики", "Много", "Разных",
-                    "Тегов", "Нужно", "Больше", "Тегов", "В конце все умрут ^_^ уиии"
-                ],
-                cover: "",
-                description: "Тут должно было быть очень крутое описание книги. Но его пока нет потому что разрабы - ленивые :)",
-                rating: 4.9,
-                extracts: [
-                    {
-                        text: "Отрывок 1. Тут тоже должен был быть милый отрывок из книги, но это всего лишь тестовые данные"
-                    },
-                    {
-                        text: "Отрывок 2. Тут тоже должен был быть милый отрывок из книги, но это всего лишь тестовые данные"
-                    },
-                    {
-                        text: "Отрывок 3. Тут тоже должен был быть милый отрывок из книги, но это всего лишь тестовые данные"
-                    }
-                ],
-                reviews: [
-                    {
-                        author: "Джонни Доу",
-                        date: "21-04-2016 21:05:40",
-                        imgUrl: "",
-                        text: "крутая книга, пойду пожалуй посмотрю еще и фильм. :D"
-                    },
-                    {
-                        author: "eraser",
-                        date: "15-03-2016 03:10:00",
-                        imgUrl: "",
-                        text: "Сфотай типо я крутой литературный критик и всем интересно почитать мое мнение, я звезда :)"
-                    },
-                    {
-                        author: "little_pony",
-                        date: "01-03-2016 16:24:32",
-                        imgUrl: "",
-                        text: "еее, типо самый первый первый коммент, bookva - лучшее приложение, люблю читать книги)"
-                    }
-                ]
-            }
-        }
+
+        };
+
+        $scope.pageChanged = function() {
+            var requestParams = {
+                method: 'GET',
+                url: 'api/works/' + $routeParams.id
+            };
+            $http(requestParams).then(function (response) {
+                $scope.model.book = response.data;
+            });
+        };
+
+        $scope.pageChanged();
     }]);

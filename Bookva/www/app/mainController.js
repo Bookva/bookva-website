@@ -29,7 +29,7 @@ var bookva = angular.module('BookvaApp', ['ngRoute', 'ngCookies', 'ngSanitize'])
         }).when ('/chapters', {
             templateUrl: 'app/book/chapters/chapterList.html',
             controller: 'chapterListCtrl'
-        }).when ('/book', {
+        }).when ('/book/:id', {
             templateUrl: 'app/book/info/bookInfo.html',
             controller: 'bookInfoCtrl'
         }).when ('/search', {
