@@ -86,6 +86,7 @@ namespace Bookva.Web.Models
         public string CoverSource { get; set; }
         public string PreviewCoverSource { get; set; }
         public float AverageRating { get; set; }
+        public int ReviewsCount { get; set; }
 
         public IEnumerable<AuthorPreviewViewModel> Authors { get; set; }
     }

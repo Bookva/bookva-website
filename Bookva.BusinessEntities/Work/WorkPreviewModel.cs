@@ -17,6 +17,7 @@ namespace Bookva.BusinessEntities.Work
         public string CoverSource { get; set; }
         public string PreviewCoverSource { get; set; }
         public float AverageRating { get; set; }
+        public int ReviewsCount{ get; set; }
         public WorkStatus Status { get; set; }
         public IEnumerable<AuthorPreviewModel> Authors { get; set; }
     }
