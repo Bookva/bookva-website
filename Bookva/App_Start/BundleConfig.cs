@@ -11,6 +11,7 @@ namespace Bookva.Web
                 .Include("~/www/js/angular-cookies.min.js")
                 .Include("~/www/js/ui-bootstrap-tpls.min.js")
                 .Include("~/www/js/angular-route.min.js")
+                .Include("~/www/js/angular-sanitize.min.js")
                 .Include("~/www/js/jquery-2.1.3.min.js")
                 //.IncludeDirectory("~/www/app", "*.js", true)
                 );
