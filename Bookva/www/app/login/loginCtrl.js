@@ -6,22 +6,26 @@ bookva.controller('loginCtrl', ['$scope', '$route', '$http', '$location', '$cook
         'use strict';
 
         $scope.model = {
-            rememberMe: false
+            rememberMe: false,
+            user: {
+                grant_type: 'password'
+            }
         };
 
         $scope.login = function(){
-            $cookies.put('bookvaUserToken', 'newToken');
-            var req = {
-                method: 'GET',
-                url: 'token',
-                data: "username=" + $scope.model.username + "&password=" + $scope.model.password +
-                "&grant_type=password"
+            var loginRequest = {
+                method: 'POST',
+                url: 'Token',
+                headers: {
+                    'cache-control': 'no-cache',
+                    'content-type': 'application/x-www-form-urlencoded'
+                },
+                data: $.param($scope.model.user)
             };
 
-            $http(req).success(function() {
-                $cookies.put('bookvaUserToken', 'newToken');
+            $http(loginRequest).then(function(response) {
+                $cookies.put('bookvaUserToken', response.data.access_token);
                 $location.path('/main');
-                //todo: implement login validation and redirecting to main page
             });
         }
 

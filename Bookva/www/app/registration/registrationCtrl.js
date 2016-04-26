@@ -16,8 +16,8 @@ bookva.controller('registrationCtrl', ['$scope', '$route', '$http', '$location',
             };
 
             $http(req).success(function() {
-                    $location.path('/email');
-                });
+                $location.path('/email');
+            });
         }
 
     }]);
