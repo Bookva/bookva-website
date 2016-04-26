@@ -1,12 +1,8 @@
 ﻿using System.Collections.Generic;
-using System.Drawing;
 using System.Linq;
-using System.Threading.Tasks;
-using Bookva.Business.ImageService;
+using Bookva.Business.Filters;
 using Bookva.Business.Mappers;
-using Bookva.BusinessEntities.Author;
-using Bookva.BusinessEntities.Keyword;
-using Bookva.BusinessEntities.Work;
+using Bookva.BusinessEntities.Filter;
 using Bookva.DAL;
 using Bookva.Entities;
 
@@ -26,8 +22,7 @@ namespace Bookva.Business
             return
                 _unitOfWork.GenreRepository.Get()
                     .OrderBy(k => k.Name)
-                    .Skip(options.PageSize*(options.Page - 1))
-                    .Take(options.PageSize).Select(GenreMapper.ToModel);
+                    .Paginate(options).Select(GenreMapper.ToModel);
         }
 
         public Genre Create(GenreModel genreModel)

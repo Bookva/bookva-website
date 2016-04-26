@@ -43,6 +43,9 @@
     <Compile Include="Author\AuthorPreviewModel.cs" />
     <Compile Include="Author\AuthorReadModel.cs" />
     <Compile Include="Author\AuthorWriteModel.cs" />
+    <Compile Include="Filter\PaginationOptions.cs" />
+    <Compile Include="Filter\SortOrder.cs" />
+    <Compile Include="Filter\WorkFilterOptions.cs" />
     <Compile Include="Genre\GenreModel.cs" />
     <Compile Include="Keyword\KeywordModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

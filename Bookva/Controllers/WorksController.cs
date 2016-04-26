@@ -10,6 +10,7 @@ using Bookva.Web.Models;
 using System.Web;
 using System.Drawing;
 using System.Threading.Tasks;
+using Bookva.BusinessEntities.Filter;
 using Bookva.Common;
 using Elmah;
 using Microsoft.AspNet.Identity;
@@ -99,6 +100,19 @@ namespace Bookva.Web.Controllers
             }
 
             return new BadRequestResult(Request);
+        }
+
+        /// <summary>
+        /// POST: /api/works/filter
+        /// </summary>
+        /// <param name="options">Filter options</param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("api/works/filter/")]
+        public IEnumerable<WorkPreviewViewModel> Filter([FromBody]WorkFilterOptions options)
+        {
+            var works = worksService.Filter(options);
+            return works.Select(WorksMapper.ToPreviewViewModel);
         }
 
         [HttpPost]

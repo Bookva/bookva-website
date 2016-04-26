@@ -7,6 +7,7 @@ using System.Web.Http;
 using System.Web.Http.Results;
 using Bookva.Business;
 using Bookva.Business.Mappers;
+using Bookva.BusinessEntities.Filter;
 using Bookva.BusinessEntities.Keyword;
 using Bookva.Web.Models;
 using Microsoft.Ajax.Utilities;
