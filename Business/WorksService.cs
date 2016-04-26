@@ -6,11 +6,11 @@ using Bookva.Business.Mappers;
 using Bookva.BusinessEntities.Work;
 using Bookva.DAL;
 using System.Threading.Tasks;
+using Bookva.Business.Filters;
 using Bookva.Business.ImageService;
-using Bookva.BusinessEntities.Keyword;
+using Bookva.BusinessEntities.Filter;
 using Bookva.Common;
 using Bookva.Entities;
-using CloudinaryDotNet.Actions;
 
 namespace Bookva.Business
 {
@@ -47,7 +47,18 @@ namespace Bookva.Business
 
         public IEnumerable<WorkPreviewModel> Get(PaginationOptions options)
         {
-            return _unitOfWork.WorkRepository.Get().OrderBy(w => w.Id).Skip((options.Page - 1) * options.PageSize).Take(options.PageSize).ToList().Select(WorksMapper.ToPreviewModel);
+            var data = _unitOfWork.WorkRepository.Get().Where(w => w.Status == WorkStatus.Posted);
+            var filter = new WorkFilter();
+            data = filter.Sort(data, options.FieldName, options.Order);
+            return data.Paginate(options).ToList().Select(WorksMapper.ToPreviewModel);
+        }
+
+        public IEnumerable<WorkPreviewModel> Filter(WorkFilterOptions options)
+        {
+            var data = _unitOfWork.WorkRepository.Get().Where(w => w.Status == WorkStatus.Posted);
+            var filter = new WorkFilter();
+            data = filter.Filter(data, options);
+            return data.Sort(options.FieldName, options.Order).Paginate(options).ToList().Select(WorksMapper.ToPreviewModel);
         }
 
         public void Create(WorkWriteModel workDto)

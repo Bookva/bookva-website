@@ -2,9 +2,11 @@
 using System.Drawing;
 using System.Linq;
 using System.Threading.Tasks;
+using Bookva.Business.Filters;
 using Bookva.Business.ImageService;
 using Bookva.Business.Mappers;
 using Bookva.BusinessEntities.Author;
+using Bookva.BusinessEntities.Filter;
 using Bookva.BusinessEntities.Review;
 using Bookva.DAL;
 
@@ -18,7 +20,7 @@ namespace Bookva.Business
         {
             _unitOfWork = uow;
         }
-        
+
         public IEnumerable<ReviewReadModel> GetByWorkId(int id)
         {
             return _unitOfWork.ReviewRepository.Get()
@@ -31,12 +33,12 @@ namespace Bookva.Business
         {
             return _unitOfWork.ReviewRepository.Get()
                 .Where(review => review.WorkId == id)
-                .OrderBy(a => a.Id)
-                .Skip((options.Page - 1)*options.PageSize)
-                .Take(options.PageSize)
+                .OrderBy(a => a.DateAdded)
+                .Paginate(options)
                 .ToList()
                 .Select(ReviewMapper.ToReadModel);
         }
+
         public IEnumerable<ReviewReadModel> GetByUserId(int id)
         {
             return _unitOfWork.ReviewRepository.Get()

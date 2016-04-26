@@ -8,6 +8,7 @@ using System.Web.Http;
 using System.Web.Http.Results;
 using Bookva.Business;
 using Bookva.BusinessEntities.Author;
+using Bookva.BusinessEntities.Filter;
 using Bookva.Web.Mappers;
 using Bookva.Web.Models;
 using Elmah;

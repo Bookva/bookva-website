@@ -2,6 +2,7 @@
 using System.Drawing;
 using Bookva.BusinessEntities.Work;
 using System.Threading.Tasks;
+using Bookva.BusinessEntities.Filter;
 using Bookva.Common;
 
 namespace Bookva.Business
@@ -11,6 +12,7 @@ namespace Bookva.Business
         WorkReadModel Get(int id, int? userId = null);
         IEnumerable<WorkPreviewModel> GetAll();
         IEnumerable<WorkPreviewModel> Get(PaginationOptions options);
+        IEnumerable<WorkPreviewModel> Filter(WorkFilterOptions options);
         void Create(WorkWriteModel work);
         void Edit(WorkWriteModel work);
         Task ChangePictureAsync(Image image, int id);

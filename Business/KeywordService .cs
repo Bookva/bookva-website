@@ -2,9 +2,11 @@
 using System.Drawing;
 using System.Linq;
 using System.Threading.Tasks;
+using Bookva.Business.Filters;
 using Bookva.Business.ImageService;
 using Bookva.Business.Mappers;
 using Bookva.BusinessEntities.Author;
+using Bookva.BusinessEntities.Filter;
 using Bookva.BusinessEntities.Keyword;
 using Bookva.BusinessEntities.Work;
 using Bookva.DAL;
@@ -26,8 +28,8 @@ namespace Bookva.Business
             return
                 _unitOfWork.KeywordRepository.Get()
                     .OrderBy(k => k.Name)
-                    .Skip(options.PageSize*(options.Page - 1))
-                    .Take(options.PageSize).Select(KeywordMapper.ToModel);
+                    .Paginate(options)
+                    .Select(KeywordMapper.ToModel);
         }
 
         public Keyword Create(KeywordModel keywordModel)
