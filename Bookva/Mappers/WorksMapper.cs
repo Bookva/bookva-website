@@ -93,7 +93,8 @@ namespace Bookva.Web.Mappers
                 CoverSource = work.CoverSource,
                 PreviewCoverSource = work.PreviewCoverSource,
                 Authors = work.Authors?.Select(AuthorMapper.ToPreviewViewModel),
-                AverageRating = work.AverageRating
+                AverageRating = work.AverageRating,
+                ReviewsCount = work.ReviewsCount
             };
         }
     }
