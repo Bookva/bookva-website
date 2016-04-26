@@ -59,11 +59,11 @@
             <div data-ng-if="model.book.reviews.length != 0">
                 <div data-ng-repeat="review in model.book.reviews">
                     <div class="row">
-                        <h4 class="col-md-6">{{review.author}}</h4>
+                        <h4 class="col-md-6">{{review.author.name}}</h4>
                         <h4 class="col-md-6 text-right">{{review.date | date: "HH:mm dd.MM.yyyy"}}</h4>
                     </div>
                     <div class="row">
-                        <img class="img-responsive img-circle col-md-1" src="http://www.w3schools.com/bootstrap/cinqueterre.jpg">
+                        <img class="img-responsive img-circle col-md-1" src="{{review.author.pictureSource}}">
                         <div class="col-md-11">
                             <div>
                                 <h5>{{review.text}}</h5>
@@ -78,9 +78,13 @@
         <div>
             <div class="form-group">
                 <label for="review"><h3>Прочитали книгу? Оставьте комментарий:</h3></label>
-                <textarea class="form-control" rows="5" id="review"></textarea>
+                <div class="form-group">
+                    <label for="title"><h5>Заголовок:</h5></label>
+                    <input type="text" class="form-control" id="title" data-ng-model="model.review.title"/>
+                </div>
+                <textarea class="form-control" rows="5" id="review" data-ng-model="model.review.text"></textarea>
             </div>
-            <button class="btn text-capitalize">Опубликовать</button>
+            <button class="btn text-capitalize" data-ng-click="postReview()">Опубликовать</button>
         </div>
     </div>
 </div>

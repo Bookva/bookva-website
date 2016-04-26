@@ -33,5 +33,23 @@ bookva.controller('bookInfoCtrl', ['$scope', '$route', '$http', '$location', '$c
             });
         };
 
+        $scope.postReview = function() {
+            var reviewRequest = {
+                method: 'POST',
+                url: 'api/reviews/',
+                headers: {
+                    'Authorization': 'Bearer ' + $cookies.get('bookvaUserToken')
+                },
+                data: {
+                    title: $scope.model.review.title,
+                    text: $scope.model.review.text,
+                    workId: $scope.model.book.id
+                }
+            };
+            $http(reviewRequest).then(function(response) {
+                $scope.pageChanged();
+            });
+        };
+
         $scope.pageChanged();
     }]);
