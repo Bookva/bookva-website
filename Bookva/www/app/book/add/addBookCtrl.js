@@ -19,7 +19,9 @@ bookva.controller('addBookCtrl', ['$scope', '$route', '$http', '$location', '$co
                     {
                         text: "Отрывок 1. Тут тоже должен был быть милый отрывок из книги, но это всего лишь тестовые данные"
                     }
-                ]
+                ],
+                isAnonymous: false,
+                status: false
             }
         }
     }]);

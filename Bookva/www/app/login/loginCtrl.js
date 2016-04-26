@@ -14,18 +14,13 @@ bookva.controller('loginCtrl', ['$scope', '$route', '$http', '$location', '$cook
             var req = {
                 method: 'GET',
                 url: 'token',
-                headers: {
-                    grant_type: 'password'
-                },
-                params: {
-                    username: $scope.model.username,
-                    password: $scope.model.password
-                }
+                data: "username=" + $scope.model.username + "&password=" + $scope.model.password +
+                "&grant_type=password"
             };
 
             $http(req).success(function() {
-                
-                $location.path('/');
+                $cookies.put('bookvaUserToken', 'newToken');
+                $location.path('/main');
                 //todo: implement login validation and redirecting to main page
             });
         }

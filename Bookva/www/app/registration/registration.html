@@ -3,7 +3,7 @@
         <form id="login-form" role="form" name="registrationForm">
             <div class="form-group"
                  data-ng-class="{'has-error': registrationForm.login.$touched && registrationForm.login.$invalid}">
-                <label for="login" class="control-label">Login</label>
+                <label for="login" class="control-label">Логин</label>
 
                 <input type="text" id="login"
                        data-ng-model="model.user.login" class="form-control" name="login"
@@ -13,13 +13,13 @@
                        data-ng-maxlength="20" required>
                 <div class="help-block" id="login-error">
                     <span data-ng-show="registrationForm.login.$touched && registrationForm.login.$error.pattern">
-                        Login can contain letters, digits and _ symbol.
+                        Логин может содержать буквы, цифры и символ _.
                     </span>
                     <span data-ng-show="registrationForm.login.$touched && registrationForm.login.$error.required">
-                        Login is required.
+                        Логин обязателен.
                     </span>
                     <span data-ng-show="registrationForm.login.$touched && registrationForm.login.$error.maxlength">
-                        Login can't be greater than 20 characters.
+                        Логин не должен превышать 20 символов.
                     </span>
                 </div>
 
@@ -33,17 +33,13 @@
                        data-ng-model="model.user.email" class="form-control" name="email"
                        placeholder="Email"
                        pattern="[a-zA-Z0-9._]+@[a-zA-Z0-9]+.[a-zA-Z0-9]+"
-                       aria-describedby="email-error"
-                       data-ng-maxlength="60" required>
+                       aria-describedby="email-error" required>
                 <div class="help-block" id="email-error">
                     <span data-ng-show="registrationForm.email.$touched && registrationForm.email.$error.pattern">
-                        Login can contain letters, digits and _ symbol.
+                        Неверный формат email, пример: example@mail.com
                     </span>
                     <span data-ng-show="registrationForm.email.$touched && registrationForm.email.$error.required">
-                        Login is required.
-                    </span>
-                    <span data-ng-show="registrationForm.email.$touched && registrationForm.email.$error.maxlength">
-                        Login can't be greater than 20 characters.
+                        Email обязателен.
                     </span>
                 </div>
 
@@ -51,29 +47,25 @@
 
             <div class="form-group"
                  data-ng-class="{'has-error': registrationForm.password.$touched && registrationForm.password.$invalid}">
-                <label for="password" class="control-label">Password:</label>
+                <label for="password" class="control-label">Пароль:</label>
 
                 <input type="password" id="password"
                        data-ng-model="model.user.password" class="form-control" name="password"
                        placeholder="Password"
                        aria-describedby="pass-error"
-                       pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}$"
-                       data-ng-maxlength="20" required>
+                       pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}$" required>
                 <div class="help-block" id="pass-error">
                     <span data-ng-show="registrationForm.password.$touched && registrationForm.password.$error.pattern">
-                        Password should contain at least one digit, one lowercase letter and the length must be more than 6 symbols.
+                        Пароль должен содержать хотя бы одну заглавную, прописную буквы и цифру. Длина пароля не должна быть меньше 6 символов.
                     </span>
                     <span data-ng-show="registrationForm.$touched && registrationForm.password.$error.required">
-                        Password is required.
-                    </span>
-                    <span data-ng-show="registrationForm.password.$touched && registrationForm.password.$error.maxlength">
-                        Password can't be greater than 20 characters.
+                        Пароль обязателен.
                     </span>
                 </div>
             </div>
 
             <button data-ng-disabled="registrationForm.$invalid" class="btn btn-success btn-block"
-                    data-ng-click="register()">Sign up
+                    data-ng-click="register()">Зарегистрироваться
             </button>
         </form>
     </div>

@@ -1,7 +1,6 @@
 var bookva = angular.module('BookvaApp', ['ngRoute', 'ngCookies', 'ngSanitize'])
     .config(function ($routeProvider) {
         $routeProvider.when(
-            //add www/ before each path for .net
             '/', {templateUrl: 'app/main/mainPage.html',
             controller: 'mainPageCtrl'
         }).when('/login', {
@@ -11,7 +10,7 @@ var bookva = angular.module('BookvaApp', ['ngRoute', 'ngCookies', 'ngSanitize'])
             templateUrl: 'app/registration/registration.html',
             controller: 'registrationCtrl'
         }).when('/main', {
-            templateUrl: 'app/bookList/bookList.html',
+            templateUrl: 'app/books/mainPage/bookList.html',
             controller: 'booklistCtrl'
         }).when('/email', {
             templateUrl: 'app/confirm/emailConfirm.html'
@@ -52,5 +51,9 @@ bookva.controller('mainController', function ($scope, $templateCache, $cookies) 
     $scope.getToken = function(){
         var token = $cookies.get('bookvaUserToken');
         return token;
+    }
+
+    $scope.doLogout = function(){
+        $cookies.remove('bookvaUserToken');
     }
 });

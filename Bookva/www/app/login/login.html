@@ -3,55 +3,48 @@
         <form id="login-form" role="form" name="loginForm">
             <div class="form-group"
                  data-ng-class="{'has-error': loginForm.login.$touched && loginForm.login.$invalid}">
-                <label for="login" class="control-label">Login:</label>
+                <label for="login" class="control-label">Логин:</label>
 
                 <input type="text" id="login"
                        data-ng-model="model.user.username" class="form-control" name="login"
-                       placeholder="Login"
+                       placeholder="Логин"
                        pattern="[a-zA-Z0-9_]+"
                        aria-describedby="login_error"
                        data-ng-maxlength="20" required>
                 <div class="help-block" id="login-error">
                     <span data-ng-show="loginForm.login.$touched && loginForm.login.$error.pattern">
-                        Login can contain letters, digits and _ symbol.
+                        Логин может содержать буквы, цифры и символ _.
                     </span>
                     <span data-ng-show="loginForm.login.$touched && loginForm.login.$error.required">
-                        Login is required.
+                        Введите логин.
                     </span>
                     <span data-ng-show="loginForm.login.$touched && loginForm.login.$error.maxlength">
-                        Login can't be greater than 20 characters.
+                        Логин не должен превышать 20 символов.
                     </span>
                 </div>
 
             </div>
             <div class="form-group"
                  data-ng-class="{'has-error': loginForm.password.$touched && loginForm.password.$invalid}">
-                <label for="password" class="control-label">Password</label>
+                <label for="password" class="control-label">Пароль</label>
 
                 <input type="password" id="password"
                        data-ng-model="model.user.password" class="form-control" name="password"
-                       placeholder="Password"
+                       placeholder="Пароль"
                        aria-describedby="pass-error"
-                       pattern="[a-zA-Z0-9_]+"
                        data-ng-maxlength="20" required>
                 <div class="help-block" id="pass-error">
-                    <span data-ng-show="loginForm.password.$touched && loginForm.password.$error.pattern">
-                        Password can contain letters, digits and _ symbol.
-                    </span>
                     <span data-ng-show="loginForm.password.$touched && loginForm.password.$error.required">
                         Password is required.
-                    </span>
-                    <span data-ng-show="loginForm.password.$touched && loginForm.password.$error.maxlength">
-                        Password can't be greater than 20 characters.
                     </span>
                 </div>
             </div>
             <div class="checkbox">
                 <label><input type="checkbox" title="Remember me" data-ng-model="model.rememberMe">
-                    Remember me</label>
+                    Запомнить меня</label>
             </div>
             <button data-ng-disabled="loginForm.$invalid" class="btn btn-success btn-block"
-                        data-ng-click="login()">Log in
+                        data-ng-click="login()">Логин
             </button>
         </form>
     </div>

@@ -20,9 +20,13 @@
                 <input type="text" class="form-control" id="name" data-ng-model="model.author.name"/>
             </div>
             <label class="text-uppercase">
-                <input type="checkbox" id="isAnonymous" data-ng-model="model.author.isAnonymous"
-                       value="isAnonymous"> Публиковать работы анонимно
+                <input type="checkbox" id="useAlias" data-ng-model="model.useAlias"
+                       value="useAlias"> Использовать псевдоним
             </label>
+            <div>
+                <label for="alias"><h5>Псевдоним:</h5></label>
+                <input  data-ng-disabled="!model.useAlias" type="text" class="form-control" id="alias" data-ng-model="model.author.alias"/>
+            </div>
         </div>
     </div>
     <hr>

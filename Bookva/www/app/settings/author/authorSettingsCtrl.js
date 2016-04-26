@@ -8,9 +8,10 @@ bookva.controller('authorSettingsCtrl', ['$scope', '$route', '$http', '$location
         $scope.model = {
             author: {
                 name: 'Doge Author',
+                alias: 'DOGE',
                 imgUrl: 'https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcS24lFzLCawtyboNa2OJbNrLJvBlVtplNo-pYhMKiWpW2EhbdBqcNoFFwI',
-                books: [],
-                isAnonymous: true
-            }
+                books: []
+            },
+            useAlias: false
         }
     }]);
