@@ -9,7 +9,7 @@ namespace Bookva.Web.Mappers
 {
     public class ReviewMapper
     {
-        public static ReviewWriteModel ToDTO(ReviewEditViewModel viewModel)
+        public static ReviewWriteModel ToDTO(ReviewEditViewModel viewModel, int userId)
         {
             return new ReviewWriteModel
             {
@@ -17,7 +17,7 @@ namespace Bookva.Web.Mappers
                 Title = viewModel.Title,
                 Text = viewModel.Text,
                 WorkId = viewModel.WorkId,
-                UserId = viewModel.UserId
+                UserId = userId
             };
         }
 
