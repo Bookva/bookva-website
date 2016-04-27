@@ -136,7 +136,7 @@ namespace Bookva.Business
             }
             _unitOfWork.WorkRatingRepository.Insert(new WorkRating {Mark = mark, UserId = userId, WorkId = workId});
 
-            work.AverageRating = work.AverageRating*work.TotalVotes/(work.TotalVotes + 1) + (float) mark/(work.TotalVotes + 1);
+            work.AverageRating = work.AverageRating*work.TotalVotes/(work.TotalVotes + 1) + (float)(mark - existingRating.Sum(r => r.Mark))/ (work.TotalVotes + 1);
             work.TotalVotes = work.TotalVotes + 1;
             _unitOfWork.WorkRepository.Update(work, work.Id);
             _unitOfWork.Save();
