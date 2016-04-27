@@ -15,8 +15,6 @@ namespace Bookva.Web.Models
         [MaxLength(2000, ErrorMessage = "The {0} must not exceed {1} characters.")]
         public string Text { get; set; }
         [Required]
-        public int UserId { get; set; }
-        [Required]
         public int WorkId { get; set; }
     }
 

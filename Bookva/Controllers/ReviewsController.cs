@@ -9,6 +9,8 @@ using Bookva.Business;
 using Bookva.BusinessEntities.Author;
 using Bookva.Web.Mappers;
 using Bookva.Web.Models;
+using Elmah;
+using Microsoft.AspNet.Identity;
 
 namespace Bookva.Web.Controllers
 {
@@ -26,14 +28,24 @@ namespace Bookva.Web.Controllers
         /// </summary>
         /// <param name="model">Review</param>
         /// <returns></returns>
+        [Authorize]
         [HttpPost]
         public IHttpActionResult Create([FromBody]ReviewEditViewModel model)
         {
             if (ModelState.IsValid)
             {
-                var review = ReviewMapper.ToDTO(model);
-                _reviewService.Create(review);
-                return new OkResult(Request);
+                var userId = User.Identity.GetUserId<int>();
+                if (userId > 0)
+                {
+                    var review = ReviewMapper.ToDTO(model, userId);
+                    _reviewService.Create(review);
+                    return new OkResult(Request);
+                }
+                else
+                {
+                    ErrorLog.GetDefault(HttpContext.Current).Log(new Error(new KeyNotFoundException("No user id is provided.")));
+                    return InternalServerError();
+                }
             }
 
             return new BadRequestResult(Request);
@@ -44,14 +56,24 @@ namespace Bookva.Web.Controllers
         /// </summary>
         /// <param name="model">Review</param>
         /// <returns></returns>
+        [Authorize]
         [HttpPut]
         public IHttpActionResult Edit([FromBody]ReviewEditViewModel model)
         {
             if (ModelState.IsValid)
             {
-                var review = ReviewMapper.ToDTO(model);
-                _reviewService.Edit(review);
-                return new OkResult(Request);
+                var userId = User.Identity.GetUserId<int>();
+                if (userId > 0)
+                {
+                    var review = ReviewMapper.ToDTO(model, userId);
+                    _reviewService.Edit(review);
+                    return new OkResult(Request);
+                }
+                else
+                {
+                    ErrorLog.GetDefault(HttpContext.Current).Log(new Error(new KeyNotFoundException("No user id is provided.")));
+                    return InternalServerError();
+                }
             }
 
             return new BadRequestResult(Request);
@@ -62,6 +84,7 @@ namespace Bookva.Web.Controllers
         /// </summary>
         /// <param name="id">Review id</param>
         /// <returns></returns>
+        [Authorize]
         [HttpDelete]
         public IHttpActionResult Delete(int id)
         {
