@@ -1,13 +1,13 @@
 <div class="centered well col-md-10 center-block">
-    <div class="row">
-        <a class="col-md-2 pull-left" data-ng-show="model.book.chapter.previous">
-            <h4>{{model.book.chapter.previous}}</h4></a>
-        <a class="text-center col-md-8" href="#/chapters"><h4>Перейти к содержанию</h4></a>
-        <a class="col-md-2 pull-right text-right" data-ng-show="model.book.chapter.next">
-            <h4>{{model.book.chapter.next}}</h4></a>
-    </div>
-    <h2 class="text-center">{{model.book.title}}</h2>
-    <h4 class="text-center">{{model.book.author}}</h4>
+    <!--<div class="row col-md-12">-->
+        <!--<a class="pull-left" data-ng-show="model.book.chapter.previous">-->
+            <!--<h4>{{model.book.chapter.previous}}</h4></a>-->
+        <!--&lt;!&ndash;<a class="text-center col-md-8" href="#/chapters"><h4>Перейти к содержанию</h4></a>&ndash;&gt;-->
+        <!--<a class="pull-right text-right" data-ng-show="model.book.chapter.next">-->
+            <!--<h4>{{model.book.chapter.next}}</h4></a>-->
+    <!--</div>-->
+    <a class="text-center" href="#/book/{{model.book.id}}"><h2>{{model.book.title}}</h2></a>
+    <h4 data-ng-repeat="author in model.book.authors" class="text-center">{{author.displayName}}</h4>
     <h2 class="text-center">{{model.book.chapter.current}}</h2>
     <div class="centered well col-md-10 center-block">
         <div ng-bind-html="model.book.content"></div>

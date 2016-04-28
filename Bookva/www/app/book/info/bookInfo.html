@@ -17,10 +17,9 @@
 
         <div>
             <h3>Рейтинг: {{model.book.averageRating}}</h3>
-            <h5>Всего голосов: {{model.book.totalVotes}}</h5>
-            <span class="keyword" data-ng-click="rateBook($index + 1)"
+            <h5>Всего голосов: {{model.book.totalVotes}} </h5>
+            <span data-ng-class="model.book.currentUserVote == ($index+1) ? 'rated' : 'keyword'" data-ng-click="rateBook($index + 1)"
                     data-ng-repeat="point in [] | range:5">{{$index + 1}}</span>
-            <!--TODO rewrite, add user's current rate-->
         </div>
 
         <hr>
@@ -33,21 +32,21 @@
             <div class="col-md-4" data-ng-show="model.book.extract1" >
                 {{model.book.extract1 | limitTo: 400}}{{model.book.extract1.length > 400 ? '...' : ''}}
                 <br>
-                <a href="#/read"><h6>Читать</h6></a>
+                <a data-ng-click="readBook(model.book.extract1, null, 'Отрывок 1', 'Отрывок 2')"><h6>Читать</h6></a>
             </div>
             <div class="col-md-4" data-ng-show="model.book.extract2" >
                 {{model.book.extract2 | limitTo: 400}}{{model.book.extract2.length > 400 ? '...' : ''}}
                 <br>
-                <a href="#/read"><h6>Читать</h6></a>
+                <a data-ng-click="readBook(model.book.extract2, 'Отрывок 1', 'Отрывок 2', 'Отрывок 3')"><h6>Читать</h6></a>
             </div>
             <div class="col-md-4" data-ng-show="model.book.extract3" >
                 {{model.book.extract3 | limitTo: 400}}{{model.book.extract3.length > 400 ? '...' : ''}}
                 <br>
-                <a href="#/read"><h6>Читать</h6></a>
+                <a data-ng-click="readBook(model.book.extract3, 'Отрывок 2', 'Отрывок 3', null)"><h6>Читать</h6></a>
             </div>
         </div>
 
-        <h3 class="text-center">Понравилось? <a href="#/chapters">Перейдите к чтению!</a></h3>
+        <h3 class="text-center">Понравилось? <a data-ng-click="readBook(model.book.text, null, null, null)">Перейдите к чтению!</a></h3>
 
         <hr>
         <div>
@@ -58,13 +57,16 @@
             </div>
             <div data-ng-if="model.book.reviews.length != 0">
                 <div data-ng-repeat="review in model.book.reviews">
-                    <div class="row">
-                        <h4 class="col-md-6">{{review.author.name}}</h4>
-                        <h4 class="col-md-6 text-right">{{review.date | date: "HH:mm dd.MM.yyyy"}}</h4>
+                    <div class="row col-md-12">
+                        <h4 class="pull-left">{{review.user.nickname}}</h4>
+                        <h4 class="pull-right">{{review.dateAdded | date: "HH:mm dd.MM.yyyy"}}</h4>
                     </div>
                     <div class="row">
-                        <img class="img-responsive img-circle col-md-1" src="{{review.author.pictureSource}}">
+                        <img class="img-responsive img-circle col-md-1" src="{{review.user.previewPictureSource}}">
                         <div class="col-md-11">
+                            <div>
+                                <h4>{{review.title}}</h4>
+                            </div>
                             <div>
                                 <h5>{{review.text}}</h5>
                             </div>
@@ -79,10 +81,15 @@
             <div class="form-group">
                 <label for="review"><h3>Прочитали книгу? Оставьте комментарий:</h3></label>
                 <div class="form-group">
-                    <label for="title"><h5>Заголовок:</h5></label>
-                    <input type="text" class="form-control" id="title" data-ng-model="model.review.title"/>
+                    <label for="title"><h5>Заголовок: {{model.review.title.length}}/250</h5></label>
+                    <input type="text" maxlength="250" class="form-control"
+                           id="title" data-ng-model="model.review.title"/>
                 </div>
-                <textarea class="form-control" rows="5" id="review" data-ng-model="model.review.text"></textarea>
+                <div class="form-group">
+                    <label for="review"><h5>Отзыв: {{model.review.text.length}}/2000</h5></label>
+                    <textarea class="form-control" rows="5" maxlength="2000"
+                              id="review" data-ng-model="model.review.text"></textarea>
+                </div>
             </div>
             <button class="btn text-capitalize" data-ng-click="postReview()">Опубликовать</button>
         </div>

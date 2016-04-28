@@ -1,7 +1,7 @@
 var bookva = angular.module('BookvaApp');
 
-bookva.controller('bookInfoCtrl', ['$scope', '$route', '$http', '$location', '$cookies', '$routeParams',
-    function ($scope, $route, $http, $location, $cookies, $routeParams) {
+bookva.controller('bookInfoCtrl', ['$scope', '$route', '$http', '$location', '$cookies', '$routeParams', 'bookContentService',
+    function ($scope, $route, $http, $location, $cookies, $routeParams, bookContentService) {
 
         'use strict';
 
@@ -12,6 +12,9 @@ bookva.controller('bookInfoCtrl', ['$scope', '$route', '$http', '$location', '$c
         $scope.pageChanged = function() {
             var requestParams = {
                 method: 'GET',
+                headers: {
+                    'Authorization': 'Bearer ' + $cookies.get('bookvaUserToken')
+                },
                 url: 'api/works/' + $routeParams.id
             };
             $http(requestParams).then(function (response) {
@@ -31,6 +34,24 @@ bookva.controller('bookInfoCtrl', ['$scope', '$route', '$http', '$location', '$c
             $http(rateRequest).then(function(response) {
                 $scope.pageChanged();
             });
+        };
+
+        $scope.readBook = function(text, prevChapter, currentChapter, nextChapter) {
+            var textToRead = {
+                id: $scope.model.book.id,
+                content: text,
+                authors: $scope.model.book.authors,
+                chapter: {
+                  current: currentChapter,
+                  previous: prevChapter,
+                  next: nextChapter
+                },
+                title: $scope.model.book.title
+            };
+            
+            bookContentService.setBook(textToRead);
+            $location.path('/read');
+            //pass data to service
         };
 
         $scope.postReview = function() {
