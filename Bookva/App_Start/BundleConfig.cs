@@ -7,7 +7,7 @@ namespace Bookva.Web
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/vendor")
-                .Include("~/www/js/angular.min.js")
+                .Include("~/www/js/angular.min.js")c
                 .Include("~/www/js/angular-cookies.min.js")
                 .Include("~/www/js/ui-bootstrap-tpls.min.js")
                 .Include("~/www/js/angular-route.min.js")

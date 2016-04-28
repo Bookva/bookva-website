@@ -1,7 +1,7 @@
 var bookva = angular.module('BookvaApp');
 
 bookva.controller('booklistCtrl', ['$scope', '$route', '$http', '$location', '$httpParamSerializer',
-    function ($scope, $route, $http) {
+    function ($scope, $route, $http, $location) {
 
         'use strict';
 
@@ -22,11 +22,11 @@ bookva.controller('booklistCtrl', ['$scope', '$route', '$http', '$location', '$h
         $scope.pageChanged();
     }]);
 
-bookva.directive('bookItem', function(){
+bookva.directive('bookItem', ['$route', '$location', function($route, $location){
     return {
         scope: {
             ngModel: '=model'
         },
         templateUrl: 'app/books/mainPage/bookItem.html'
     }
-});
+}]);
