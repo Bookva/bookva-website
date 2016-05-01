@@ -27,6 +27,6 @@ bookva.directive('bookItem', ['$route', '$location', function($route, $location)
         scope: {
             ngModel: '=model'
         },
-        templateUrl: 'app/books/mainPage/bookItem.html'
+        templateUrl: 'www/app/books/mainPage/bookItem.html'
     }
 }]);

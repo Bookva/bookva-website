@@ -3,44 +3,44 @@
 
 <div class="col-md-12">
     <div class="centered well col-md-10 center-block">
-        <img class="img-responsive col-md-6 centered" src="{{model.book.coverSource}}">
+        <img class="img-responsive col-md-6 centered" src="{{::model.book.coverSource}}">
 
-        <h2 class="text-center">{{model.book.title}}</h2>
+        <h2 class="text-center">{{::model.book.title}}</h2>
         <h3 data-ng-repeat="author in model.book.authors" class="text-center">
-            {{author.displayName}}
+            {{::author.displayName}}
         </h3>
         <div class="centered">
             <div class="row col-md-12">
-                <span class="text-capitalize keyword" data-ng-repeat="keyword in model.book.keywords">{{keyword.value}}</span>
+                <span class="text-capitalize keyword" data-ng-repeat="keyword in model.book.keywords">{{::keyword.value}}</span>
             </div>
         </div>
 
         <div>
-            <h3>Рейтинг: {{model.book.averageRating}}</h3>
-            <h5>Всего голосов: {{model.book.totalVotes}} </h5>
+            <h3>Рейтинг: {{::model.book.averageRating}}</h3>
+            <h5>Всего голосов: {{::model.book.totalVotes}} </h5>
             <span data-ng-class="model.book.currentUserVote == ($index+1) ? 'rated' : 'keyword'" data-ng-click="rateBook($index + 1)"
-                    data-ng-repeat="point in [] | range:5">{{$index + 1}}</span>
+                    data-ng-repeat="point in [] | range:5">{{::$index + 1}}</span>
         </div>
 
         <hr>
         <div class="text-center">
-            {{model.book.description}}
+            {{::model.book.description}}
         </div>
 
         <div class="row">
             <h3 class="text-center">Отрывки книг:</h3>
             <div class="col-md-4" data-ng-show="model.book.extract1" >
-                {{model.book.extract1 | limitTo: 400}}{{model.book.extract1.length > 400 ? '...' : ''}}
+                {{::model.book.extract1 | limitTo: 400}}{{model.book.extract1.length > 400 ? '...' : ''}}
                 <br>
                 <a data-ng-click="readBook(model.book.extract1, null, 'Отрывок 1', 'Отрывок 2')"><h6>Читать</h6></a>
             </div>
             <div class="col-md-4" data-ng-show="model.book.extract2" >
-                {{model.book.extract2 | limitTo: 400}}{{model.book.extract2.length > 400 ? '...' : ''}}
+                {{::model.book.extract2 | limitTo: 400}}{{model.book.extract2.length > 400 ? '...' : ''}}
                 <br>
                 <a data-ng-click="readBook(model.book.extract2, 'Отрывок 1', 'Отрывок 2', 'Отрывок 3')"><h6>Читать</h6></a>
             </div>
             <div class="col-md-4" data-ng-show="model.book.extract3" >
-                {{model.book.extract3 | limitTo: 400}}{{model.book.extract3.length > 400 ? '...' : ''}}
+                {{::model.book.extract3 | limitTo: 400}}{{model.book.extract3.length > 400 ? '...' : ''}}
                 <br>
                 <a data-ng-click="readBook(model.book.extract3, 'Отрывок 2', 'Отрывок 3', null)"><h6>Читать</h6></a>
             </div>
@@ -57,29 +57,14 @@
             </div>
             <div data-ng-if="model.book.reviews.length != 0">
                 <div data-ng-repeat="review in model.book.reviews">
-                    <div class="row col-md-12">
-                        <h4 class="pull-left">{{review.user.nickname}}</h4>
-                        <h4 class="pull-right">{{review.dateAdded | date: "HH:mm dd.MM.yyyy"}}</h4>
-                    </div>
-                    <div class="row">
-                        <img class="img-responsive img-circle col-md-1" src="{{review.user.previewPictureSource}}">
-                        <div class="col-md-11">
-                            <div>
-                                <h4>{{review.title}}</h4>
-                            </div>
-                            <div>
-                                <h5>{{review.text}}</h5>
-                            </div>
-                        </div>
-                    </div>
+                    <review data="review"></review>
                 </div>
             </div>
-
         </div>
 
         <div>
             <div class="form-group">
-                <label for="review"><h3>Прочитали книгу? Оставьте комментарий:</h3></label>
+                <label for="review"><h3>Прочитали книгу? Оставьте отзыв:</h3></label>
                 <div class="form-group">
                     <label for="title"><h5>Заголовок: {{model.review.title.length}}/250</h5></label>
                     <input type="text" maxlength="250" class="form-control"
