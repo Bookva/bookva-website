@@ -13,6 +13,7 @@ using System.Drawing;
 using Bookva.Business;
 using Bookva.Business.ImageService;
 using System.Net.Http;
+using Bookva.Web.Mappers;
 using Microsoft.AspNet.Identity;
 
 namespace Bookva.Web.Controllers
@@ -23,10 +24,6 @@ namespace Bookva.Web.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
-        
-        public AccountController(IImageService imageService)
-        {
-        }
 
         public ApplicationSignInManager SignInManager
         {
@@ -51,7 +48,17 @@ namespace Bookva.Web.Controllers
                 _userManager = value;
             }
         }
-
+        /// <summary>
+        /// /api/account/
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        public async Task<UserViewModel> GetUserInfo()
+        {
+            var userId = User.Identity.GetUserId<int>();
+            var userInfo = await UserManager.GetUserInfo(userId);
+            return userInfo.ToViewModel();
+        }
         //
         // POST: /api/Account/Register
         [HttpPost]
