@@ -9,7 +9,8 @@ bookva.controller('userSettingsCtrl', ['$scope', '$route', '$http', '$location',
             user: {
                 name: 'eraser',
                 imgUrl: 'https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcS24lFzLCawtyboNa2OJbNrLJvBlVtplNo-pYhMKiWpW2EhbdBqcNoFFwI',
-                showEmail: false
+                showEmail: false,
+                collections: []
             }
         };
 
@@ -32,6 +33,9 @@ bookva.controller('userSettingsCtrl', ['$scope', '$route', '$http', '$location',
             var req = {
                 method: 'POST',
                 url: '...',
+                headers: {
+                    'Authorization': 'Bearer ' + $cookies.get('bookvaUserToken')
+                },
                 data: $scope.model.user
             };
 
@@ -47,5 +51,7 @@ bookva.controller('userSettingsCtrl', ['$scope', '$route', '$http', '$location',
                 controller: 'changePasswordCtrl'
             });
         };
+
+        $scope.loadUserSettings();
 
     }]);

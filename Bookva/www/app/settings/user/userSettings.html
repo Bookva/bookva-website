@@ -35,15 +35,15 @@
     <div>
         <div class="row">
             <h4 class="col-md-11">Пользовательске коллекции:</h4>
-            <button class="btn pull-right"> + </button>
         </div>
-        <div data-ng-if="!model.book.collections">
+        <div data-ng-if="!model.user.collections">
             <h5>Пока что коллекций нет...</h5>
             <h5>Создайте первую коллекцию книг! :)</h5>
         </div>
         <div data-ng-if="model.user.collections">
             <div data-ng-repeat="collection in model.user.collection">
                 <h5>{{collection.title}}</h5>
+                <h5 class="pull-right">{{collection.count}}</h5>
             </div>
         </div>
     </div>

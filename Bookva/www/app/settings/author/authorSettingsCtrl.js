@@ -22,10 +22,45 @@ bookva.controller('authorSettingsCtrl', ['$scope', '$route', '$http', '$location
             //get user's author id if exists
             var id = 1;
             if(id){
-                delete $scope.model.author;
+                delete $scope.model.author.id;
             } else {
-                $scope.model.author.id = id;
+                $scope.loadAuthorSettings(id);
             }
+        };
+
+        $scope.loadAuthorSettings = function (id) {
+            var requestParams = {
+                method: 'GET',
+                headers: {
+                    'Authorization': 'Bearer ' + $cookies.get('bookvaUserToken')
+                },
+                url: 'api/authors/' + id
+            };
+            $http(requestParams).then(function (response) {
+                $scope.model.author = response.data;
+                $scope.model.author.id = id;
+            });
+        };
+
+        $scope.saveAuthorSettings = function() {
+
+            var req = {
+                url: 'api/authors',
+                headers: {
+                    'Authorization': 'Bearer ' + $cookies.get('bookvaUserToken')
+                },
+                data: $scope.model.user
+            };
+            
+            if($scope.model.author.id) {
+                req.method = 'PUT';
+            } else {
+                req.method = 'POST';
+            }
+            
+            $http(req).success(function() {
+                $scope.loadAuthorSettings();
+            });
         };
         
         $scope.onStartup();
