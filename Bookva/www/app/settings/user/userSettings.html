@@ -1,24 +1,24 @@
-<!--@user settings-->
-
-<!--name-->
-<!--change password-->
-<!--stats-->
-<!--latest read books-->
-<!--latest rated books-->
-
 <div class="centered well col-md-10 center-block">
     <div class="row">
         <h3 class="col-md-9">Настройки пользователя  {{model.user.name}}</h3>
-        <a class="text-right col-md-3" href="#/settings/author"><h3>Стать автором</h3></a>
+        <a class="text-right col-md-3" href="#/settings/author">
+            <h3 data-ng-if="!model.user.isAuthor">
+                Стать автором
+            </h3>
+            <h3 data-ng-if="model.user.isAuthor">
+                Настройки автора
+            </h3>
+        </a>
     </div>
 
     <div class="row">
         <div class="col-md-3">
-            <img class="img-responsive img-circle centered" src="{{model.user.imgUrl}}">
+            <img class="img-responsive img-circle centered"
+                 data-ng-src="{{model.user.previewPictureSource | personFilter}}">
         </div>
         <div class="col-md-9">
             <div class="form-group">
-                <label for="name"><h5>имя:</h5></label>
+                <label for="name"><h5>Отображаемое имя:</h5></label>
                 <input type="text" class="form-control" id="name" data-ng-model="model.user.name"/>
             </div>
             <div class="form-group">
@@ -27,7 +27,8 @@
                            value="isAnonymous"> Отображать email для пользователей
                 </label>
             </div>
-            <button class="btn"><h5>Изменить пароль</h5></button>
+            <button class="btn col-md-4" data-ng-click="showChangePasswordModal()"><h5>Изменить пароль</h5></button>
+            <button class="btn col-md-4" data-ng-click="saveUserSettings()"><h5>Сохранить изменения</h5></button>
         </div>
     </div>
     <hr>

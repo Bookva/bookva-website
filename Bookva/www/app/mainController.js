@@ -1,39 +1,39 @@
-var bookva = angular.module('BookvaApp', ['ngRoute', 'ngCookies', 'ngSanitize', 'BookvaApp.common'])
+var bookva = angular.module('BookvaApp', ['ngRoute', 'ngCookies', 'ngSanitize', 'BookvaApp.common', 'ui.bootstrap'])
     .config(function ($routeProvider) {
         $routeProvider.when(
-            '/', {templateUrl: '/www/app/main/mainPage.html',
+            '/', {templateUrl: 'app/main/mainPage.html',
             controller: 'mainPageCtrl'
         }).when('/login', {
-            templateUrl: '/www/app/login/login.html',
+            templateUrl: 'app/login/login.html',
             controller: 'loginCtrl'
         }).when('/register', {
-            templateUrl: '/www/app/registration/registration.html',
+            templateUrl: 'app/registration/registration.html',
             controller: 'registrationCtrl'
         }).when('/main', {
-            templateUrl: '/www/app/books/mainPage/bookList.html',
+            templateUrl: 'app/books/mainPage/bookList.html',
             controller: 'booklistCtrl'
         }).when('/email', {
-            templateUrl: '/www/app/confirm/emailConfirm.html'
+            templateUrl: 'app/confirm/emailConfirm.html'
         }).when ('/settings/user', {
-            templateUrl: '/www/app/settings/user/userSettings.html',
+            templateUrl: 'app/settings/user/userSettings.html',
             controller: 'userSettingsCtrl'
         }).when ('/settings/author', {
-            templateUrl: '/www/app/settings/author/authorSettings.html',
+            templateUrl: 'app/settings/author/authorSettings.html',
             controller: 'authorSettingsCtrl'
         }).when ('/new', {
-            templateUrl: '/www/app/book/add/addBook.html',
+            templateUrl: 'app/book/add/addBook.html',
             controller: 'addBookCtrl'
         }).when ('/read', {
-            templateUrl: '/www/app/book/read/readBook.html',
+            templateUrl: 'app/book/read/readBook.html',
             controller: 'readBookCtrl'
         }).when ('/chapters', {
-            templateUrl: '/www/app/book/chapters/chapterList.html',
+            templateUrl: 'app/book/chapters/chapterList.html',
             controller: 'chapterListCtrl'
         }).when ('/book/:id', {
-            templateUrl: '/www/app/book/info/bookInfo.html',
+            templateUrl: 'app/book/info/bookInfo.html',
             controller: 'bookInfoCtrl'
         }).when ('/search', {
-            templateUrl: '/www/app/search/search.html',
+            templateUrl: 'app/search/search.html',
             controller: 'searchCtrl'
         });
     });
