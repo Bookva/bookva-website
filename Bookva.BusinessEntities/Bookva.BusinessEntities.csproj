@@ -51,6 +51,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Review\ReviewWriteModel.cs" />
     <Compile Include="Review\ReviewReadModel.cs" />
+    <Compile Include="User\UserReadModel.cs" />
     <Compile Include="User\UserPreviewModel.cs" />
     <Compile Include="Work\WorkPreviewModel.cs" />
     <Compile Include="Work\WorkReadModel.cs" />
