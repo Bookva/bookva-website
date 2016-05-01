@@ -130,14 +130,14 @@ namespace Bookva.Business
             var existingRating = work.Ratings.Where(r => r.UserId == userId).ToList();
             if (existingRating.Any())
             {
-                work.TotalVotes = work.TotalVotes - existingRating.Count;
                 _unitOfWork.WorkRatingRepository.Delete(existingRating);
                 _unitOfWork.Save();
             }
             _unitOfWork.WorkRatingRepository.Insert(new WorkRating {Mark = mark, UserId = userId, WorkId = workId});
+            int newNumberOfVotes = work.TotalVotes - existingRating.Count + 1;
+            work.AverageRating = work.AverageRating*work.TotalVotes/newNumberOfVotes + (float)(mark - existingRating.Sum(r => r.Mark))/ newNumberOfVotes;
 
-            work.AverageRating = work.AverageRating*work.TotalVotes/(work.TotalVotes + 1) + (float)(mark - existingRating.Sum(r => r.Mark))/ (work.TotalVotes + 1);
-            work.TotalVotes = work.TotalVotes + 1;
+            work.TotalVotes = newNumberOfVotes;
             _unitOfWork.WorkRepository.Update(work, work.Id);
             _unitOfWork.Save();
         }
