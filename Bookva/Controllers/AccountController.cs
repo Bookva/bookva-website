@@ -84,6 +84,13 @@ namespace Bookva.Web.Controllers
             return  Ok();
         }
 
+        [HttpGet]
+        [Route("isAdmin")]
+        public bool IsAdmin()
+        {
+            return User.IsInRole("Admin");
+        }
+
         //
         // POST: /api/Account/ResetPassword
         [HttpPost]
