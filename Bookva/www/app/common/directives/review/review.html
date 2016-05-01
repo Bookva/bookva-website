@@ -1,0 +1,17 @@
+﻿
+    <div class="row col-md-12">
+        <h4 class="pull-left">{{::data.user.nickname}}</h4>
+        <h4 class="pull-right">{{::data.dateAdded | date: "HH:mm dd.MM.yyyy"}}</h4>
+    </div>
+    <div class="row">
+        <img class="img-responsive img-circle col-md-1" ng-src="{{::data.user.previewPictureSource | personFilter}}">
+        <div class="col-md-11">
+            <div>
+                <h4>{{::data.title}}</h4>
+            </div>
+            <div>
+                <h5>{{::data.text}}</h5>
+            </div>
+        </div>
+    </div>
+</div>

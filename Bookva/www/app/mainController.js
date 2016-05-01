@@ -1,4 +1,4 @@
-var bookva = angular.module('BookvaApp', ['ngRoute', 'ngCookies', 'ngSanitize'])
+var bookva = angular.module('BookvaApp', ['ngRoute', 'ngCookies', 'ngSanitize', 'BookvaApp.common'])
     .config(function ($routeProvider) {
         $routeProvider.when(
             '/', {templateUrl: '/www/app/main/mainPage.html',
