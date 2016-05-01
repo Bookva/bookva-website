@@ -28,6 +28,8 @@ namespace Bookva.Web
             builder.RegisterType(typeof(ReviewService)).As(typeof(IReviewService)).SingleInstance();
             builder.RegisterType(typeof (KeywordService)).As(typeof (IKeywordService)).SingleInstance();
             builder.RegisterType(typeof(GenreService)).As(typeof(IGenreService)).SingleInstance();
+            builder.RegisterType(typeof(CollectionsService)).As(typeof(ICollectionsService)).SingleInstance();
+
             var container = builder.Build();
 
             config.DependencyResolver = new AutofacWebApiDependencyResolver(container);
