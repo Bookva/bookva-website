@@ -46,11 +46,10 @@ namespace Bookva.Business
         public IEnumerable<WorkPreviewModel> GetLatestWorks(PaginationOptions options, int userId)
         {
             options = options ?? new PaginationOptions();
-            var data = _unitOfWork.UserRepository.Get(userId).RecentCollection.Select(f => f.Work)
-                                    .Where(w => w != null && w.Status == WorkStatus.Posted).AsQueryable();
-            var filter = new WorkFilter();
-            data = filter.Sort(data, options.FieldName, options.Order);
-            return data.Paginate(options).Select(WorksMapper.ToPreviewModel);
+            var data = _unitOfWork.UserRepository.Get(userId).RecentCollection.OrderBy( rc => rc.LastViewed).AsQueryable().
+                Paginate(options).Select(f => f.Work).Where(w => w != null && w.Status == WorkStatus.Posted);
+
+            return data.Select(WorksMapper.ToPreviewModel);
         }
 
         public void AddToFavourites(int workId, int userId)
@@ -71,9 +70,16 @@ namespace Bookva.Business
 
         public void AddToLatest(int workId, int userId)
         {
-            var isAdded = _unitOfWork.FavouritesCollectionRepository.Get().Any(fc => fc.UserId == userId && fc.WorkId == workId);
-            if (isAdded) throw new ApplicationException("This work is already added to latest works collection.");
-            _unitOfWork.RecentCollectionRepository.Insert(new RecentCollection { UserId = userId, WorkId = workId });
+            var record = _unitOfWork.RecentCollectionRepository.Get().FirstOrDefault(fc => fc.UserId == userId && fc.WorkId == workId);
+            if (record == null)
+            {
+                _unitOfWork.RecentCollectionRepository.Insert(new RecentCollection { UserId = userId, WorkId = workId, LastViewed = DateTime.Now });
+            }
+            else
+            {
+                record.LastViewed = DateTime.Now;
+                _unitOfWork.RecentCollectionRepository.Insert(record);
+            }
             _unitOfWork.Save();
         }
 
