@@ -14,17 +14,27 @@ bookva.controller('userSettingsCtrl', ['$scope', '$route', '$http', '$location',
             }
         };
 
-        //TODO
         $scope.loadUserSettings = function () {
-            var requestParams = {
+            var getUserIdReq = {
                 method: 'GET',
                 headers: {
                     'Authorization': 'Bearer ' + $cookies.get('bookvaUserToken')
                 },
-                url: '...'
+                url: 'api/account'
             };
-            $http(requestParams).then(function (response) {
-                $scope.model.book = response.data;
+
+            $http(getUserIdReq).then(function (response) {
+                $scope.model.id = response.data.id;
+                var requestParams = {
+                    method: 'GET',
+                    headers: {
+                        'Authorization': 'Bearer ' + $cookies.get('bookvaUserToken')
+                    },
+                    url: 'api/user/' + $scope.model.id
+                };
+                $http(requestParams).then(function (response) {
+                    $scope.model.user = response.data;
+                });
             });
         };
 
