@@ -35,6 +35,10 @@ var bookva = angular.module('BookvaApp', ['ngRoute', 'ngCookies', 'ngSanitize', 
         }).when ('/search', {
             templateUrl: 'app/search/search.html',
             controller: 'searchCtrl'
+        }).when('/errorPage', {
+            templateUrl: 'app/error/404.html'
+        }).otherwise({
+            redirectTo: '/errorPage'
         });
     });
 
