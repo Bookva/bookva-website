@@ -33,16 +33,13 @@ namespace Bookva.Web.Models
     public class WorkEditViewModel
     {
         public int Id { get; set; }
-
-        [Required]
+        
         [MaxLength(50, ErrorMessage = "The {0} must not exceed {1} characters.")]
         public string Title { get; set; }
-
-        [Required]
+        
         [MaxLength(1000, ErrorMessage = "The {0} must not exceed {1} characters.")]
         public string Description { get; set; }
-
-        [Required]
+        
         [MaxLength(5000, ErrorMessage = "The {0} must not exceed {1} characters.")]
         public string Extract1 { get; set; }
 
@@ -53,21 +50,16 @@ namespace Bookva.Web.Models
         public string Extract3 { get; set; }
         [Range(-3000, 2016)]
         public short? YearCreated { get; set; }
-
-        [Required]
+        
         public WorkStatus Status { get; set; }
-
-        [Required]
+        
         public string Text { get; set; }
-
-        [Required]
+        
         public bool IsAnonymous { get; set; }
-
-        [Required]
+        
         [MaxLength(255, ErrorMessage = "The {0} must not exceed {1} characters.")]
         public string CoverSource { get; set; }
 
-        [Required]
         [MaxLength(255, ErrorMessage = "The {0} must not exceed {1} characters.")]
         public string PreviewCoverSource { get; set; }
 
