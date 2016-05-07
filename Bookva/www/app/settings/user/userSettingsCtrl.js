@@ -6,12 +6,7 @@ bookva.controller('userSettingsCtrl', ['$scope', '$route', '$http', '$location',
         'use strict';
 
         $scope.model = {
-            user: {
-                name: 'eraser',
-                imgUrl: 'https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcS24lFzLCawtyboNa2OJbNrLJvBlVtplNo-pYhMKiWpW2EhbdBqcNoFFwI',
-                showEmail: false,
-                collections: []
-            }
+            
         };
 
         $scope.loadUserSettings = function () {
@@ -24,17 +19,17 @@ bookva.controller('userSettingsCtrl', ['$scope', '$route', '$http', '$location',
             };
 
             $http(getUserIdReq).then(function (response) {
-                $scope.model.id = response.data.id;
-                var requestParams = {
-                    method: 'GET',
-                    headers: {
-                        'Authorization': 'Bearer ' + $cookies.get('bookvaUserToken')
-                    },
-                    url: 'api/user/' + $scope.model.id
-                };
-                $http(requestParams).then(function (response) {
-                    $scope.model.user = response.data;
-                });
+                $scope.model.user = response.data;
+                // var requestParams = {
+                //     method: 'GET',
+                //     headers: {
+                //         'Authorization': 'Bearer ' + $cookies.get('bookvaUserToken')
+                //     },
+                //     url: 'api/user/' + $scope.model.id
+                // };
+                // $http(requestParams).then(function (response) {
+                //     $scope.model.user = response.data;
+                // });
             });
         };
 
