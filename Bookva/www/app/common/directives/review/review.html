@@ -4,7 +4,7 @@
         <h4 class="pull-right">{{::data.dateAdded | date: "HH:mm dd.MM.yyyy"}}</h4>
     </div>
     <div class="row">
-        <img class="img-responsive img-circle col-md-1" ng-src="{{::data.user.previewPictureSource | personFilter}}">
+        <img class="img-responsive img-circle col-md-1" data-ng-src="{{::data.user.previewPictureSource | personFilter}}">
         <div class="col-md-11">
             <div>
                 <h4>{{::data.title}}</h4>
