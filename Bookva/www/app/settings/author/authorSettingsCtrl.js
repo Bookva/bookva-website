@@ -29,17 +29,33 @@ bookva.controller('authorSettingsCtrl', ['$scope', '$route', '$http', '$location
         };
 
         $scope.loadAuthorSettings = function (id) {
-            var requestParams = {
-                method: 'GET',
-                headers: {
-                    'Authorization': 'Bearer ' + $cookies.get('bookvaUserToken')
-                },
-                url: 'api/authors/' + id
+            $scope.loadUserSettings = function () {
+                var getUserIdReq = {
+                    method: 'GET',
+                    headers: {
+                        'Authorization': 'Bearer ' + $cookies.get('bookvaUserToken')
+                    },
+                    url: 'api/account'
+                };
+
+                $http(getUserIdReq).then(function (response) {
+                    $scope.model.id = response.data.authorId;
+
+                    if($scope.model.id != null) {
+                        var requestParams = {
+                            method: 'GET',
+                            headers: {
+                                'Authorization': 'Bearer ' + $cookies.get('bookvaUserToken')
+                            },
+                            url: 'api/authors/' + $scope.model.id
+                        };
+                        $http(requestParams).then(function (response) {
+                            $scope.model.author = response.data;
+                            $scope.model.author.id = id;
+                        });
+                    }
+                });
             };
-            $http(requestParams).then(function (response) {
-                $scope.model.author = response.data;
-                $scope.model.author.id = id;
-            });
         };
 
         $scope.saveAuthorSettings = function() {
