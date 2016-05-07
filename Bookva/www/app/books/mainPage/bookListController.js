@@ -19,14 +19,19 @@ bookva.controller('booklistCtrl', ['$scope', '$route', '$http', '$location', '$h
             });
         };
 
+        $scope.openBook = function (id) {
+            $location.path('/book/' + id);
+        };
+
         $scope.pageChanged();
     }]);
 
 bookva.directive('bookItem', ['$route', '$location', function($route, $location){
     return {
         scope: {
-            ngModel: '=model'
+            ngModel: '=model',
+            openBook: '&'
         },
-        templateUrl: 'www/app/books/mainPage/bookItem.html'
+        templateUrl: 'app/books/mainPage/bookItem.html'
     }
 }]);

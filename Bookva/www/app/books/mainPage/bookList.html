@@ -3,7 +3,7 @@
         <h3 class="text-center">Лучшие произведения:</h3>
         <div class="panel-body">
             <div class="col-md-4" data-ng-repeat="book in model.bookList">
-                <book-item model="book"></book-item>
+                <book-item model="book" open-book="openBook(id)"></book-item>
             </div>
         </div>
     </div>
@@ -13,7 +13,7 @@
         <h3 class="text-center">Набирающие популярность:</h3>
         <div class="panel-body">
             <div class="col-md-4" data-ng-repeat="book in model.bookList">
-                <book-item model="book"></book-item>
+                <book-item model="book" open-book="openBook(id)"></book-item>
             </div>
         </div>
     </div>
@@ -23,7 +23,7 @@
         <h3 class="text-center">Новые:</h3>
         <div class="panel-body">
             <div class="col-md-4" data-ng-repeat="book in model.bookList">
-                <book-item model="book"></book-item>
+                <book-item model="book" open-book="openBook(id)"></book-item>
             </div>
         </div>
     </div>
