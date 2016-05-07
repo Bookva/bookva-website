@@ -10,12 +10,16 @@
 
     <div class="row">
         <div class="col-md-2">
-            <img class="img-responsive centered" src="{{model.book.imgUrl}}">
+            <img class="img-responsive centered" src="{{model.book.coverSource}}">
         </div>
         <div class="col-md-10">
             <div class="form-group">
                 <label for="name"><h5>Название:</h5></label>
                 <input type="text" class="form-control" id="name" data-ng-model="model.book.title"/>
+            </div>
+            <div class="form-group">
+                <label for="year"><h5>Год написания:</h5></label>
+                <input type="number" class="form-control" id="year" data-ng-model="model.book.yearCreated"/>
             </div>
             <label class="text-uppercase">
                 <input type="checkbox" id="status" data-ng-model="model.book.status"
@@ -34,7 +38,7 @@
         </div>
         <div data-ng-if="model.book.genres.length">
             <div class="row">
-                <span class="text-capitalize keyword" data-ng-repeat="genre in model.book.genres">{{genre}}</span>
+                <span class="text-capitalize keyword" data-ng-repeat="genre in model.book.genres">{{genre.value}}</span>
             </div>
         </div>
     </div>
@@ -45,8 +49,15 @@
         </div>
         <div data-ng-if="model.book.keywords.length">
             <div class="row">
-                <span class="text-capitalize keyword" data-ng-repeat="keyword in model.book.keywords">{{keyword}}</span>
+                <span class="text-capitalize keyword" data-ng-repeat="keyword in model.book.keywords">{{keyword.value}}</span>
             </div>
+        </div>
+    </div>
+
+    <div>
+        <div class="form-group">
+            <label for="description"><h4>Описание книги:</h4></label>
+            <textarea class="form-control" rows="10" id="description" data-ng-model="model.book.description"></textarea>
         </div>
     </div>
 
@@ -60,14 +71,9 @@
     </div>
 
     <div>
-        <h4>Дополнительные файлы: </h4>
-        <button class="btn text-uppercase">Загрузить</button>
-    </div>
-
-    <div>
         <div class="form-group">
-            <label for="content"><h4>Текст книги: скоро тут будет модный текстовый редактор :)</h4></label>
-            <textarea class="form-control" rows="10" id="content"></textarea>
+            <label for="content"><h4>Текст книги:</h4></label>
+            <textarea class="form-control" rows="20" id="content" data-ng-model="model.book.text"></textarea>
         </div>
     </div>
 
