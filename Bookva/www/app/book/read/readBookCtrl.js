@@ -7,5 +7,21 @@ bookva.controller('readBookCtrl', ['$scope', '$route', '$http', '$location', '$c
         
         $scope.model= {
             book: bookContentService.getBookContent()
-        }
+        };
+
+        $scope.addToLatestCollection = function () {
+            var req = {
+                method: 'POST',
+                url: 'api/latestCollection/add/' + $scope.model.book.id,
+                headers: {
+                    'Authorization': 'Bearer ' + $cookies.get('bookvaUserToken')
+                }
+            };
+
+            $http(req).success(function() {
+                $scope.loadUserSettings();
+            });
+        };
+
+        $scope.addToLatestCollection();
     }]);
