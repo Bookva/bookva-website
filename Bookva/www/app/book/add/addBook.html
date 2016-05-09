@@ -23,7 +23,7 @@
             </div>
             <label class="text-uppercase">
                 <input type="checkbox" id="status" data-ng-model="model.book.status"
-                       value="isAnonymous"> Скрыть книгу
+                       value="status"> Черновик
             </label>
             <label class="text-uppercase">
                 <input type="checkbox" id="isAnonymous" data-ng-model="model.book.isAnonymous"
@@ -62,11 +62,18 @@
     </div>
 
     <div class="row">
-        <h3 class="col-md-12">Отрывки книг: {{model.book.extracts.length}}/3</h3>
-
-        <div class="col-md-4" data-ng-repeat="extract in model.book.extracts">
-            {{extract.text | limitTo: 200}}{{extract.text.length > 200 ? '...' : ''}}
-            <a><h6>Изменить</h6></a>
+        <h3 class="col-md-12">Отрывки книг:</h3>
+        <div class="col-md-4">
+            {{model.book.extract1 | limitTo: 200}}{{model.book.extract1.length > 200 ? '...' : ''}}
+            <a data-ng-click="addExtract(model.book.extract1, 'extract1')"><h6>Изменить</h6></a>
+        </div>
+        <div class="col-md-4">
+            {{model.book.extract2 | limitTo: 200}}{{model.book.extract2.length > 200 ? '...' : ''}}
+            <a data-ng-click="addExtract(model.book.extract2, 'extract2')"><h6>Изменить</h6></a>
+        </div>
+        <div class="col-md-4">
+            {{model.book.extract3 | limitTo: 200}}{{model.book.extract3.length > 200 ? '...' : ''}}
+            <a data-ng-click="addExtract(model.book.extract3, 'extract3')"><h6>Изменить</h6></a>
         </div>
     </div>
 

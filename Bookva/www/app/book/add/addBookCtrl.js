@@ -1,7 +1,7 @@
 var bookva = angular.module('BookvaApp');
 
-bookva.controller('addBookCtrl', ['$scope', '$route', '$http', '$location', '$cookies',
-    function ($scope, $route, $http, $location, $cookies) {
+bookva.controller('addBookCtrl', ['$scope', '$route', '$http', '$location', '$cookies', '$uibModal',
+    function ($scope, $route, $http, $location, $cookies, $uibModal) {
 
         'use strict';
 
@@ -9,9 +9,7 @@ bookva.controller('addBookCtrl', ['$scope', '$route', '$http', '$location', '$co
             book: {
                 title: "Кладбище домашних животных",
                 authorsIds: [],
-                genres: [
-                    "Триллер", "Мистика", "Ужасы"
-                ],
+                genres: [],
                 keywords: [],
                 imgUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS1BSiF2eB_J50OrBFW6_Z4wbKhiQ3id8sbdIOxI7izCiachPGnSBfFR5xfZg",
                 description: "Тут должно было быть очень крутое описание книги. Но его пока нет потому что разрабы - ленивые :)",
@@ -26,5 +24,24 @@ bookva.controller('addBookCtrl', ['$scope', '$route', '$http', '$location', '$co
                 previewCoverSource: "",
 
             }
-        }
+        };
+
+        $scope.addExtract = function(extractToEdit, extractName) {
+            var modalInstance = $uibModal.open({
+                animation: true,
+                templateUrl: 'app/book/add/modal/addExtract.html',
+                controller: 'addExtractCtrl',
+                size: 'md',
+                resolve: {
+                    extract: function () {
+                        return {
+                            text: extractToEdit
+                        }
+                    }
+                }
+            });
+            modalInstance.result.then(function (result) {
+                $scope.model.book[extractName] = result;
+            });
+        };
     }]);
