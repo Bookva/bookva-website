@@ -20,7 +20,10 @@ var bookva = angular.module('BookvaApp', ['ngRoute', 'ngCookies', 'ngSanitize', 
         }).when ('/settings/author', {
             templateUrl: 'app/settings/author/authorSettings.html',
             controller: 'authorSettingsCtrl'
-        }).when ('/new', {
+        }).when ('/edit', {
+            templateUrl: 'app/book/add/addBook.html',
+            controller: 'addBookCtrl'
+        }).when ('/edit/:id', {
             templateUrl: 'app/book/add/addBook.html',
             controller: 'addBookCtrl'
         }).when ('/read', {

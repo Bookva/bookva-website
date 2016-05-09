@@ -1,7 +1,7 @@
 var bookva = angular.module('BookvaApp');
 
-bookva.controller('addBookCtrl', ['$scope', '$route', '$http', '$location', '$cookies', '$uibModal',
-    function ($scope, $route, $http, $location, $cookies, $uibModal) {
+bookva.controller('addBookCtrl', ['$scope', '$route', '$http', '$location', '$cookies', '$uibModal', '$routeParams',
+    function ($scope, $route, $http, $location, $cookies, $uibModal, $routeParams) {
 
         'use strict';
 
@@ -23,6 +23,23 @@ bookva.controller('addBookCtrl', ['$scope', '$route', '$http', '$location', '$co
                 coverSource: "",
                 previewCoverSource: "",
 
+            }
+        };
+
+        $scope.loadBook = function(){
+            if($routeParams.id){
+                var requestParams = {
+                    method: 'GET',
+                    headers: {
+                        'Authorization': 'Bearer ' + $cookies.get('bookvaUserToken')
+                    },
+                    url: 'api/works/' + $routeParams.id
+                };
+                $http(requestParams).then(function (response) {
+                    $scope.model.book = response.data;
+                });
+            } else {
+                $scope.model.book = {};
             }
         };
 
@@ -83,17 +100,24 @@ bookva.controller('addBookCtrl', ['$scope', '$route', '$http', '$location', '$co
                 $scope.model.book.status = 'Posted'
             }
 
+
             var req = {
-                method: 'POST',
                 url: 'api/works',
+                mathod: 'POST',
                 headers: {
                     'Authorization': 'Bearer ' + $cookies.get('bookvaUserToken')
                 },
                 data: $scope.model.book
             };
 
+            if($routeParams.id){
+                req.method = 'PUT';
+            }
+
             $http(req).success(function() {
                 $location.path('/settings/author');
             });
         };
+        
+        $scope.loadBook();
     }]);
