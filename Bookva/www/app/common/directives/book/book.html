@@ -1,0 +1,23 @@
+<div class="panel panel-default">
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-6">
+                <h6 class="text-center">Отзывы:</h6>
+                <h4 class="text-center">{{ngModel.reviewCount}}</h4>
+            </div>
+            <div class="col-md-6">
+                <h6 class="text-center">Рейтинг:</h6>
+                <h4 class="text-center">{{ngModel.averageRating}}</h4>
+            </div>
+        </div>
+        <div>
+            <img class="img-responsive centered" src="{{ngModel.coverSource}}"/>
+        </div>
+        <div class="text-center">
+            <h4>{{ngModel.title}}</h4>
+            <h5 data-ng-repeat="author in ngModel.authors">
+                {{author.displayName}}
+            </h5>
+        </div>
+    </div>
+</div>

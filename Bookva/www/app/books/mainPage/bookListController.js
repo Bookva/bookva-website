@@ -21,12 +21,3 @@ bookva.controller('booklistCtrl', ['$scope', '$route', '$http', '$location', '$h
 
         $scope.pageChanged();
     }]);
-
-bookva.directive('bookItem', ['$route', '$location', function($route, $location){
-    return {
-        scope: {
-            ngModel: '=model'
-        },
-        templateUrl: 'www/app/books/mainPage/bookItem.html'
-    }
-}]);
