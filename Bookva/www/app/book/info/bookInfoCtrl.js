@@ -20,8 +20,84 @@ bookva.controller('bookInfoCtrl', ['$scope', '$route', '$http', '$location', '$c
             $http(requestParams).then(function (response) {
                 $scope.model.book = response.data;
             });
+
+            var token = $cookies.get('bookvaUserToken');
+
+            if(token) {
+                var loadCollectionReq = {
+                    method: 'GET',
+                    headers: {
+                        'Authorization': 'Bearer ' + $cookies.get('bookvaUserToken')
+                    },
+                    url: 'api/favourites'
+                };
+                $http(loadCollectionReq).then(function (response) {
+                    var favouriteCollection = response.data;
+                    $scope.model.favourite = false;
+                    favouriteCollection.forEach(function(item){
+                        if(item.id == $routeParams.id) {
+                            $scope.model.favourite = true;
+                        }
+                    })
+                });
+
+                loadCollectionReq.url = 'api/latestCollection';
+                $http(loadCollectionReq).then(function (response) {
+                    var latestCollection = response.data;
+                    $scope.model.latestCollection = false;
+                    latestCollection.forEach(function(item){
+                        if(item.id == $routeParams.id) {
+                            $scope.model.latestCollection = true;
+                        }
+                    });
+                });
+
+                loadCollectionReq.url = 'api/readCollection';
+                $http(loadCollectionReq).then(function (response) {
+                    var readCollection = response.data;
+                    $scope.model.readCollection = false;
+                    readCollection.forEach(function(item){
+                        if(item.id == $routeParams.id) {
+                            $scope.model.readCollection = true;
+                        }
+                    });
+                });
+            }
         };
 
+        $scope.addToCollection = function(collectionName) {
+            var req = {
+                method: 'POST',
+                url: 'api/' + collectionName + '/add/' + $scope.model.book.id,
+                headers: {
+                    'Authorization': 'Bearer ' + $cookies.get('bookvaUserToken')
+                }
+            };
+
+            $http(req).success(function() {
+                $scope.model[collectionName] = true;
+            });
+        };
+
+        $scope.removeFromCollection = function(collectionName) {
+            var req = {
+                method: 'DELETE',
+                url: 'api/' + collectionName + '/delete/' + $scope.model.book.id,
+                headers: {
+                    'Authorization': 'Bearer ' + $cookies.get('bookvaUserToken')
+                }
+            };
+
+            $http(req).success(function() {
+                $scope.model[collectionName] = false;
+            });
+        };
+        
+        $scope.loadCollectionStats = function() {
+            var token = $cookies.get('bookvaUserToken');
+            return !!token;
+        };
+            
         $scope.rateBook = function(rate) {
             var rateRequest = {
                 method: 'POST',

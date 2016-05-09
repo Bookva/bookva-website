@@ -22,6 +22,44 @@
                     data-ng-repeat="point in [] | range:5">{{::$index + 1}}</span>
         </div>
 
+        <div data-ng-show="loadCollectionStats()">
+            <h3>Коллекции:</h3>
+
+            <div class="col-md-4 panel">
+                <span class="col-md-10">
+                    <h6>Любимые книги</h6>
+                </span>
+                <button data-ng-if="model.favourite"
+                        data-ng-click="removeFromCollection('favourites')"
+                        class="pull-right text-center btn btn-danger">X</button>
+                <button data-ng-if="!model.favourite"
+                        data-ng-click="addToCollection('favourites')"
+                        class="pull-right text-center btn btn-success">+</button>
+            </div>
+            <div class="panel col-md-4">
+                <span class="col-md-10">
+                    <h6>Недавние</h6>
+                </span>
+                <button data-ng-if="model.latestCollection"
+                        data-ng-click="removeFromCollection('latestCollection')"
+                        class="pull-right text-center btn btn-danger">X</button>
+                <button data-ng-if="!model.latestCollection"
+                        data-ng-click="addToCollection('latestCollection')"
+                        class="pull-right text-center btn btn-success">+</button>
+            </div>
+            <div class="col-md-4 panel">
+                <span class="col-md-10">
+                    <h6>Прочитанные</h6>
+                </span>
+                <button data-ng-if="model.readCollection"
+                        data-ng-click="removeFromCollection('readCollection')"
+                        class="pull-right text-center btn btn-danger">X</button>
+                <button data-ng-if="!model.readCollection"
+                        data-ng-click="addToCollection('readCollection')"
+                        class="pull-right text-center btn btn-success">+</button>
+            </div>
+        </div>
+
         <hr>
         <div class="text-center">
             {{::model.book.description}}
