@@ -80,14 +80,12 @@ bookva.controller('addBookCtrl', ['$scope', '$route', '$http', '$location', '$co
             if($scope.model.book.status) {
                 $scope.model.book.status = 'Drafted'
             } else {
-                //TODO check status
-                $scope.model.book.status = 'Published'
+                $scope.model.book.status = 'Posted'
             }
 
             var req = {
                 method: 'POST',
-                //TODO check method
-                url: '...',
+                url: 'api/works',
                 headers: {
                     'Authorization': 'Bearer ' + $cookies.get('bookvaUserToken')
                 },
