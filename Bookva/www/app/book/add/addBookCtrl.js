@@ -45,6 +45,26 @@ bookva.controller('addBookCtrl', ['$scope', '$route', '$http', '$location', '$co
             });
         };
 
+        $scope.addKeyword = function() {
+            $scope.model.book.keywords.push(
+                {
+                    id: null,
+                    value: $scope.model.keyword
+                }
+            );
+            $scope.model.keyword = '';
+        };
+
+        $scope.addGenre = function() {
+            $scope.model.book.genres.push(
+                {
+                    id: null,
+                    value: $scope.model.genre
+                }
+            );
+            $scope.model.genre = '';
+        };
+
         $scope.addBook = function() {
 
             if($scope.model.book.status) {

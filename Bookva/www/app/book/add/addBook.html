@@ -32,25 +32,33 @@
         </div>
     </div>
     <div>
-        <h4>Жанры: {{model.book.genres.length}}/10</h4>
+        <h4>Жанры: ({{model.book.genres.length}})</h4>
         <div data-ng-if="!model.book.genres.length">
             <h5>Добавляйте жанры, чтобы пользователям было проще искать ваши книги.</h5>
         </div>
         <div data-ng-if="model.book.genres.length">
-            <div class="row">
+            <div class="row col-md-12">
                 <span class="text-capitalize keyword" data-ng-repeat="genre in model.book.genres">{{genre.value}}</span>
             </div>
         </div>
+        <div class="btn-group">
+            <input type="text" class="btn text-left" id="genre" data-ng-model="model.genre"/>
+            <button data-ng-click="addGenre()" class="btn btn-success"> + </button>
+        </div>
     </div>
     <div>
-        <h4>Ключевые слова: {{model.book.keywords.length}}/10</h4>
+        <h4>Ключевые слова: ({{model.book.keywords.length}})</h4>
         <div data-ng-if="!model.book.keywords.length">
             <h5>Добавляйте ключевые слова, чтобы пользователям было проще искать ваши книги.</h5>
         </div>
         <div data-ng-if="model.book.keywords.length">
-            <div class="row">
+            <div class="row col-md-12">
                 <span class="text-capitalize keyword" data-ng-repeat="keyword in model.book.keywords">{{keyword.value}}</span>
             </div>
+        </div>
+        <div class="btn-group">
+            <input type="text" class="btn text-left" id="keyword" data-ng-model="model.keyword"/>
+            <button data-ng-click="addKeyword()" class="btn btn-success"> + </button>
         </div>
     </div>
 
