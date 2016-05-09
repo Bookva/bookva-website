@@ -44,4 +44,28 @@ bookva.controller('addBookCtrl', ['$scope', '$route', '$http', '$location', '$co
                 $scope.model.book[extractName] = result;
             });
         };
+
+        $scope.addBook = function() {
+
+            if($scope.model.book.status) {
+                $scope.model.book.status = 'Drafted'
+            } else {
+                //TODO check status
+                $scope.model.book.status = 'Published'
+            }
+
+            var req = {
+                method: 'POST',
+                //TODO check method
+                url: '...',
+                headers: {
+                    'Authorization': 'Bearer ' + $cookies.get('bookvaUserToken')
+                },
+                data: $scope.model.book
+            };
+
+            $http(req).success(function() {
+                $location.path('/settings/author');
+            });
+        };
     }]);

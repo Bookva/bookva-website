@@ -50,7 +50,6 @@ bookva.controller('authorSettingsCtrl', ['$scope', '$route', '$http', '$location
         $scope.saveAuthorSettings = function() {
 
             var req = {
-                url: 'api/authors',
                 headers: {
                     'Authorization': 'Bearer ' + $cookies.get('bookvaUserToken')
                 },
@@ -59,8 +58,10 @@ bookva.controller('authorSettingsCtrl', ['$scope', '$route', '$http', '$location
             
             if($scope.model.author.id) {
                 req.method = 'PUT';
+                req.url = 'api/authors';
             } else {
                 req.method = 'POST';
+                req.url = 'api/account/createAuthor';
             }
             
             $http(req).success(function() {
