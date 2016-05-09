@@ -4,7 +4,8 @@
     angular.module('BookvaApp.common').directive('bookItem', function () {
         return {
             scope: {
-                ngModel: '=model'
+                ngModel: '=model',
+                openBook: '&'
             },
             templateUrl: 'app/common/directives/book/book.html'
         };

@@ -19,7 +19,6 @@ bookva.controller('readBookCtrl', ['$scope', '$route', '$http', '$location', '$c
             };
 
             $http(req).success(function() {
-                $scope.loadUserSettings();
             });
         };
 

@@ -82,6 +82,10 @@ bookva.controller('userSettingsCtrl', ['$scope', '$route', '$http', '$location',
             });
         };
 
+        $scope.openBook = function (id) {
+            $location.path('/book/' + id);
+        };
+
         $scope.loadUserSettings();
 
     }]);
