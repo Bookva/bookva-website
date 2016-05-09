@@ -31,6 +31,31 @@ bookva.controller('userSettingsCtrl', ['$scope', '$route', '$http', '$location',
                 //     $scope.model.user = response.data;
                 // });
             });
+
+            $scope.loadCollections();
+        };
+
+        $scope.loadCollections = function() {
+            var loadCollectionReq = {
+                method: 'GET',
+                headers: {
+                    'Authorization': 'Bearer ' + $cookies.get('bookvaUserToken')
+                },
+                url: 'api/favourites'
+            };
+            $http(loadCollectionReq).then(function (response) {
+                $scope.model.favouriteCollection = response.data;
+            });
+
+            loadCollectionReq.url = 'api/latestCollection';
+            $http(loadCollectionReq).then(function (response) {
+                $scope.model.latestCollection = response.data;
+            });
+
+            loadCollectionReq.url = 'api/readCollection';
+            $http(loadCollectionReq).then(function (response) {
+                $scope.model.readCollection = response.data;
+            });
         };
 
         //TODO

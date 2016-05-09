@@ -28,17 +28,35 @@
     </div>
     <hr>
     <div>
-        <div class="row">
-            <h4 class="col-md-11">Пользовательске коллекции:</h4>
+        <h4 class="col-md-12">Пользовательске коллекции:</h4>
+        <div class="col-md-12">
+            <div class="well">
+                <h3 class="text-center">Лучшие произведения:</h3>
+                <div class="panel-body">
+                    <div class="col-md-4" data-ng-repeat="book in model.favouriteCollections">
+                        <book-item model="book"></book-item>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div data-ng-if="!model.user.collections">
-            <h5>Пока что коллекций нет...</h5>
-            <h5>Создайте первую коллекцию книг! :)</h5>
+        <div class="col-md-12">
+            <div class="well">
+                <h3 class="text-center">Недавние:</h3>
+                <div class="panel-body">
+                    <div class="col-md-4" data-ng-repeat="book in model.latestCollection">
+                        <book-item model="book"></book-item>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div data-ng-if="model.user.collections">
-            <div data-ng-repeat="collection in model.user.collection">
-                <h5>{{collection.title}}</h5>
-                <h5 class="pull-right">{{collection.count}}</h5>
+        <div class="col-md-12">
+            <div class="well">
+                <h3 class="text-center">Прочитанные:</h3>
+                <div class="panel-body">
+                    <div class="col-md-4" data-ng-repeat="book in model.readCollection">
+                        <book-item model="book"></book-item>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
