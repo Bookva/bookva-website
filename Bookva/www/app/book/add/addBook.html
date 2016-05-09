@@ -64,16 +64,34 @@
     <div class="row">
         <h3 class="col-md-12">Отрывки книг:</h3>
         <div class="col-md-4">
-            {{model.book.extract1 | limitTo: 200}}{{model.book.extract1.length > 200 ? '...' : ''}}
-            <a data-ng-click="addExtract(model.book.extract1, 'extract1')"><h6>Изменить</h6></a>
+            <div data-ng-if="!model.book.extract1" class="text-center">
+                <h5>Пока что отрывка нет</h5>
+                <a data-ng-click="addExtract(model.book.extract1, 'extract1')"><h6>Добавить отрывок</h6></a>
+            </div>
+            <div data-ng-if="model.book.extract1">
+                {{model.book.extract1 | limitTo: 200}}{{model.book.extract1.length > 200 ? '...' : ''}}
+                <a data-ng-click="addExtract(model.book.extract1, 'extract1')"><h6>Изменить</h6></a>
+            </div>
         </div>
         <div class="col-md-4">
-            {{model.book.extract2 | limitTo: 200}}{{model.book.extract2.length > 200 ? '...' : ''}}
-            <a data-ng-click="addExtract(model.book.extract2, 'extract2')"><h6>Изменить</h6></a>
+            <div data-ng-if="!model.book.extract2" class="text-center">
+                <h5>Пока что отрывка нет</h5>
+                <a data-ng-click="addExtract(model.book.extract2, 'extract2')"><h6>Добавить отрывок</h6></a>
+            </div>
+            <div data-ng-if="model.book.extract2">
+                {{model.book.extract2 | limitTo: 200}}{{model.book.extract2.length > 200 ? '...' : ''}}
+                <a data-ng-click="addExtract(model.book.extract2, 'extract2')"><h6>Изменить</h6></a>
+            </div>
         </div>
         <div class="col-md-4">
-            {{model.book.extract3 | limitTo: 200}}{{model.book.extract3.length > 200 ? '...' : ''}}
-            <a data-ng-click="addExtract(model.book.extract3, 'extract3')"><h6>Изменить</h6></a>
+            <div data-ng-if="!model.book.extract3" class="text-center">
+                <h5>Пока что отрывка нет</h5>
+                <a data-ng-click="addExtract(model.book.extract3, 'extract3')"><h6>Добавить отрывок</h6></a>
+            </div>
+            <div data-ng-if="model.book.extract3">
+                {{model.book.extract3 | limitTo: 200}}{{model.book.extract3.length > 200 ? '...' : ''}}
+                <a data-ng-click="addExtract(model.book.extract3, 'extract3')"><h6>Изменить</h6></a>
+            </div>
         </div>
     </div>
 
