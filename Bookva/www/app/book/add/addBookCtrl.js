@@ -54,6 +54,11 @@ bookva.controller('addBookCtrl', ['$scope', '$route', '$http', '$location', '$co
             );
             $scope.model.keyword = '';
         };
+        
+        $scope.deleteKeyword = function(keyword) {
+            var index = $scope.model.book.keywords.indexOf(keyword);
+            $scope.model.book.keywords.splice(index, 1);
+        };
 
         $scope.addGenre = function() {
             $scope.model.book.genres.push(
@@ -63,6 +68,11 @@ bookva.controller('addBookCtrl', ['$scope', '$route', '$http', '$location', '$co
                 }
             );
             $scope.model.genre = '';
+        };
+        
+        $scope.deleteGenre = function(genre) {
+            var index = $scope.model.book.genres.indexOf(genre);
+            $scope.model.book.genres.splice(index, 1);
         };
 
         $scope.addBook = function() {

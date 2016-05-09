@@ -12,6 +12,11 @@
     text-transform: capitalize;
 }
 
+.keyword-btn {
+    background-color: #18bc9c;
+    text-transform: uppercase;
+}
+
 .rated {
     background-color: #2e6da4;
     color: white;

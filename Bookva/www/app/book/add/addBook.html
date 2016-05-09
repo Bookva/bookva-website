@@ -38,7 +38,10 @@
         </div>
         <div data-ng-if="model.book.genres.length">
             <div class="row col-md-12">
-                <span class="text-capitalize keyword" data-ng-repeat="genre in model.book.genres">{{genre.value}}</span>
+                <span class="text-capitalize keyword" data-ng-repeat="genre in model.book.genres">
+                    {{genre.value}}
+                    <button data-ng-click="deleteGenre(genre)" class="btn keyword-btn"> x </button>
+                </span>
             </div>
         </div>
         <div class="btn-group">
@@ -53,7 +56,10 @@
         </div>
         <div data-ng-if="model.book.keywords.length">
             <div class="row col-md-12">
-                <span class="text-capitalize keyword" data-ng-repeat="keyword in model.book.keywords">{{keyword.value}}</span>
+                <span class="text-capitalize keyword" data-ng-repeat="keyword in model.book.keywords">
+                    {{keyword.value}}
+                    <button data-ng-click="deleteKeyword(keyword)" class="btn keyword-btn"> x </button>
+                </span>
             </div>
         </div>
         <div class="btn-group">
