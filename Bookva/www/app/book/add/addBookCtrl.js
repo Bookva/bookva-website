@@ -94,16 +94,28 @@ bookva.controller('addBookCtrl', ['$scope', '$route', '$http', '$location', '$co
 
         $scope.addBook = function() {
 
+            var getUserIdReq = {
+                method: 'GET',
+                headers: {
+                    'Authorization': 'Bearer ' + $cookies.get('bookvaUserToken')
+                },
+                url: 'api/account'
+            };
+
+            $http(getUserIdReq).then(function (response) {
+                $scope.model.user = response.data;
+                $scope.model.book.authorsIds.push($scope.model.user.author.id);
+            });
+
             if($scope.model.book.status) {
                 $scope.model.book.status = 'Drafted'
             } else {
                 $scope.model.book.status = 'Posted'
             }
-
-
+            
             var req = {
                 url: 'api/works',
-                mathod: 'POST',
+                method: 'POST',
                 headers: {
                     'Authorization': 'Bearer ' + $cookies.get('bookvaUserToken')
                 },
