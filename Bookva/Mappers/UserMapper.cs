@@ -16,9 +16,12 @@ namespace Bookva.Web.Mappers
                 Id = user.Id,
                 Username = user.Username,
                 PictureSource = user.PictureSource,
-                AuthorId = user.AuthorId,
+                Author = user.Author == null?user.Author.ToViewModel() : null,
                 RegistrationDate = user.RegistrationDate,
-                Email = user.Email
+                Email = user.Email,
+                FavouritesCollection = user.FavouritesCollection.Select(WorksMapper.ToPreviewViewModel),
+                RecentCollection = user.RecentCollection.Select(WorksMapper.ToPreviewViewModel),
+                ReadCollection = user.ReadCollection.Select(WorksMapper.ToPreviewViewModel)
             };
         }
 

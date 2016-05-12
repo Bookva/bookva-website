@@ -34,6 +34,7 @@ namespace Bookva.Web.Models
     {
         public int Id { get; set; }
         
+        [Required]
         [MaxLength(50, ErrorMessage = "The {0} must not exceed {1} characters.")]
         public string Title { get; set; }
         
