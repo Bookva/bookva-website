@@ -11,7 +11,8 @@ namespace Bookva.Business
         AuthorReadModel Get(int id);
         IEnumerable<AuthorReadModel> GetAll();
         IEnumerable<AuthorReadModel> Get(PaginationOptions options);
-        void Create(AuthorWriteModel work);
+        int Create(AuthorWriteModel work);
+        void CreateUserAuthor(AuthorWriteModel author, int userId);
         void Edit(AuthorWriteModel work);
         Task ChangePictureAsync(Image image, int id);
     }

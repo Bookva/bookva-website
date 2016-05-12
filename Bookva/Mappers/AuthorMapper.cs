@@ -6,7 +6,7 @@ namespace Bookva.Web.Mappers
 {
     public static class AuthorMapper
     {
-        public static AuthorWriteModel ToDTO(AuthorViewModel viewModel)
+        public static AuthorWriteModel ToDTO(this AuthorViewModel viewModel)
         {
             return new AuthorWriteModel
             {
@@ -21,7 +21,7 @@ namespace Bookva.Web.Mappers
             };
         }
 
-        public static AuthorViewModel ToViewModel(AuthorReadModel author)
+        public static AuthorViewModel ToViewModel(this AuthorReadModel author)
         {
             return new AuthorViewModel
             {

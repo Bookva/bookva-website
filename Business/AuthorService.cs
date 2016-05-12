@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Threading.Tasks;
@@ -43,9 +44,23 @@ namespace Bookva.Business
             return _unitOfWork.AuthorRepository.Get().OrderBy(a => a.Name).Paginate(options).ToList().Select(AuthorMapper.ToReadModel);
         }
 
-        public void Create(AuthorWriteModel author)
+        public int Create(AuthorWriteModel author)
         {
             _unitOfWork.AuthorRepository.Insert(author.ToDb());
+            _unitOfWork.Save();
+            return author.Id;
+        }
+
+        public void CreateUserAuthor(AuthorWriteModel author, int userId)
+        { 
+            var user = _unitOfWork.UserRepository.Get(userId);
+            if (user.AuthorId.HasValue)
+            {
+                throw new ApplicationException("User already has assigned author");
+                
+            }
+            var authorId = Create(author);
+            user.AuthorId = authorId;
             _unitOfWork.Save();
         }
 
