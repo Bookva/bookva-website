@@ -39,15 +39,15 @@
     <div>
         <div class="row">
             <h4 class="col-md-11">Книги автора:</h4>
-            <button class="btn pull-right"> + </button>
+            <a href="#/edit"><button class="btn pull-right"> + </button></a>
         </div>
         <div data-ng-if="!model.book.works">
             <h5>Пока что книг нет...</h5>
-            <h5>Добавляйте свои шедевры! :)</h5>
+            <a href="#/edit"><h5>Добавьте книгу</h5></a>
         </div>
         <div data-ng-if="model.user.works">
             <div data-ng-repeat="work in model.author.works">
-                <h5>{{work.title}}</h5>
+                <a href="#/edit/{{work.id}}"><h5>{{work.title}}</h5></a>
             </div>
         </div>
     </div>

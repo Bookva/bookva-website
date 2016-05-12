@@ -5,21 +5,25 @@
 
 <div class="centered well col-md-10 center-block">
     <div class="row">
-        <h3 class="col-md-9">Книга '{{model.book.title}}'</h3>
+        <h3 class="col-md-9">Создание книги</h3>
     </div>
 
     <div class="row">
         <div class="col-md-2">
-            <img class="img-responsive centered" src="{{model.book.imgUrl}}">
+            <img class="img-responsive centered" src="{{model.book.coverSource}}">
         </div>
         <div class="col-md-10">
             <div class="form-group">
                 <label for="name"><h5>Название:</h5></label>
                 <input type="text" class="form-control" id="name" data-ng-model="model.book.title"/>
             </div>
+            <div class="form-group">
+                <label for="year"><h5>Год написания:</h5></label>
+                <input type="number" class="form-control" id="year" data-ng-model="model.book.yearCreated"/>
+            </div>
             <label class="text-uppercase">
                 <input type="checkbox" id="status" data-ng-model="model.book.status"
-                       value="isAnonymous"> Скрыть книгу
+                       value="status"> Черновик
             </label>
             <label class="text-uppercase">
                 <input type="checkbox" id="isAnonymous" data-ng-model="model.book.isAnonymous"
@@ -28,48 +32,89 @@
         </div>
     </div>
     <div>
-        <h4>Жанры: {{model.book.genres.length}}/10</h4>
+        <h4>Жанры: ({{model.book.genres.length}})</h4>
         <div data-ng-if="!model.book.genres.length">
             <h5>Добавляйте жанры, чтобы пользователям было проще искать ваши книги.</h5>
         </div>
         <div data-ng-if="model.book.genres.length">
-            <div class="row">
-                <span class="text-capitalize keyword" data-ng-repeat="genre in model.book.genres">{{genre}}</span>
+            <div class="row col-md-12">
+                <span class="text-capitalize keyword" data-ng-repeat="genre in model.book.genres">
+                    {{genre.value}}
+                    <button data-ng-click="deleteGenre(genre)" class="btn keyword-btn"> x </button>
+                </span>
             </div>
+        </div>
+        <div class="btn-group">
+            <input type="text" class="btn text-left" id="genre" data-ng-model="model.genre"/>
+            <button data-ng-click="addGenre()" class="btn btn-success"> + </button>
         </div>
     </div>
     <div>
-        <h4>Ключевые слова: {{model.book.keywords.length}}/10</h4>
+        <h4>Ключевые слова: ({{model.book.keywords.length}})</h4>
         <div data-ng-if="!model.book.keywords.length">
             <h5>Добавляйте ключевые слова, чтобы пользователям было проще искать ваши книги.</h5>
         </div>
         <div data-ng-if="model.book.keywords.length">
-            <div class="row">
-                <span class="text-capitalize keyword" data-ng-repeat="keyword in model.book.keywords">{{keyword}}</span>
+            <div class="row col-md-12">
+                <span class="text-capitalize keyword" data-ng-repeat="keyword in model.book.keywords">
+                    {{keyword.value}}
+                    <button data-ng-click="deleteKeyword(keyword)" class="btn keyword-btn"> x </button>
+                </span>
             </div>
         </div>
-    </div>
-
-    <div class="row">
-        <h3 class="col-md-12">Отрывки книг: {{model.book.extracts.length}}/3</h3>
-
-        <div class="col-md-4" data-ng-repeat="extract in model.book.extracts">
-            {{extract.text | limitTo: 200}}{{extract.text.length > 200 ? '...' : ''}}
-            <a><h6>Изменить</h6></a>
+        <div class="btn-group">
+            <input type="text" class="btn text-left" id="keyword" data-ng-model="model.keyword"/>
+            <button data-ng-click="addKeyword()" class="btn btn-success"> + </button>
         </div>
-    </div>
-
-    <div>
-        <h4>Дополнительные файлы: </h4>
-        <button class="btn text-uppercase">Загрузить</button>
     </div>
 
     <div>
         <div class="form-group">
-            <label for="content"><h4>Текст книги: скоро тут будет модный текстовый редактор :)</h4></label>
-            <textarea class="form-control" rows="10" id="content"></textarea>
+            <label for="description"><h4>Описание книги:</h4></label>
+            <textarea class="form-control" rows="10" id="description" data-ng-model="model.book.description"></textarea>
         </div>
     </div>
 
-    <button class="btn text-uppercase">Опубликовать</button>
+    <div class="row">
+        <h3 class="col-md-12">Отрывки книг:</h3>
+        <div class="col-md-4">
+            <div data-ng-if="!model.book.extract1" class="text-center">
+                <h5>Пока что отрывка нет</h5>
+                <a data-ng-click="addExtract(model.book.extract1, 'extract1')"><h6>Добавить отрывок</h6></a>
+            </div>
+            <div data-ng-if="model.book.extract1">
+                {{model.book.extract1 | limitTo: 200}}{{model.book.extract1.length > 200 ? '...' : ''}}
+                <a data-ng-click="addExtract(model.book.extract1, 'extract1')"><h6>Изменить</h6></a>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div data-ng-if="!model.book.extract2" class="text-center">
+                <h5>Пока что отрывка нет</h5>
+                <a data-ng-click="addExtract(model.book.extract2, 'extract2')"><h6>Добавить отрывок</h6></a>
+            </div>
+            <div data-ng-if="model.book.extract2">
+                {{model.book.extract2 | limitTo: 200}}{{model.book.extract2.length > 200 ? '...' : ''}}
+                <a data-ng-click="addExtract(model.book.extract2, 'extract2')"><h6>Изменить</h6></a>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div data-ng-if="!model.book.extract3" class="text-center">
+                <h5>Пока что отрывка нет</h5>
+                <a data-ng-click="addExtract(model.book.extract3, 'extract3')"><h6>Добавить отрывок</h6></a>
+            </div>
+            <div data-ng-if="model.book.extract3">
+                {{model.book.extract3 | limitTo: 200}}{{model.book.extract3.length > 200 ? '...' : ''}}
+                <a data-ng-click="addExtract(model.book.extract3, 'extract3')"><h6>Изменить</h6></a>
+            </div>
+        </div>
+    </div>
+
+    <div>
+        <div class="form-group">
+            <label for="content"><h4>Текст книги:</h4></label>
+            <textarea class="form-control" rows="20" id="content" data-ng-model="model.book.text"></textarea>
+        </div>
+    </div>
+
+    <button data-ng-click="addBook()" class="btn text-uppercase">Опубликовать</button>
 </div>
