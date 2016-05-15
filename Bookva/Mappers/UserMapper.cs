@@ -16,7 +16,7 @@ namespace Bookva.Web.Mappers
                 Id = user.Id,
                 Username = user.Username,
                 PictureSource = user.PictureSource,
-                Author = user.Author == null?user.Author.ToViewModel() : null,
+                Author = user.Author?.ToViewModel(),
                 RegistrationDate = user.RegistrationDate,
                 Email = user.Email,
                 FavouritesCollection = user.FavouritesCollection.Select(WorksMapper.ToPreviewViewModel),
