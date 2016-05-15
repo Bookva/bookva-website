@@ -40,13 +40,15 @@ bookva.controller('addBookCtrl', ['$scope', '$route', '$http', '$location', '$co
                 });
             } else {
                 $scope.model.book = {};
+                $scope.model.book.genres = [];
+                $scope.model.book.keywords = [];
             }
         };
 
         $scope.addExtract = function(extractToEdit, extractName) {
             var modalInstance = $uibModal.open({
                 animation: true,
-                templateUrl: 'app/book/add/modal/addExtract.html',
+                templateUrl: '/www/app/book/add/modal/addExtract.html',
                 controller: 'addExtractCtrl',
                 size: 'md',
                 resolve: {
@@ -104,31 +106,34 @@ bookva.controller('addBookCtrl', ['$scope', '$route', '$http', '$location', '$co
 
             $http(getUserIdReq).then(function (response) {
                 $scope.model.user = response.data;
+                $scope.model.book.authorsIds = [];
                 $scope.model.book.authorsIds.push($scope.model.user.author.id);
+
+                if($scope.model.book.status) {
+                    $scope.model.book.status = 'Drafted'
+                } else {
+                    $scope.model.book.status = 'Posted'
+                }
+
+                var req = {
+                    url: 'api/works',
+                    method: 'POST',
+                    headers: {
+                        'Authorization': 'Bearer ' + $cookies.get('bookvaUserToken')
+                    },
+                    data: $scope.model.book
+                };
+
+                if($routeParams.id){
+                    req.method = 'PUT';
+                }
+
+                $http(req).success(function() {
+                    $location.path('/settings/author');
+                });
             });
 
-            if($scope.model.book.status) {
-                $scope.model.book.status = 'Drafted'
-            } else {
-                $scope.model.book.status = 'Posted'
-            }
-            
-            var req = {
-                url: 'api/works',
-                method: 'POST',
-                headers: {
-                    'Authorization': 'Bearer ' + $cookies.get('bookvaUserToken')
-                },
-                data: $scope.model.book
-            };
 
-            if($routeParams.id){
-                req.method = 'PUT';
-            }
-
-            $http(req).success(function() {
-                $location.path('/settings/author');
-            });
         };
         
         $scope.loadBook();

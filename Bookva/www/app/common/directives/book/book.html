@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-md-6">
                 <h6 class="text-center">Отзывы:</h6>
-                <h4 class="text-center">{{ngModel.reviewCount}}</h4>
+                <h4 class="text-center">0</h4>
             </div>
             <div class="col-md-6">
                 <h6 class="text-center">Рейтинг:</h6>
@@ -11,7 +11,7 @@
             </div>
         </div>
         <div>
-            <img class="img-responsive centered" src="{{ngModel.coverSource}}"/>
+            <img class="book-cover img-responsive centered" data-ng-src="{{ngModel.coverSource | coverFilter}}">
         </div>
         <div class="text-center">
             <h4>{{ngModel.title}}</h4>

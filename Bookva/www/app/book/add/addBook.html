@@ -10,7 +10,7 @@
 
     <div class="row">
         <div class="col-md-2">
-            <img class="img-responsive centered" src="{{model.book.coverSource}}">
+            <img class="img-responsive centered" data-ng-src="{{model.book.coverSource | coverFilter}}">
         </div>
         <div class="col-md-10">
             <div class="form-group">

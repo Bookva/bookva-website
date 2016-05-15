@@ -28,26 +28,15 @@ bookva.controller('authorSettingsCtrl', ['$scope', '$route', '$http', '$location
             };
 
             $http(getUserIdReq).then(function (response) {
-                $scope.model.id = response.data.authorId;
-
-                if($scope.model.id != null) {
-                    var requestParams = {
-                        method: 'GET',
-                        headers: {
-                            'Authorization': 'Bearer ' + $cookies.get('bookvaUserToken')
-                        },
-                        url: 'api/authors/' + $scope.model.id
-                    };
-                    $http(requestParams).then(function (response) {
-                        $scope.model.author = response.data;
-                        $scope.model.author.id = id;
-                    });
-                }
+                $scope.model.author = response.data.author;
             });
 
         };
 
         $scope.saveAuthorSettings = function() {
+
+            $scope.model.author.pictureSource = 'https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcS24lFzLCawtyboNa2OJbNrLJvBlVtplNo-pYhMKiWpW2EhbdBqcNoFFwI';
+            $scope.model.author.previewPictureSource = 'https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcS24lFzLCawtyboNa2OJbNrLJvBlVtplNo-pYhMKiWpW2EhbdBqcNoFFwI';
 
             var req = {
                 headers: {

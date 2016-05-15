@@ -1,13 +1,8 @@
 <div class="centered well col-md-10 center-block">
     <div class="row">
-        <h3 class="col-md-9">Настройки пользователя  {{model.user.username}}</h3>
+        <h3 class="col-md-9">Настройки пользователя</h3>
         <a class="text-right col-md-3" href="#/settings/author">
-            <h3 data-ng-if="!model.user.isAuthor">
-                Стать автором
-            </h3>
-            <h3 data-ng-if="model.user.isAuthor">
-                Настройки автора
-            </h3>
+            <h3>Настройки автора</h3>
         </a>
     </div>
 
@@ -26,36 +21,30 @@
             <button class="btn col-md-4" data-ng-click="saveUserSettings()"><h5>Сохранить изменения</h5></button>
         </div>
     </div>
-    <hr>
-    <div>
-        <h4 class="col-md-12">Пользовательске коллекции:</h4>
-        <div class="col-md-12">
-            <div class="well">
-                <h3 class="text-center">Лучшие произведения:</h3>
-                <div class="panel-body">
-                    <div class="col-md-4" data-ng-repeat="book in model.favouriteCollections">
-                        <book-item model="book" open-book="openBook(id)"></book-item>
-                    </div>
+
+    <div class="centered center-block">
+        <h4>Пользовательские коллекции:</h4>
+        <div class="well">
+            <h3 class="text-center">Лучшие произведения:</h3>
+            <div class="panel-body">
+                <div class="col-md-4" data-ng-repeat="book in model.favouriteCollections">
+                    <book-item model="book" open-book="openBook(id)"></book-item>
                 </div>
             </div>
         </div>
-        <div class="col-md-12">
-            <div class="well">
-                <h3 class="text-center">Недавние:</h3>
-                <div class="panel-body">
-                    <div class="col-md-4" data-ng-repeat="book in model.latestCollection">
-                        <book-item model="book" open-book="openBook(id)"></book-item>
-                    </div>
+        <div class="well">
+            <h3 class="text-center">Недавние:</h3>
+            <div class="panel-body">
+                <div class="col-md-4" data-ng-repeat="book in model.latestCollection">
+                    <book-item model="book" open-book="openBook(id)"></book-item>
                 </div>
             </div>
         </div>
-        <div class="col-md-12">
-            <div class="well">
-                <h3 class="text-center">Прочитанные:</h3>
-                <div class="panel-body">
-                    <div class="col-md-4" data-ng-repeat="book in model.readCollection">
-                        <book-item model="book" open-book="openBook(id)"></book-item>
-                    </div>
+        <div class="well">
+            <h3 class="text-center">Прочитанные:</h3>
+            <div class="panel-body">
+                <div class="col-md-4" data-ng-repeat="book in model.readCollection">
+                    <book-item model="book" open-book="openBook(id)"></book-item>
                 </div>
             </div>
         </div>

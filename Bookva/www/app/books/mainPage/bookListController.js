@@ -16,6 +16,7 @@ bookva.controller('booklistCtrl', ['$scope', '$route', '$http', '$location', '$h
             };
             $http(requestParams).then(function (response) {
                 $scope.model.bookList = response.data;
+                $scope.model.bookList.splice(3, $scope.model.bookList.length);
             });
         };
 

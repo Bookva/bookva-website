@@ -3,7 +3,7 @@
 
 <div class="col-md-12">
     <div class="centered well col-md-10 center-block">
-        <img class="img-responsive col-md-6 centered" src="{{::model.book.coverSource}}">
+        <img class="img-responsive col-md-4 centered" data-ng-src="{{model.book.coverSource | coverFilter}}">
 
         <h2 class="text-center">{{::model.book.title}}</h2>
         <h3 data-ng-repeat="author in model.book.authors" class="text-center">
