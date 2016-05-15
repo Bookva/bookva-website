@@ -4,6 +4,7 @@
     {
         private int page;
         private int pageSize;
+        private string fieldName;
 
         public PaginationOptions()
         {
@@ -22,7 +23,12 @@
             set { pageSize = value >0 ? value : 1; }
         }
 
-        public string FieldName { get; set; }
+        public string FieldName
+        {
+            get { return fieldName; }
+            set { fieldName = value ?? "Id"; }
+        }
+
         public SortOrder Order { get; set; }
     }
 }

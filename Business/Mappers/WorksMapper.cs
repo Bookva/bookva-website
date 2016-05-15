@@ -61,7 +61,7 @@ namespace Bookva.Business.Mappers
             return new WorkPreviewModel
             {
                 Status = work.Status,
-                Description = work.Description,
+                Description = work?.Description,
                 Title = work.Title,
                 Id = work.Id,
                 IsAnonymous = work.IsAnonymous,
@@ -69,7 +69,7 @@ namespace Bookva.Business.Mappers
                 PreviewCoverSource = work.PreviewCoverSource,
                 Authors = work.Authors?.Select(AuthorMapper.ToPreviewViewModel),
                 AverageRating = work.AverageRating,
-                ReviewsCount = work.Reviews.Count
+                ReviewsCount = work.Reviews?.Count ?? 0
             };
         }
     }

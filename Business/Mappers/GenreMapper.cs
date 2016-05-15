@@ -12,7 +12,7 @@ namespace Bookva.Business.Mappers
     {
         public static Genre ToDB(this GenreModel model)
         {
-            return new Genre {Id = model.Id.Value, Name = model.Value};
+            return new Genre { Id = model.Id ?? 0, Name = model.Value };
         }
 
         public static GenreModel ToModel(this Genre model)

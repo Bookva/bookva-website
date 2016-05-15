@@ -10,6 +10,8 @@ using Microsoft.Owin;
 using Microsoft.Owin.Security;
 using Bookva.Business.ImageService;
 using System.Drawing;
+using Bookva.Business.Mappers;
+using Bookva.BusinessEntities.User;
 
 namespace Bookva.Business.Identity
 {
@@ -42,6 +44,11 @@ namespace Bookva.Business.Identity
             _imageService = new ImageService.ImageService();
         }
 
+        public async Task<UserReadModel> GetUserInfo(int userId)
+        {
+            var user = await Store.FindByIdAsync(userId);
+            return user.ToReadModel();
+        }
         public async Task ChangePictureAsync(Image image, int userId)
         {
             var user = await Store.FindByIdAsync(userId);

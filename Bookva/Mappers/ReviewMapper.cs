@@ -29,7 +29,7 @@ namespace Bookva.Web.Mappers
                 Title = review.Title,
                 Text = review.Text,
                 DateAdded = review.DateAdded,
-                User = review.User.ToViewModel()
+                User = review.User.ToPreviewViewModel()
             };
         }
     }

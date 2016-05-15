@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
@@ -13,6 +14,8 @@ using System.Drawing;
 using Bookva.Business;
 using Bookva.Business.ImageService;
 using System.Net.Http;
+using Bookva.Web.Mappers;
+using Elmah;
 using Microsoft.AspNet.Identity;
 
 namespace Bookva.Web.Controllers
@@ -23,11 +26,7 @@ namespace Bookva.Web.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
-        
-        public AccountController(IImageService imageService)
-        {
-        }
-
+        private IAuthorService _authorService;
         public ApplicationSignInManager SignInManager
         {
             get
@@ -49,6 +48,49 @@ namespace Bookva.Web.Controllers
             private set
             {
                 _userManager = value;
+            }
+        }
+
+        public AccountController(IAuthorService authorService)
+        {
+            _authorService = authorService;
+        }
+        /// <summary>
+        /// /api/account/
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        public async Task<UserViewModel> GetUserInfo()
+        {
+            var userId = User.Identity.GetUserId<int>();
+            var userInfo = await UserManager.GetUserInfo(userId);
+            return userInfo.ToViewModel();
+        }
+
+        /// <summary>
+        /// /api/account/
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("createAuthor")]
+        public IHttpActionResult CreateAuthor([FromBody]AuthorViewModel model)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    var userId = User.Identity.GetUserId<int>();
+                    var author = AuthorMapper.ToDTO(model);
+                    _authorService.CreateUserAuthor(author, userId);
+                    return new OkResult(Request);
+                }
+
+                return new BadRequestResult(Request);
+            }
+            catch (Exception e)
+            {
+                ErrorLog.GetDefault(HttpContext.Current).Log(new Error(e));
+                return BadRequest(e.Message);
             }
         }
 
@@ -82,6 +124,13 @@ namespace Bookva.Web.Controllers
             var identity = new ClaimsIdentity(claims, "Bearer");
             AuthenticationManager.SignIn(identity);
             return  Ok();
+        }
+
+        [HttpGet]
+        [Route("isAdmin")]
+        public bool IsAdmin()
+        {
+            return User.IsInRole("Admin");
         }
 
         //
