@@ -20,15 +20,15 @@ namespace Bookva.Web
 
             builder.RegisterApiControllers(Assembly.GetExecutingAssembly()).PropertiesAutowired();
 
-            builder.RegisterType(typeof(WorksService)).As(typeof (IWorksService)).SingleInstance();
+            builder.RegisterType(typeof(WorksService)).As(typeof (IWorksService)).InstancePerRequest();
             builder.RegisterType(typeof(BookvaDbContext)).As(typeof(DbContext)).InstancePerLifetimeScope();
-            builder.RegisterType(typeof (UnitOfWork)).As(typeof (IUnitOfWork)).SingleInstance();
-            builder.RegisterType(typeof(AuthorService)).As(typeof(IAuthorService)).SingleInstance();
-            builder.RegisterType(typeof(ImageService)).As(typeof(IImageService)).SingleInstance();
-            builder.RegisterType(typeof(ReviewService)).As(typeof(IReviewService)).SingleInstance();
-            builder.RegisterType(typeof (KeywordService)).As(typeof (IKeywordService)).SingleInstance();
-            builder.RegisterType(typeof(GenreService)).As(typeof(IGenreService)).SingleInstance();
-            builder.RegisterType(typeof(CollectionsService)).As(typeof(ICollectionsService)).SingleInstance();
+            builder.RegisterType(typeof (UnitOfWork)).As(typeof (IUnitOfWork)).InstancePerRequest();
+            builder.RegisterType(typeof(AuthorService)).As(typeof(IAuthorService)).InstancePerRequest();
+            builder.RegisterType(typeof(ImageService)).As(typeof(IImageService)).InstancePerRequest();
+            builder.RegisterType(typeof(ReviewService)).As(typeof(IReviewService)).InstancePerRequest();
+            builder.RegisterType(typeof (KeywordService)).As(typeof (IKeywordService)).InstancePerRequest();
+            builder.RegisterType(typeof(GenreService)).As(typeof(IGenreService)).InstancePerRequest();
+            builder.RegisterType(typeof(CollectionsService)).As(typeof(ICollectionsService)).InstancePerRequest();
 
             var container = builder.Build();
 
