@@ -64,24 +64,35 @@ namespace Bookva.Business
         public void Create(WorkWriteModel workDto)
         {
             var work = workDto.ToDB();
-            foreach (var authorId in workDto.AuthorIds)
+            if (workDto.AuthorIds != null)
             {
-                var author = _unitOfWork.AuthorRepository.Get(authorId);
-                work.Authors.Add(author);
+                foreach (var authorId in workDto.AuthorIds)
+                {
+                    var author = _unitOfWork.AuthorRepository.Get(authorId);
+                    work.Authors.Add(author);
+                }
             }
 
-            foreach (var genre in workDto.Genres)
+            if (workDto.Genres != null)
             {
-                Genre dbGenre = genre.Id.HasValue ? _unitOfWork.GenreRepository.Get(genre.Id.Value) : genre.ToDB();
-                work.Genres.Add(dbGenre);
+                foreach (var genre in workDto.Genres)
+                {
+                    Genre dbGenre = genre.Id.HasValue ? _unitOfWork.GenreRepository.Get(genre.Id.Value) : genre.ToDB();
+                    work.Genres.Add(dbGenre);
+                }
             }
 
-            foreach (var keyword in workDto.Keywords)
+            if (workDto.Keywords != null)
             {
-                Keyword dbKeyword = keyword.Id.HasValue ? _unitOfWork.KeywordRepository.Get(keyword.Id.Value) : keyword.ToDB();
-                work.Keywords.Add(dbKeyword);
+                foreach (var keyword in workDto.Keywords)
+                {
+                    Keyword dbKeyword = keyword.Id.HasValue
+                        ? _unitOfWork.KeywordRepository.Get(keyword.Id.Value)
+                        : keyword.ToDB();
+                    work.Keywords.Add(dbKeyword);
+                }
             }
-            
+
             _unitOfWork.WorkRepository.Insert(work);
             _unitOfWork.Save();
         }
@@ -89,22 +100,33 @@ namespace Bookva.Business
         public void Edit(WorkWriteModel workDto)
         {
             var work = workDto.ToDB();
-            foreach (var authorId in workDto.AuthorIds)
+            if (workDto.AuthorIds != null)
             {
-                var author = _unitOfWork.AuthorRepository.Get(authorId);
-                work.Authors.Add(author);
+                foreach (var authorId in workDto.AuthorIds)
+                {
+                    var author = _unitOfWork.AuthorRepository.Get(authorId);
+                    work.Authors.Add(author);
+                }
             }
 
-            foreach (var genre in workDto.Genres)
+            if (workDto.Genres != null)
             {
-                Genre dbGenre = genre.Id.HasValue ? _unitOfWork.GenreRepository.Get(genre.Id.Value) : genre.ToDB();
-                work.Genres.Add(dbGenre);
+                foreach (var genre in workDto.Genres)
+                {
+                    Genre dbGenre = genre.Id.HasValue ? _unitOfWork.GenreRepository.Get(genre.Id.Value) : genre.ToDB();
+                    work.Genres.Add(dbGenre);
+                }
             }
 
-            foreach (var keyword in workDto.Keywords)
+            if (workDto.Keywords != null)
             {
-                Keyword dbKeyword = keyword.Id.HasValue ? _unitOfWork.KeywordRepository.Get(keyword.Id.Value) : keyword.ToDB();
-                work.Keywords.Add(dbKeyword);
+                foreach (var keyword in workDto.Keywords)
+                {
+                    Keyword dbKeyword = keyword.Id.HasValue
+                        ? _unitOfWork.KeywordRepository.Get(keyword.Id.Value)
+                        : keyword.ToDB();
+                    work.Keywords.Add(dbKeyword);
+                }
             }
 
             _unitOfWork.WorkRepository.Update(work, work.Id);
@@ -133,9 +155,9 @@ namespace Bookva.Business
                 _unitOfWork.WorkRatingRepository.Delete(existingRating);
                 _unitOfWork.Save();
             }
-            _unitOfWork.WorkRatingRepository.Insert(new WorkRating {Mark = mark, UserId = userId, WorkId = workId});
+            _unitOfWork.WorkRatingRepository.Insert(new WorkRating { Mark = mark, UserId = userId, WorkId = workId });
             int newNumberOfVotes = work.TotalVotes - existingRating.Count + 1;
-            work.AverageRating = work.AverageRating*work.TotalVotes/newNumberOfVotes + (float)(mark - existingRating.Sum(r => r.Mark))/ newNumberOfVotes;
+            work.AverageRating = work.AverageRating * work.TotalVotes / newNumberOfVotes + (float)(mark - existingRating.Sum(r => r.Mark)) / newNumberOfVotes;
 
             work.TotalVotes = newNumberOfVotes;
             _unitOfWork.WorkRepository.Update(work, work.Id);
@@ -150,7 +172,7 @@ namespace Bookva.Business
         public void ChangeStatus(int id, int userId, WorkStatus status)
         {
             var userAuthor = _unitOfWork.UserRepository.Get(userId).AuthorId;
-            if ( userAuthor.HasValue)
+            if (userAuthor.HasValue)
             {
                 var work = _unitOfWork.WorkRepository.Get(id);
                 var isUserAllowed = work.Authors.Any(a => a.Id == userAuthor.Value);

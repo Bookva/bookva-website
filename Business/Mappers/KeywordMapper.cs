@@ -12,7 +12,7 @@ namespace Bookva.Business.Mappers
     {
         public static Keyword ToDB(this KeywordModel model)
         {
-            return new Keyword {Id = model.Id.Value, Name = model.Value};
+            return new Keyword { Id = model.Id ?? 0, Name = model.Value };
         }
         public static KeywordModel ToModel(this Keyword model)
         {
