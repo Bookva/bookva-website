@@ -46,7 +46,7 @@ var bookva = angular.module('BookvaApp', ['ngRoute', 'ngCookies', 'ngSanitize', 
     });
 
 
-bookva.controller('mainController', function ($scope, $templateCache, $cookies) {
+bookva.controller('mainController', function ($scope, $route, $location, $templateCache, $cookies) {
     $scope.$on('$routeChangeStart', function (event, next, current) {
         if (typeof(current) !== 'undefined') {
             if (typeof(next) !== 'undefined') {
@@ -62,5 +62,6 @@ bookva.controller('mainController', function ($scope, $templateCache, $cookies) 
 
     $scope.doLogout = function(){
         $cookies.remove('bookvaUserToken');
+        $location.path('/');
     }
 });
