@@ -115,7 +115,7 @@ bookva.controller('bookInfoCtrl', ['$scope', '$route', '$http', '$location', '$c
         $scope.readBook = function(text, prevChapter, currentChapter, nextChapter) {
             var textToRead = {
                 id: $scope.model.book.id,
-                content: text,
+                text: text,
                 authors: $scope.model.book.authors,
                 chapter: {
                   current: currentChapter,
@@ -126,8 +126,7 @@ bookva.controller('bookInfoCtrl', ['$scope', '$route', '$http', '$location', '$c
             };
             
             bookContentService.setBook(textToRead);
-            $location.path('/read');
-            //pass data to service
+            $location.path('/book/' + $scope.model.book.id + '/read');
         };
 
         $scope.postReview = function() {

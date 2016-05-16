@@ -48,7 +48,7 @@ bookva.controller('addBookCtrl', ['$scope', '$route', '$http', '$location', '$co
         $scope.addExtract = function(extractToEdit, extractName) {
             var modalInstance = $uibModal.open({
                 animation: true,
-                templateUrl: '/www/app/book/add/modal/addExtract.html',
+                templateUrl: 'app/book/add/modal/addExtract.html',
                 controller: 'addExtractCtrl',
                 size: 'md',
                 resolve: {

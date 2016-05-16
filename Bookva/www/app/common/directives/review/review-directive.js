@@ -4,7 +4,7 @@
     angular.module('BookvaApp.common').directive('review', function () {
         return {
             restrict: 'EA',
-            templateUrl: '/www/app/common/directives/review/review.html',
+            templateUrl: 'app/common/directives/review/review.html',
             scope: {
                 data: '='
             }

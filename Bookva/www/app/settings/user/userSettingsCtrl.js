@@ -77,7 +77,7 @@ bookva.controller('userSettingsCtrl', ['$scope', '$route', '$http', '$location',
         $scope.showChangePasswordModal = function() {
             var modalInstance = $uibModal.open({
                 animation: true,
-                templateUrl: '/www/app/settings/user/modal/changePasswordModal.html',
+                templateUrl: 'app/settings/user/modal/changePasswordModal.html',
                 controller: 'changePasswordCtrl'
             });
         };

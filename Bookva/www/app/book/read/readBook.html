@@ -10,6 +10,6 @@
     <h4 data-ng-repeat="author in model.book.authors" class="text-center">{{author.displayName}}</h4>
     <h2 class="text-center">{{model.book.chapter.current}}</h2>
     <div class="centered well col-md-10 center-block">
-        <div ng-bind-html="model.book.content"></div>
+        <div ng-bind-html="model.book.text"></div>
     </div>
 </div>
