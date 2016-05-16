@@ -144,6 +144,7 @@ bookva.controller('bookInfoCtrl', ['$scope', '$route', '$http', '$location', '$c
             };
             $http(reviewRequest).then(function(response) {
                 $scope.pageChanged();
+                $scope.model.review = {};
             });
         };
 

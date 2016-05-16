@@ -104,12 +104,12 @@
             <div class="form-group">
                 <label for="review"><h3>Прочитали книгу? Оставьте отзыв:</h3></label>
                 <div class="form-group">
-                    <label for="title"><h5>Заголовок: {{model.review.title.length}}/250</h5></label>
+                    <label for="title"><h5>Заголовок: {{model.review.title.length | lengthFilter}}/250</h5></label>
                     <input type="text" maxlength="250" class="form-control"
                            id="title" data-ng-model="model.review.title"/>
                 </div>
                 <div class="form-group">
-                    <label for="review"><h5>Отзыв: {{model.review.text.length}}/2000</h5></label>
+                    <label for="review"><h5>Отзыв: {{model.review.text.length | lengthFilter}}/2000</h5></label>
                     <textarea class="form-control" rows="5" maxlength="2000"
                               id="review" data-ng-model="model.review.text"></textarea>
                 </div>
