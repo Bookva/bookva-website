@@ -7,7 +7,7 @@
                 ngModel: '=model',
                 openBook: '&'
             },
-            templateUrl: 'app/common/directives/book/book.html'
+            templateUrl: '/www/app/common/directives/book/book.html'
         };
     });
 })();

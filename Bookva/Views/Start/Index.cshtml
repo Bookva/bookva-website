@@ -30,6 +30,7 @@
                     </li>
                     <li data-ng-show="!getToken()"><a href="#/login">Войти<span class="sr-only"></span></a></li>
                     <li data-ng-show="!getToken()"><a href="#/register">Регистрация</a></li>
+                    <li data-ng-show="getToken()"><a href="#/settings/user">Настройки профиля</a></li>
                     <li data-ng-show="getToken()"><a data-ng-click="doLogout()">Выход</a></li>
                 </ul>
             </div>
