@@ -19,7 +19,9 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#/">Bookva</a>
+                <a ng-hide="getToken()" class="navbar-brand" href="#/">Bookva</a>
+                <a ng-show="getToken()" class="navbar-brand" href="#/main">Bookva</a>
+
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
